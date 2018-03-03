@@ -26,20 +26,5 @@ function selectSuperAdminByUserID(UserID, count) {
   })
 }
 
-function selectSuperAdmin(count) {
-    superAdmin.findAndCountAll({
-        where: {
-            'UserID': 0
-        }
-    }).then(function(result) {
-        count = result.count;
-        return;
-    }).catch(function(err) {
-        console.log('selectSuperAdminByUserID error');
-        console.log(err.message)
-    })
-}
-
 exports.insertSuperAdmin = insertSuperAdmin;
 exports.selectSuperAdminByUserID = selectSuperAdminByUserID;
-exports.selectSuperAdmin = selectSuperAdmin;

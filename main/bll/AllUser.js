@@ -18,35 +18,36 @@ function allUserLogin(Account, Password, theRes) {
       Password: Password
     }
   }).then(function(result) {
-    if (result.count() === 0) {
-      theRes = -1;
-      return
+      var num;
+    if (result.count === 0) {
+        num = -1;
+        return theRes(num);
     }
     const userId = result.row(0).dataValues.UserID;
     var count = -1;
     // 检查是否是超级管理员
     superAdmin.selectSuperAdminByUserID(userId, count);
     if (count === 1) {
-      theRes = 0;
-      return
+        num = 0;
+        return theRes(num);
     }
     // 检查是否是A级管理员
     a_Admin.selectA_AdminByUserID(userId, count);
     if (count === 1) {
-      theRes = 1;
-      return
+        num = 1;
+        return theRes(num);
     }
     // 检查是否是B级管理员
     b_Admin.selectB_AdminByUserID(userId, count);
     if (count === 1) {
-      theRes = 2;
-      return
+        num = 2;
+        return theRes(num);
     }
     // 检查是否是普通用户
     ordinaryUser.selectOrdinaryUserByUserID(userId, count);
     if (count === 1) {
-      theRes = 3;
-
+        num = 3;
+        return theRes(num);
     }
   })
 }
