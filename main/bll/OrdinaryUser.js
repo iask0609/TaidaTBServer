@@ -20,10 +20,10 @@ function volunteerApplicate(UserId, returnList) {
           ServiceID: serviceId
         }
       }).then(function(result1) {
-        list.push(result1.row(0))
+        list.push(result1.row(0).dataValues);
       })
     }
-    return returnList(list)
+    return returnList(list);
   })
 }
 

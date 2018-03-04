@@ -11,4 +11,12 @@ router.post("/allUserLogin", function(req, res){
     })
 });
 
+router.post("/volunteerApplicate", function (req, res) {
+    bll.volunteerApplicate(req.body.UserID, function(list){
+        res.json({
+           "list": list
+        });
+    })
+})
+
 module.exports = router;
