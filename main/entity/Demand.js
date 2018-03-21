@@ -10,16 +10,16 @@ module.exports = function(sequelize, DataTypes) {
         key: 'ServiceID'
       }
     },
-    UserID: {
-      type: DataTypes.INTEGER,
+    Account: {
+      type: DataTypes.STRING,
       allowNull: false,
       primaryKey: false,
       references: {
         model: 'OrdinaryUser',
-        key: 'UserID'
+        key: 'Account'
       }
     },
-    Remark: {
+    postForm: {
       type: DataTypes.STRING,
       allowNull: true
     }
