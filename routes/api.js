@@ -17,6 +17,6 @@ router.post("/volunteerApplicate", function (req, res) {
            "list": list
         });
     })
-})
+});
 
 module.exports = router;
