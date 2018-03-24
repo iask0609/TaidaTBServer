@@ -1,10 +1,10 @@
 const demand = require('../util/ormSequelize').Demand;
 
-function insertDemand(ServiceID, UserID, Remark) {
+function insertDemand(ServiceID, Account, postForm) {
   demand.create({
     'ServiceID': ServiceID,
-    'UserID': UserID,
-    'Remark': Remark
+    'Account': Account,
+    'postForm': postForm
   }).then(function(result) {
     console.log('insertDemand ok');
     console.log(result.message)
@@ -14,11 +14,11 @@ function insertDemand(ServiceID, UserID, Remark) {
   })
 }
 
-function updateDemand(ServiceID, UserID, Remark) {
+function updateDemand(ServiceID, Account, postForm) {
   demand.findAndCountAll({
     where: {
       'ServiceID': ServiceID,
-      'UserID': UserID
+      'Account': Account
     }
   }).then(
     function(result) {
@@ -26,11 +26,11 @@ function updateDemand(ServiceID, UserID, Remark) {
         console.log('this Demand is not exist.')
       } else {
         demand.update({
-          'Remark': Remark
+          'postForm': postForm
         }, {
           where: {
             'ServiceID': ServiceID,
-            'UserID': UserID
+            'Account': Account
           }
         }
         ).then(function(result) {

@@ -24,7 +24,29 @@ function volunteerApplicate(UserId, returnList) {
       })
     }
     return returnList(list);
-  })
+  });
+    /**
+     *根据志愿者的ID查询他所发布过的所有可提供的服务内容
+     * 暂时不需要
+     */
+  application.findAndServiceAll({
+      where:{
+        UserId:UserId
+      }
+  }).then(function(result){
+    var list=[];
+    for(var i=0;i<result.count;i++){
+      var servicedId=result.row(i).dataValues.ServiceID;
+
+    }
+  });
+    /**
+     * 根据老人的ID查询他所发布过的所有需要被服务的内容
+     * 暂时不需要
+     */
+  application.findAndRequestAll({
+
+  });
 }
 
 exports.volunteerApplicate = volunteerApplicate;

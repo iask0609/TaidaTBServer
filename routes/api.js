@@ -19,4 +19,12 @@ router.post("/volunteerApplicate", function (req, res) {
     })
 });
 
+router.post("/demandPost", function(req,res){
+    bll.demandPost(req.body.Account,req.body.postForm, function(num){
+        res.json({
+            "num": num
+        });
+    })
+})
+
 module.exports = router;
