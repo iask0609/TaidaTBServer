@@ -25,6 +25,16 @@ router.post("/demandPost", function(req,res){
             "num": num
         });
     })
+});
+
+router.post("/noticeOperation", function(req,res){
+    bll.noticeOperation(function(list){
+        res.json({
+            "list": list
+        });
+    })
 })
+
+
 
 module.exports = router;
