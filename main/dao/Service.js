@@ -70,6 +70,36 @@ function updateService(ServiceID, Duration, content, DemandStartTime, DemandEndT
   )
 }
 
+function updateServiceFromVolunteer(ServiceID, RealStartTime, RealEndTime)
+{
+  service.findAndCountAll({
+      where: {
+          'ServiceID': ServiceID
+      }
+  }).then(function (result) {
+      if (result.count === 0) {
+          console.log('this service is not exist.')
+      } else {
+          service.update({
+                  'Status': 2,
+                  'RealStartTime': RealStartTime,
+                  'RealEndTime': RealEndTime
+              }, {
+                  where: {
+                      'ServiceID': ServiceID
+                  }
+              }
+          ).then(function(result) {
+              console.log('updateServiceFromVolunteer ok');
+              console.log(result.message)
+          }).catch(function(err) {
+              console.log('updateServiceFromVolunteer error');
+              console.log(err.message)
+          })
+      }
+  })
+}
+
 function deleteServiceByServiceID(ServiceID) {
   service.findAndCountAll({
     where: {
@@ -92,3 +122,4 @@ exports.insertService = insertService;
 exports.selectServiceByServiceID = selectServiceByServiceID;
 exports.updateService = updateService;
 exports.deleteServiceByServiceID = deleteServiceByServiceID;
+exports.updateServiceFromVolunteer = updateServiceFromVolunteer;

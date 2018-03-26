@@ -80,5 +80,18 @@ router.post("/getServicedList", function(req, res){
     })
 });
 
+/**
+ * 志愿者完成一次服务进行申请
+ */
+router.post("/applicate", function (req, res) {
+    bll.applicate(req.body.UserID, req.body.ServiceID, req.body.Material1,
+        req.body.Material2, req.body.Material3, req.body.RealStartTime, req.body.RealEndTime,
+        function (num) {
+            res.json({
+                "num":num
+            })
+        })
+});
+
 
 module.exports = router;

@@ -40,7 +40,10 @@ function getServicedList(UserID, returnList){
  */
 function applicate(UserID, ServiceID, Material1, Material2, Material3,
                    RealStartTime, RealEndTime) {
-    
+    application.insertApplication(ServiceID, UserID, Material1, Material2, Material3);
+    service.updateServiceFromVolunteer(ServiceID, RealStartTime, RealEndTime);
+    return 1;
 }
 
 exports.getServicedList = getServicedList;
+exports.applicate = applicate;
