@@ -1,7 +1,7 @@
 const service = require('../util/ormSequelize').Service;
 
 function insertService(ServiceID, CreateTime, Duration, Content,
-  DemandStartTime, DemandEndTime, RealStartTime, RealEndTime, Status,
+  DemandStartTime, DemandEndTime, Status,
   ChainHASH) {
   service.create({
     'ServiceID': ServiceID,
@@ -10,9 +10,7 @@ function insertService(ServiceID, CreateTime, Duration, Content,
     'Content': Content,
     'DemandStartTime': DemandStartTime,
     'DemandEndTime': DemandEndTime,
-    'RealStartTime': RealStartTime,
-    'RealEndTime': RealEndTime,
-    'Status': Status,
+    'Status': Status,            // 当为0时说明还未被满足，为1时说明已被满足
     'ChainHASH': ChainHASH
   }).then(function(result) {
     console.log('insertService ok');
@@ -40,29 +38,31 @@ function selectServiceByServiceID(ServiceID, ReturnList) {
   })
 }
 
-function updateService(UserID, Duration, ServedDuration) {
+function updateService(ServiceID, Duration, content, DemandStartTime, DemandEndTime) {
   service.findAndCountAll({
     where: {
-      'UserID': UserID
+      'ServiceID': ServiceID
     }
   }).then(
     function(result) {
       if (result.count === 0) {
-        console.log('this OrdinaryUser is not exist.')
+        console.log('this service is not exist.')
       } else {
         service.update({
           'Duration': Duration,
-          'ServedDuration': ServedDuration
+          'content': content,
+          'DemandStartTime': DemandStartTime,
+          'DemandEndTime': DemandEndTime
         }, {
           where: {
-            'UserID': UserID
+            'ServiceID': ServiceID
           }
         }
         ).then(function(result) {
-          console.log('updateOrdinaryUser ok');
+          console.log('updateService ok');
           console.log(result.message)
         }).catch(function(err) {
-          console.log('updateOrdinaryUser error');
+          console.log('updateService error');
           console.log(err.message)
         })
       }

@@ -3,6 +3,9 @@ var router = express.Router();
 
 const bll = require('../main/bll/_index');
 
+/**
+ * 用户登录
+ */
 router.post("/allUserLogin", function(req, res){
     bll.allUserLogin(req.body.Account, req.body.Password, function (num) {
         res.json({
@@ -11,18 +14,13 @@ router.post("/allUserLogin", function(req, res){
     })
 });
 
+/**
+ * 志愿者申请记录列表
+ */
 router.post("/volunteerApplicate", function (req, res) {
     bll.volunteerApplicate(req.body.UserID, function(list){
         res.json({
            "list": list
-        });
-    })
-});
-
-router.post("/demandPost", function(req,res){
-    bll.demandPost(req.body.Account,req.body.postForm, function(num){
-        res.json({
-            "num": num
         });
     })
 });
@@ -33,8 +31,42 @@ router.post("/noticeOperation", function(req,res){
             "list": list
         });
     })
-})
+});
 
+/**
+ * 老人发布新的需求
+ */
+router.post("/postNewRequirement", function(req, res){
+   bll.postNewRequirement(req.body.UserId, req.body.content, req.body.DemandStartTime,
+       req.body.DemandEndTime, req.body.Duration, req.body.Remark, function(num){
+       res.json({
+           "num": num
+       });
+       })
+});
 
+/**
+ * 根据老人的ID查找其所有的需求
+ */
+router.post("/getDemandByUserID", function(req, res){
+    bll.getDemandByUserID(req.body.UserID, function(list){
+        res.json({
+            "list": list
+        })
+    })
+});
+
+/**
+ * 更新老人的某个需求
+ */
+router.post("/updateDemand", function(req, res){
+    bll.updateDemand(req.body.UserID, req.body.ServiceID, req.body.Duration,
+        req.body.content, req.body.DemandStartTime, req.body.DemandEndTime,
+        req.body.Remark, function(num){
+        res.json({
+            "num":num
+        })
+        })
+});
 
 module.exports = router;
