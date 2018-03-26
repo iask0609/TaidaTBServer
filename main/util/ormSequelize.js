@@ -35,3 +35,4 @@ module.exports.OrdinaryUser = require('../entity/OrdinaryUser')(seq, Sequelize);
 module.exports.OtherUser = require('../entity/OtherUser')(seq, Sequelize);
 module.exports.Service = require('../entity/Service')(seq, Sequelize);
 module.exports.SuperAdmin = require('../entity/SuperAdmin')(seq, Sequelize);
+module.exports.NoticeView = require('../entity/NoticeView')(seq, Sequelize);

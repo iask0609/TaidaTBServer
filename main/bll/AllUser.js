@@ -11,7 +11,8 @@ const ordinaryUser = require('../util/ormSequelize').OrdinaryUser;
  * @param theRes
  * theRes:-1--用户不存在；0--超级管理员；1--A级管理员；2--B级管理员；3--普通用户
  */
-function allUserLogin(Account, Password, theRes) {
+function allUserLogin(Account, Password, theRes)
+{
   allUser.findAndCountAll({
     where: {
       Account: Account,
