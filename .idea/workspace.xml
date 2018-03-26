@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="23565516-591e-42b7-86ed-b937131a40e9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/main/bll/ApplicationBLL.js" afterPath="$PROJECT_DIR$/main/bll/ApplicationBLL.js" />
-      <change beforePath="$PROJECT_DIR$/main/bll/_index.js" afterPath="$PROJECT_DIR$/main/bll/_index.js" />
-      <change beforePath="$PROJECT_DIR$/routes/api.js" afterPath="$PROJECT_DIR$/routes/api.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -260,7 +257,7 @@
       <workItem from="1521875826627" duration="1720000" />
       <workItem from="1521978110438" duration="140000" />
       <workItem from="1522038301944" duration="5112000" />
-      <workItem from="1522045488046" duration="9265000" />
+      <workItem from="1522045488046" duration="9288000" />
     </task>
     <task id="LOCAL-00001" summary="初步完成">
       <created>1519996853787</created>
@@ -297,11 +294,18 @@
       <option name="project" value="LOCAL" />
       <updated>1522053094109</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="完成部分请求相关的后台">
+      <created>1522055912579</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1522055912579</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40690000" />
+    <option name="totallyTimeSpent" value="40713000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -372,7 +376,8 @@
     <MESSAGE value="测通" />
     <MESSAGE value="解决冲突" />
     <MESSAGE value="完成需求相关的后台" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成需求相关的后台" />
+    <MESSAGE value="完成部分请求相关的后台" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成部分请求相关的后台" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
