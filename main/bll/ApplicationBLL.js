@@ -1,0 +1,46 @@
+const application = require('../util/ormSequelize').Application;
+const service = require('../util/ormSequelize').Service;
+
+/**
+ * 查询志愿者的全部已经服务的信息
+ * @param UserID
+ * @param returnList
+ */
+function getServicedList(UserID, returnList){
+    application.findAndCountAll({
+        where: {
+            "UserID": UserID
+        }
+    }).then(function(res){
+        var list = [];
+        var serviceID = -1;
+        for(var i = 0; i < res.count; i++){
+            serviceID = res.row[i].dataValues.ServiceID;
+            service.findAndCountAll({
+                where:{
+                    "ServiceID": serviceID
+                }
+            }).then(function(res1){
+                list.push(res1.row[0].dataValues);
+            })
+        }
+        return returnList(list);
+    })
+}
+
+/**
+ * 志愿者完成一次服务进行申请
+ * @param UserID
+ * @param ServiceID
+ * @param Material1
+ * @param Material2
+ * @param Material3
+ * @param RealStartTime
+ * @param RealEndTime
+ */
+function applicate(UserID, ServiceID, Material1, Material2, Material3,
+                   RealStartTime, RealEndTime) {
+    
+}
+
+exports.getServicedList = getServicedList;

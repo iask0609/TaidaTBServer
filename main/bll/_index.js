@@ -4,3 +4,5 @@ module.exports.noticeOperation=require('./NoticeBLL').noticeOperation;
 module.exports.postNewRequirement=require('./DemandBLL').postNewRequirement;
 module.exports.getDemandByUserID=require('./DemandBLL').getDemandByUserID;
 module.exports.updateDemand=require('./DemandBLL').updateDemand;
+module.exports.getServicedList=require('./ApplicationBLL').getServicedList;
+

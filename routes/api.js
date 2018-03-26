@@ -69,4 +69,16 @@ router.post("/updateDemand", function(req, res){
         })
 });
 
+/**
+ * 根据志愿者的ID查找其所有的服务
+ */
+router.post("/getServicedList", function(req, res){
+    bll.getServicedList(req.body.UserID, function(list){
+        res.json({
+            "list": list
+        })
+    })
+});
+
+
 module.exports = router;
