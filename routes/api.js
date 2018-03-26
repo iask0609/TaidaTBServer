@@ -17,7 +17,7 @@ router.post("/volunteerApplicate", function (req, res) {
            "list": list
         });
     })
-})
+});
 
 router.post("/demandPost", function(req,res){
     bll.demandPost(req.body.Account,req.body.postForm, function(num){
@@ -25,6 +25,16 @@ router.post("/demandPost", function(req,res){
             "num": num
         });
     })
+});
+
+router.post("/noticeOperation", function(req,res){
+    bll.noticeOperation(function(list){
+        res.json({
+            "list": list
+        });
+    })
 })
+
+
 
 module.exports = router;
