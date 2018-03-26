@@ -93,5 +93,26 @@ router.post("/applicate", function (req, res) {
         })
 });
 
+/**
+ * 志愿者正在申请的服务列表
+ */
+router.post("/applicating", function(req, res){
+    bll.applicating(req.body.UserID, function(list){
+        res.json({
+            "list": list
+        })
+    })
+});
+
+/**
+ * 志愿者已经申请到的服务列表
+ */
+router.post("/applicated", function(req, res){
+    bll.applicated(req.body.UserID, function(list){
+        res.json({
+            "list": list
+        })
+    })
+});
 
 module.exports = router;
