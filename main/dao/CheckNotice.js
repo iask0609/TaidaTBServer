@@ -2,9 +2,9 @@ const checkNotice = require('../util/ormSequelize').CheckNotice;
 
 function insertCheckNotice(NoticeID, UserID, Checked) {
   checkNotice.create({
-    'NoticeID': NoticeID,
-    'UserID': UserID,
-    'Checked': Checked
+    "NoticeID": NoticeID,
+    "UserID": UserID,
+    "Checked": Checked
   }).then(function(result) {
     console.log('insertCheckNotice ok');
     console.log(result.message)
@@ -17,8 +17,8 @@ function insertCheckNotice(NoticeID, UserID, Checked) {
 function updateCheckNotice(NoticeID, UserID, Checked) {
   checkNotice.findAndCountAll({
     where: {
-      'NoticeID': NoticeID,
-      'UserID': UserID
+      "NoticeID": NoticeID,
+      "UserID": UserID
     }
   }).then(
     function(result) {
@@ -26,11 +26,11 @@ function updateCheckNotice(NoticeID, UserID, Checked) {
         console.log('this CheckNotice is not exist.')
       } else {
         checkNotice.update({
-          'Checked': Checked
+          "Checked": Checked
         }, {
           where: {
-            'NoticeID': NoticeID,
-            'UserID': UserID
+            "NoticeID": NoticeID,
+            "UserID": UserID
           }
         }
         ).then(function(result) {

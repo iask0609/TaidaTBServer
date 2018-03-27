@@ -2,7 +2,7 @@ const superAdmin = require('../util/ormSequelize').SuperAdmin;
 
 function insertSuperAdmin(UserID) {
   superAdmin.create({
-    'UserID': UserID
+    "UserID": UserID
   }).then(function(result) {
     console.log('insertSuperAdmin ok');
     console.log(result.message)
@@ -15,11 +15,10 @@ function insertSuperAdmin(UserID) {
 function selectSuperAdminByUserID(UserID, count) {
   superAdmin.findAndCountAll({
     where: {
-      'UserID': UserID
+      "UserID": UserID
     }
   }).then(function(result) {
-    count = result.count;
-    return count
+    return count(result.count);
   }).catch(function(err) {
     console.log('selectSuperAdminByUserID error');
     console.log(err.message)

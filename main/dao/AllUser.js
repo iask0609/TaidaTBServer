@@ -2,10 +2,10 @@ const allUser = require('../util/ormSequelize').AllUser;
 
 function insertAllUser(UserID, Account, Password, ChainHASH) {
   allUser.create({
-    'UserID': UserID,
-    'Account': Account,
-    'Password': Password,
-    'ChainHASH': ChainHASH
+    "UserID": UserID,
+    "Account": Account,
+    "Password": Password,
+    "ChainHASH": ChainHASH
   }).then(function(result) {
     console.log('insertAllUser ok');
     console.log(result.message)
@@ -18,7 +18,7 @@ function insertAllUser(UserID, Account, Password, ChainHASH) {
 function selectAllUserByUserID(UserID, ReturnList) {
   allUser.findAndCountAll({
     where: {
-      'UserID': UserID
+      "UserID": UserID
     }
   }).then(function(result) {
     var list = [];
@@ -35,7 +35,7 @@ function selectAllUserByUserID(UserID, ReturnList) {
 function updateAllUserByUserID(UserID, Account, Password, ChainHASH) {
   allUser.findAndCountAll({
     where: {
-      'UserID': UserID
+      "UserID": UserID
     }
   }).then(
     function(result) {
@@ -43,12 +43,12 @@ function updateAllUserByUserID(UserID, Account, Password, ChainHASH) {
         console.log('this alluser is not exist.')
       } else {
         allUser.update({
-          'Account': Account,
-          'Password': Password,
-          'ChainHASH': ChainHASH
+          "Account": Account,
+          "Password": Password,
+          "ChainHASH": ChainHASH
         }, {
           where: {
-            'UserID': UserID
+            "UserID": UserID
           }
         }
         ).then(function(result) {
@@ -66,7 +66,7 @@ function updateAllUserByUserID(UserID, Account, Password, ChainHASH) {
 function deleteAllUserByAccount(Account) {
   allUser.findAndCountAll({
     where: {
-      'Account': Account
+      "Account": Account
     }
   }).then(function(result) {
     if (result.count === 0) {
@@ -74,7 +74,7 @@ function deleteAllUserByAccount(Account) {
     } else {
       allUser.destroy({
         where: {
-          'Account': Account
+          "Account": Account
         }
       })
     }

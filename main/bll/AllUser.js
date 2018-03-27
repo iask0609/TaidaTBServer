@@ -1,8 +1,5 @@
 const allUser = require('../util/ormSequelize').AllUser;
-const superAdmin = require('../util/ormSequelize').SuperAdmin;
-const a_Admin = require('../util/ormSequelize').A_Admin;
-const b_Admin = require('../util/ormSequelize').B_Admin;
-const ordinaryUser = require('../util/ormSequelize').OrdinaryUser;
+const dao = require('../dao/_index');
 
 /**
  * 用户登陆
@@ -15,8 +12,8 @@ function allUserLogin(Account, Password, theRes)
 {
   allUser.findAndCountAll({
     where: {
-      Account: Account,
-      Password: Password
+      "Account": Account,
+      "Password": Password
     }
   }).then(function(result) {
       var num;
@@ -24,32 +21,42 @@ function allUserLogin(Account, Password, theRes)
         num = -1;
         return theRes(num);
     }
-    const userId = result.row(0).dataValues.UserID;
-    var count = -1;
+    const userId = result.rows[0].dataValues.UserID;
     // 检查是否是超级管理员
-    superAdmin.selectSuperAdminByUserID(userId, count);
-    if (count === 1) {
-        num = 0;
-        return theRes(num);
-    }
-    // 检查是否是A级管理员
-    a_Admin.selectA_AdminByUserID(userId, count);
-    if (count === 1) {
-        num = 1;
-        return theRes(num);
-    }
-    // 检查是否是B级管理员
-    b_Admin.selectB_AdminByUserID(userId, count);
-    if (count === 1) {
-        num = 2;
-        return theRes(num);
-    }
-    // 检查是否是普通用户
-    ordinaryUser.selectOrdinaryUserByUserID(userId, count);
-    if (count === 1) {
-        num = 3;
-        return theRes(num);
-    }
+    dao.selectSuperAdminByUserID(userId, function(count){
+        if (count === 1) {
+            num = 0;
+            return theRes(num);
+        }
+        else{
+            // 检查是否是A级管理员
+            dao.selectA_AdminByUserID(userId, function(count){
+                if (count === 1) {
+                    num = 1;
+                    return theRes(num);
+                }
+                else{
+                    // 检查是否是B级管理员
+                    dao.selectB_AdminByUserID(userId, function (count) {
+                        if (count === 1) {
+                            num = 2;
+                            return theRes(num);
+                        }
+                        else{
+                            // 检查是否是普通用户
+                            dao.selectOrdinaryUserByUserID(userId, function (count) {
+                                if (count === 1) {
+                                    num = 3;
+                                    return theRes(num);
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    });
+
   })
 }
 

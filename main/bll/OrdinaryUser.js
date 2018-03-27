@@ -16,13 +16,13 @@ function volunteerApplicate(UserId, returnList)
   {
     var list = [];
       for (var i = 0; i < result.count; i++) {
-          var serviceId = result.row(i).dataValues.ServiceID;
+          var serviceId = result.rows[i].dataValues.ServiceID;
           service.findAndCountAll({
               where: {
                   ServiceID: serviceId
               }
           }).then(function(result1) {
-              list.push(result1.row(0).dataValues);
+              list.push(result1.rows[0].dataValues);
           })
       }
       return returnList(list);

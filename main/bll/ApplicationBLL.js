@@ -15,13 +15,13 @@ function getServicedList(UserID, returnList){
         var list = [];
         var serviceID = -1;
         for(var i = 0; i < res.count; i++){
-            serviceID = res.row[i].dataValues.ServiceID;
+            serviceID = res.rows[i].dataValues.ServiceID;
             service.findAndCountAll({
                 where:{
                     "ServiceID": serviceID
                 }
             }).then(function(res1){
-                list.push(res1.row[0].dataValues);
+                list.push(res1.rows[0].dataValues);
             })
         }
         return returnList(list);
@@ -60,15 +60,15 @@ function applicating(UserID, returnList) {
         var serviceID = -1;
         for(var i = 0; i < result.count; i++)
         {
-            serviceID = result.row[i].dataValues.ServiceID;
+            serviceID = result.rows[i].dataValues.ServiceID;
             service.findAndCountAll({
                 where:{
                     "ServiceID": serviceID
                 }
             }).then(function(res){
-                if(res.row[0].dataValues.status === 2)
+                if(res.rows[0].dataValues.status === 2)
                 {
-                    list.push(res.row[0].dataValues);
+                    list.push(res.rows[0].dataValues);
                 }
             })
         }
@@ -91,15 +91,15 @@ function applicated(UserID, returnList){
         var serviceID = -1;
         for(var i = 0; i < result.count; i++)
         {
-            serviceID = result.row[i].dataValues.ServiceID;
+            serviceID = result.rows[i].dataValues.ServiceID;
             service.findAndCountAll({
                 where:{
                     "ServiceID": serviceID
                 }
             }).then(function(res){
-                if(res.row[0].dataValues.status === 3)
+                if(res.rows[0].dataValues.status === 3)
                 {
-                    list.push(res.row[0].dataValues);
+                    list.push(res.rows[0].dataValues);
                 }
             })
         }

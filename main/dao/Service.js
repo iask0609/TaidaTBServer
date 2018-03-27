@@ -4,14 +4,14 @@ function insertService(ServiceID, CreateTime, Duration, Content,
   DemandStartTime, DemandEndTime, Status,
   ChainHASH) {
   service.create({
-    'ServiceID': ServiceID,
-    'CreateTime': CreateTime,
-    'Duration': Duration,
-    'Content': Content,
-    'DemandStartTime': DemandStartTime,
-    'DemandEndTime': DemandEndTime,
-    'Status': Status,            // 当为0时说明还未被满足，为1时说明已被满足
-    'ChainHASH': ChainHASH
+    "ServiceID": ServiceID,
+    "CreateTime": CreateTime,
+    "Duration": Duration,
+    "Content": Content,
+    "DemandStartTime": DemandStartTime,
+    "DemandEndTime": DemandEndTime,
+    "Status": Status,            // 当为0时说明还未被满足，为1时说明已被满足
+    "ChainHASH": ChainHASH
   }).then(function(result) {
     console.log('insertService ok');
     console.log(result.message)
@@ -24,7 +24,7 @@ function insertService(ServiceID, CreateTime, Duration, Content,
 function selectServiceByServiceID(ServiceID, ReturnList) {
   service.findAndCountAll({
     where: {
-      'ServiceID': ServiceID
+      "ServiceID": ServiceID
     }
   }).then(function(result) {
     var list = [];
@@ -41,7 +41,7 @@ function selectServiceByServiceID(ServiceID, ReturnList) {
 function updateService(ServiceID, Duration, content, DemandStartTime, DemandEndTime) {
   service.findAndCountAll({
     where: {
-      'ServiceID': ServiceID
+      "ServiceID": ServiceID
     }
   }).then(
     function(result) {
@@ -49,13 +49,13 @@ function updateService(ServiceID, Duration, content, DemandStartTime, DemandEndT
         console.log('this service is not exist.')
       } else {
         service.update({
-          'Duration': Duration,
-          'content': content,
-          'DemandStartTime': DemandStartTime,
-          'DemandEndTime': DemandEndTime
+          "Duration": Duration,
+          "content": content,
+          "DemandStartTime": DemandStartTime,
+          "DemandEndTime": DemandEndTime
         }, {
           where: {
-            'ServiceID': ServiceID
+            "ServiceID": ServiceID
           }
         }
         ).then(function(result) {
@@ -74,19 +74,19 @@ function updateServiceFromVolunteer(ServiceID, RealStartTime, RealEndTime)
 {
   service.findAndCountAll({
       where: {
-          'ServiceID': ServiceID
+          "ServiceID": ServiceID
       }
   }).then(function (result) {
       if (result.count === 0) {
           console.log('this service is not exist.')
       } else {
           service.update({
-                  'Status': 2,
-                  'RealStartTime': RealStartTime,
-                  'RealEndTime': RealEndTime
+                  "Status": 2,
+                  "RealStartTime": RealStartTime,
+                  "RealEndTime": RealEndTime
               }, {
                   where: {
-                      'ServiceID': ServiceID
+                      "ServiceID": ServiceID
                   }
               }
           ).then(function(result) {
@@ -103,7 +103,7 @@ function updateServiceFromVolunteer(ServiceID, RealStartTime, RealEndTime)
 function deleteServiceByServiceID(ServiceID) {
   service.findAndCountAll({
     where: {
-      'ServiceID': ServiceID
+      "ServiceID": ServiceID
     }
   }).then(function(result) {
     if (result.count === 0) {
@@ -111,7 +111,7 @@ function deleteServiceByServiceID(ServiceID) {
     } else {
       service.destroy({
         where: {
-          'ServiceID': ServiceID
+          "ServiceID": ServiceID
         }
       })
     }

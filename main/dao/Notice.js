@@ -3,14 +3,14 @@ const notice = require('../util/ormSequelize').Notice;
 function insertNotice(NoticeID, UserID, Title, Content,
   Effectiveness, Visibility, ReleaseTime, DeleteTime) {
   notice.create({
-    'NoticeID': NoticeID,
-    'UserID': UserID,
-    'Title': Title,
-    'Content': Content,
-    'Effectiveness': Effectiveness,
-    'Visibility': Visibility,
-    'ReleaseTime': ReleaseTime,
-    'DeleteTime': DeleteTime
+    "NoticeID": NoticeID,
+    "UserID": UserID,
+    "Title": Title,
+    "Content": Content,
+    "Effectiveness": Effectiveness,
+    "Visibility": Visibility,
+    "ReleaseTime": ReleaseTime,
+    "DeleteTime": DeleteTime
   }).then(function(result) {
     console.log('insertNotice ok');
     console.log(result.message)
@@ -23,7 +23,7 @@ function insertNotice(NoticeID, UserID, Title, Content,
 function updateNotie(UserID, Duration, ServedDuration) {
   notice.findAndCountAll({
     where: {
-      'UserID': UserID
+      "UserID": UserID
     }
   }).then(
     function(result) {
@@ -31,11 +31,11 @@ function updateNotie(UserID, Duration, ServedDuration) {
         console.log('this OrdinaryUser is not exist.')
       } else {
         notice.update({
-          'Duration': Duration,
-          'ServedDuration': ServedDuration
+          "Duration": Duration,
+          "ServedDuration": ServedDuration
         }, {
           where: {
-            'UserID': UserID
+            "UserID": UserID
           }
         }
         ).then(function(result) {
@@ -53,7 +53,7 @@ function updateNotie(UserID, Duration, ServedDuration) {
 function deleteServiceByServiceID(ServiceID) {
   notice.findAndCountAll({
     where: {
-      'ServiceID': ServiceID
+      "ServiceID": ServiceID
     }
   }).then(function(result) {
     if (result.count === 0) {
@@ -61,7 +61,7 @@ function deleteServiceByServiceID(ServiceID) {
     } else {
       notice.destroy({
         where: {
-          'ServiceID': ServiceID
+          "ServiceID": ServiceID
         }
       })
     }

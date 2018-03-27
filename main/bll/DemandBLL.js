@@ -20,7 +20,7 @@ function postNewRequirement(UserId, content, DemandStartTime, DemandEndTime, Dur
         var ServiceID = -1;
         if(result.count > 0)
         {
-            ServiceID = result.row[0].dataValues.ServiceID + 1;
+            ServiceID = result.rows[0].dataValues.ServiceID + 1;
         }
         else
         {
@@ -49,13 +49,13 @@ function getDemandByUserID(UserID, returnList){
         var list = [];
         var serviceID = -1;
         for(var i = 0; i < res.count; i++){
-            serviceID = res.row[i].dataValues.ServiceID;
+            serviceID = res.rows[i].dataValues.ServiceID;
             service.findAndCountAll({
                 where:{
                     "ServiceID": serviceID
                 }
             }).then(function(res1){
-                list.push(res1.row[0].dataValues);
+                list.push(res1.rows[0].dataValues);
             })
         }
         return returnList(list);

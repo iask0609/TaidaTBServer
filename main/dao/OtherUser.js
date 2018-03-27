@@ -3,15 +3,15 @@ const otherUser = require('../util/ormSequelize').OtherUser;
 function insertOtherUser(UserID, UserName, Gender, Photo, Name,
   IDNumber, Email, Phone, Address) {
   otherUser.create({
-    'UserID': UserID,
-    'UserName': UserName,
-    'Gender': Gender,
-    'Photo': Photo,
-    'Name': Name,
-    'IDNumber': IDNumber,
-    'Email': Email,
-    'Phone': Phone,
-    'Address': Address
+    "UserID": UserID,
+    "UserName": UserName,
+    "Gender": Gender,
+    "Photo": Photo,
+    "Name": Name,
+    "IDNumber": IDNumber,
+    "Email": Email,
+    "Phone": Phone,
+    "Address": Address
   }).then(function(result) {
     console.log('insertOtherUser ok');
     console.log(result.message)
@@ -24,7 +24,7 @@ function insertOtherUser(UserID, UserName, Gender, Photo, Name,
 function selectOtherUserByUserID(UserID, ReturnList) {
   otherUser.findAndCountAll({
     where: {
-      'UserID': UserID
+      "UserID": UserID
     }
   }).then(function(result) {
     var list = [];
@@ -42,7 +42,7 @@ function updateOtherUserByUserID(UserID, UserName, Gender, Photo, Name,
   IDNumber, Email, Phone, Address) {
   otherUser.findAndCountAll({
     where: {
-      'UserID': UserID
+      "UserID": UserID
     }
   }).then(
     function(result) {
@@ -50,17 +50,17 @@ function updateOtherUserByUserID(UserID, UserName, Gender, Photo, Name,
         console.log('this authority is not exist.')
       } else {
         otherUser.update({
-          'UserName': UserName,
-          'Gender': Gender,
-          'Photo': Photo,
-          'Name': Name,
-          'IDNumber': IDNumber,
-          'Email': Email,
-          'Phone': Phone,
-          'Address': Address
+          "UserName": UserName,
+          "Gender": Gender,
+          "Photo": Photo,
+          "Name": Name,
+          "IDNumber": IDNumber,
+          "Email": Email,
+          "Phone": Phone,
+          "Address": Address
         }, {
           where: {
-            'UserID': UserID
+            "UserID": UserID
           }
         }
         ).then(function(result) {

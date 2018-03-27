@@ -2,7 +2,7 @@ const a_admin = require('../util/ormSequelize').A_Admin;
 
 function insertA_Admin(UserID) {
   a_admin.create({
-    'UserID': UserID
+    "UserID": UserID
   }).then(function(result) {
     console.log('inserted A_Admin ok');
     console.log(result.message)
@@ -15,11 +15,10 @@ function insertA_Admin(UserID) {
 function selectA_AdminByUserID(UserID, count) {
   a_admin.findAndCountAll({
     where: {
-      'UserID': UserID
+      "UserID": UserID
     }
   }).then(function(result) {
-    count = result.count;
-    return count
+    return count(result.count);
   }).catch(function(err) {
     console.log('selectA_AdminByUserID error');
     console.log(err.message)

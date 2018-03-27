@@ -2,7 +2,7 @@ const administrator = require('../util/ormSequelize').Administrator;
 
 function insertAdministrator(UserID) {
   administrator.create({
-    'UserID': UserID
+    "UserID": UserID
   }).then(function(result) {
     console.log('inserted Administrator ok');
     console.log(result.message)
@@ -15,7 +15,7 @@ function insertAdministrator(UserID) {
 function selectAdministratorByUserID(UserID, count) {
   administrator.findAndCountAll({
     where: {
-      'UserID': UserID
+      "UserID": UserID
     }
   }).then(function(result) {
     count = result.count;
