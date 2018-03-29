@@ -74,6 +74,7 @@ router.post("/updateDemand", function(req, res){
  */
 router.post("/getServicedList", function(req, res){
     bll.getServicedList(req.body.UserID, function(list){
+        console.log(list);
         res.json({
             "list": list
         })
