@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23565516-591e-42b7-86ed-b937131a40e9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Server.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/bin_www.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -287,7 +281,7 @@
       <workItem from="1522227334695" duration="2799000" />
       <workItem from="1522301658784" duration="388000" />
       <workItem from="1522302814724" duration="4966000" />
-      <workItem from="1522321039320" duration="446000" />
+      <workItem from="1522321039320" duration="514000" />
     </task>
     <task id="LOCAL-00001" summary="初步完成">
       <created>1519996853787</created>
@@ -373,11 +367,18 @@
       <option name="project" value="LOCAL" />
       <updated>1522321262217</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="删除无用的">
+      <created>1522321519216</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1522321519216</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66242000" />
+    <option name="totallyTimeSpent" value="66310000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -456,7 +457,8 @@
     <MESSAGE value="完善了dao层的基本操作&#10;修改了用户登陆函数的bug&#10;修改了传参时的字符编码格式" />
     <MESSAGE value="不太优雅的解决了 根据志愿者的ID查找其所有的服务 的异步的问题" />
     <MESSAGE value="修改 根据老人的ID查找其所有的需求 的bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改 根据老人的ID查找其所有的需求 的bug" />
+    <MESSAGE value="删除无用的" />
+    <option name="LAST_COMMIT_MESSAGE" value="删除无用的" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
