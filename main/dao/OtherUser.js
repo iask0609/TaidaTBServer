@@ -38,8 +38,7 @@ function selectOtherUserByUserID(UserID, ReturnList) {
   })
 }
 
-function updateOtherUserByUserID(UserID, UserName, Gender, Photo, Name,
-  IDNumber, Email, Phone, Address) {
+function updateOtherUserByUserID(UserID, Gender, Name, IDNumber, Email, Phone, returnNum) {
   otherUser.findAndCountAll({
     where: {
       "UserID": UserID
@@ -47,28 +46,25 @@ function updateOtherUserByUserID(UserID, UserName, Gender, Photo, Name,
   }).then(
     function(result) {
       if (result.count === 0) {
-        console.log('this authority is not exist.')
+        console.log('this user is not exist.')
       } else {
         otherUser.update({
-          "UserName": UserName,
           "Gender": Gender,
-          "Photo": Photo,
           "Name": Name,
           "IDNumber": IDNumber,
           "Email": Email,
-          "Phone": Phone,
-          "Address": Address
+          "Phone": Phone
         }, {
           where: {
             "UserID": UserID
           }
         }
-        ).then(function(result) {
+        ).then(function() {
           console.log('updateOtherUser ok');
-          console.log(result.message)
-        }).catch(function(err) {
+          return returnNum(1);
+        }).catch(function() {
           console.log('updateOtherUser error');
-          console.log(err.message)
+          return returnNum(0);
         })
       }
     }

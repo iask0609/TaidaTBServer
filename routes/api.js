@@ -52,7 +52,7 @@ router.post("/noticeOperation", function(req,res){
  * 老人发布新的需求
  */
 router.post("/postNewRequirement", function(req, res){
-   bll.postNewRequirement(req.body.UserId, req.body.content, req.body.DemandStartTime,
+   bll.postNewRequirement(req.body.UserId, req.body.Content, req.body.DemandStartTime,
        req.body.DemandEndTime, req.body.Duration, req.body.Remark, function(num){
        res.json({
            "num": num
@@ -129,6 +129,18 @@ router.post("/applicated", function(req, res){
             "list": list
         })
     })
+});
+
+/**
+ * 修改个人信息
+ */
+router.post("/changeUserInformation", function(req, res){
+    bll.changeUserInformation(req.body.UserID, req.body.Gender,
+        req.body.Name, req.body.IDNumber, req.body.Email, req.body.Phone, function(num){
+        res.json({
+            "num": num
+        })
+        })
 });
 
 module.exports = router;
