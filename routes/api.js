@@ -131,4 +131,16 @@ router.post("/applicated", function(req, res){
     })
 });
 
+/**
+ * 修改个人信息
+ */
+router.post("/changeUserInformation", function(req, res){
+    bll.changeUserInformation(req.body.UserID, req.body.Gender,
+        req.body.Name, req.body.IDNumber, req.body.Email, req.body.Phone, function(num){
+        res.json({
+            "num": num
+        })
+        })
+});
+
 module.exports = router;
