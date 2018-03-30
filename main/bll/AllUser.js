@@ -1,4 +1,5 @@
 const allUser = require('../util/ormSequelize').AllUser;
+const otherUser=require('../util/ormSequelize').OtherUser;
 const dao = require('../dao/_index');
 
 /**
@@ -60,4 +61,16 @@ function allUserLogin(Account, Password, theRes)
   })
 }
 
+function getUserInfo(UserId,theRes)
+{
+    otherUser.findAndCountAll({
+    where: {
+      "UserID": UserId
+    }
+  }).then(function (res) {
+        return theRes(res);
+    })
+}
+
 exports.allUserLogin = allUserLogin;
+exports.getUserInfo=getUserInfo;

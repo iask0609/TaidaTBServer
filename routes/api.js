@@ -8,8 +8,23 @@ const bll = require('../main/bll/_index');
  */
 router.post("/allUserLogin", function(req, res){
     bll.allUserLogin(req.body.Account, req.body.Password, function (num) {
+
+
         res.json({
-            "num": num
+            "num": num,
+            "account": req.body.Account,
+            "password": req.body.Password
+        });
+    })
+});
+
+/**
+ * 获取个人信息
+ */
+router.post("/getUserInfo", function(req, res){
+    bll.allUserLogin(req.body.UserId, function (info) {
+        res.json({
+            "info": info
         });
     })
 });
