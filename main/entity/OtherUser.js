@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: false
     },
     Gender: {
-      type: DataTypes.String,
+      type: DataTypes.STRING,
       allowNull: true
     },
     Photo: {
