@@ -1,5 +1,6 @@
 const application = require('../util/ormSequelize').Application;
 const service = require('../util/ormSequelize').Service;
+const dao = require('../dao/_index');
 
 /**
  * 查询志愿者的全部已经服务的信息
@@ -42,10 +43,17 @@ function getServicedList(UserID, returnList){
  * @param RealEndTime
  */
 function applicate(UserID, ServiceID, Material1, Material2, Material3,
-                   RealStartTime, RealEndTime) {
-    application.insertApplication(ServiceID, UserID, Material1, Material2, Material3);
-    service.updateServiceFromVolunteer(ServiceID, RealStartTime, RealEndTime);
-    return 1;
+                   RealStartTime, RealEndTime, returnNum) {
+    dao.insertApplication(ServiceID, UserID, Material1, Material2, Material3, function(num){
+        if(num === 1){
+            dao.updateServiceFromVolunteer(ServiceID, RealStartTime, RealEndTime, function(num){
+                return returnNum(num);
+            });
+        }
+        else{
+            return returnNum(num)
+        }
+    });
 }
 
 /**

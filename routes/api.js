@@ -76,7 +76,7 @@ router.post("/getDemandByUserID", function(req, res){
  */
 router.post("/updateDemand", function(req, res){
     bll.updateDemand(req.body.UserID, req.body.ServiceID, req.body.Duration,
-        req.body.content, req.body.DemandStartTime, req.body.DemandEndTime,
+        req.body.Content, req.body.DemandStartTime, req.body.DemandEndTime,
         req.body.Remark, function(num){
         res.json({
             "num":num

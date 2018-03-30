@@ -16,7 +16,7 @@ function insertDemand(ServiceID, UserID, Remark, returnNum) {
   })
 }
 
-function updateDemand(ServiceID, UserID, Remark) {
+function updateDemand(ServiceID, UserID, Remark, returnNum) {
   demand.findAndCountAll({
     where: {
       "ServiceID": ServiceID,
@@ -37,10 +37,10 @@ function updateDemand(ServiceID, UserID, Remark) {
         }
         ).then(function(result) {
           console.log('updateDemand ok');
-          console.log(result.message)
+          return returnNum(1);
         }).catch(function(err) {
           console.log('updateDemand error');
-          console.log(err.message)
+            return returnNum(0);
         })
       }
     }
