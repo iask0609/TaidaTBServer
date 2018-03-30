@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: false
     },
     Gender: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.String,
       allowNull: true
     },
     Photo: {
@@ -39,8 +39,16 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true
     },
-    Address: {
-      type: DataTypes.STRING,
+    Province:{
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    City:{
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    District:{
+      type: DataTypes.INTEGER,
       allowNull: true
     }
   }, {

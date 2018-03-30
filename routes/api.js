@@ -19,6 +19,17 @@ router.post("/allUserLogin", function(req, res){
 });
 
 /**
+ * 获取个人信息
+ */
+router.post("/getUserInfo", function(req, res){
+    bll.allUserLogin(req.body.UserId, function (info) {
+        res.json({
+            "info": info
+        });
+    })
+});
+
+/**
  * 志愿者申请记录列表
  */
 router.post("/volunteerApplicate", function (req, res) {
