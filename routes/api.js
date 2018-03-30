@@ -22,7 +22,7 @@ router.post("/allUserLogin", function(req, res){
  * 获取个人信息
  */
 router.post("/getUserInfo", function(req, res){
-    bll.allUserLogin(req.body.UserId, function (info) {
+    bll.getUserInfo(req.body.UserId, function (info) {
         res.json({
             "info": info
         });
