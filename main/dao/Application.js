@@ -1,7 +1,7 @@
 const application = require('../util/ormSequelize').Application;
 
 function insertApplication(ServiceID, UserID, Material1,
-  Material2, Material3) {
+  Material2, Material3, returnNum) {
   application.create({
     "ServiceID": ServiceID,
     "UserID": UserID,
@@ -10,10 +10,10 @@ function insertApplication(ServiceID, UserID, Material1,
     "Material3": Material3
   }).then(function(result) {
     console.log('insertApplication ok');
-    console.log(result.message)
+    return returnNum(1);
   }).catch(function(err) {
     console.log('insertApplication error');
-    console.log(err.message)
+      return returnNum(0);
   })
 }
 

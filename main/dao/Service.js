@@ -40,7 +40,7 @@ function selectServiceByServiceID(ServiceID, ReturnList) {
   })
 }
 
-function updateService(ServiceID, Duration, content, DemandStartTime, DemandEndTime) {
+function updateService(ServiceID, Duration, content, DemandStartTime, DemandEndTime, returnNum) {
   service.findAndCountAll({
     where: {
       "ServiceID": ServiceID
@@ -52,7 +52,7 @@ function updateService(ServiceID, Duration, content, DemandStartTime, DemandEndT
       } else {
         service.update({
           "Duration": Duration,
-          "content": content,
+          "Content": content,
           "DemandStartTime": DemandStartTime,
           "DemandEndTime": DemandEndTime
         }, {
@@ -62,17 +62,17 @@ function updateService(ServiceID, Duration, content, DemandStartTime, DemandEndT
         }
         ).then(function(result) {
           console.log('updateService ok');
-          console.log(result.message)
+          return returnNum(1);
         }).catch(function(err) {
           console.log('updateService error');
-          console.log(err.message)
+          return returnNum(0);
         })
       }
     }
   )
 }
 
-function updateServiceFromVolunteer(ServiceID, RealStartTime, RealEndTime)
+function updateServiceFromVolunteer(ServiceID, RealStartTime, RealEndTime, returnNum)
 {
   service.findAndCountAll({
       where: {
@@ -93,10 +93,10 @@ function updateServiceFromVolunteer(ServiceID, RealStartTime, RealEndTime)
               }
           ).then(function(result) {
               console.log('updateServiceFromVolunteer ok');
-              console.log(result.message)
+              return returnNum(1);
           }).catch(function(err) {
               console.log('updateServiceFromVolunteer error');
-              console.log(err.message)
+              return returnNum(0);
           })
       }
   })

@@ -92,11 +92,18 @@ function getDemandByUserID(UserID, returnList){
  * @param DemandEndTime
  * @param Remark
  */
-function updateDemand(UserID, ServiceID, Duration, content, DemandStartTime, DemandEndTime, Remark)
+function updateDemand(UserID, ServiceID, Duration, content, DemandStartTime, DemandEndTime, Remark, returnNum)
 {
-    demand.updateDemand(ServiceID, UserID, Remark);
-    service.updateService(ServiceID, Duration, content, DemandStartTime, DemandEndTime);
-    return 1;
+    dao.updateDemand(ServiceID, UserID, Remark, function(num){
+        if(num === 1){
+            dao.updateService(ServiceID, Duration, content, DemandStartTime, DemandEndTime, function (num1) {
+                return returnNum(num1);
+            });
+        }
+        else{
+            return returnNum(num);
+        }
+    });
 }
 
 exports.postNewRequirement = postNewRequirement;

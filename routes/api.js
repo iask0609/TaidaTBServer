@@ -76,7 +76,7 @@ router.post("/getDemandByUserID", function(req, res){
  */
 router.post("/updateDemand", function(req, res){
     bll.updateDemand(req.body.UserID, req.body.ServiceID, req.body.Duration,
-        req.body.content, req.body.DemandStartTime, req.body.DemandEndTime,
+        req.body.Content, req.body.DemandStartTime, req.body.DemandEndTime,
         req.body.Remark, function(num){
         res.json({
             "num":num
@@ -141,6 +141,17 @@ router.post("/changeUserInformation", function(req, res){
             "num": num
         })
         })
+});
+
+/**
+ * 志愿者根据自己服务的ServiceID查询这个服务对应的老人的Name
+ */
+router.post("/getOldManName", function(req, res){
+    bll.getOldManName(req.body.ServiceID, function(Name){
+        res.json({
+            "Name": Name
+        })
+    })
 });
 
 module.exports = router;
