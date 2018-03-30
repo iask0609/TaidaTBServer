@@ -10,3 +10,4 @@ module.exports.applicate = require('./ApplicationBLL').applicate;
 module.exports.applicating = require('./ApplicationBLL').applicating;
 module.exports.applicated = require('./ApplicationBLL').applicated;
 module.exports.changeUserInformation = require('./OtherUserBLL').changeUserInformation;
+module.exports.getOldManName = require('./OtherUserBLL').getOldManName;

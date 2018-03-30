@@ -1,4 +1,6 @@
 const dao = require('../dao/_index');
+const demand = require('../util/ormSequelize').Demand;
+const otherUser = require('../util/ormSequelize').OtherUser;
 
 /**
  * 修改个人信息
@@ -16,4 +18,31 @@ function changeUserInformation(UserID, Gender, Name, IDNumber, Email, Phone, ret
     });
 }
 
+/**
+ * 志愿者根据自己服务的ServiceID查询这个服务对应的老人的Name
+ * @param ServiceID
+ * @param Name
+ */
+function getOldManName(ServiceID, Name){
+    demand.findAndCountAll({
+        where: {
+            "ServiceID": ServiceID
+        }
+    }).then(function(result){
+        if(result.count === 0){
+            return Name(0);
+        }
+        else{
+            otherUser.findAndCountAll({
+                where:{
+                    "UserID": result.rows[0].dataValues.UserID
+                }
+            }).then(function(res){
+                return Name(res.rows[0].dataValues.Name);
+            })
+        }
+    })
+}
+
 exports.changeUserInformation=changeUserInformation;
+exports.getOldManName=getOldManName;

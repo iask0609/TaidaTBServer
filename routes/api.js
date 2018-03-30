@@ -143,4 +143,15 @@ router.post("/changeUserInformation", function(req, res){
         })
 });
 
+/**
+ * 志愿者根据自己服务的ServiceID查询这个服务对应的老人的Name
+ */
+router.post("/getOldManName", function(req, res){
+    bll.getOldManName(req.body.ServiceID, function(Name){
+        res.json({
+            "Name": Name
+        })
+    })
+});
+
 module.exports = router;
