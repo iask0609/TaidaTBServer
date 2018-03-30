@@ -37,7 +37,7 @@ router.post("/noticeOperation", function(req,res){
  * 老人发布新的需求
  */
 router.post("/postNewRequirement", function(req, res){
-   bll.postNewRequirement(req.body.UserId, req.body.content, req.body.DemandStartTime,
+   bll.postNewRequirement(req.body.UserId, req.body.Content, req.body.DemandStartTime,
        req.body.DemandEndTime, req.body.Duration, req.body.Remark, function(num){
        res.json({
            "num": num

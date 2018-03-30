@@ -1,16 +1,18 @@
 const demand = require('../util/ormSequelize').Demand;
 
-function insertDemand(ServiceID, UserID, Remark) {
+function insertDemand(ServiceID, UserID, Remark, returnNum) {
   demand.create({
     "ServiceID": ServiceID,
     "UserID": UserID,
     "Remark": Remark
   }).then(function(result) {
     console.log('insertDemand ok');
-    console.log(result.message)
+    console.log(result.message);
+    return returnNum(1);
   }).catch(function(err) {
     console.log('insertDemand error');
-    console.log(err.message)
+    console.log(err.message);
+    return returnNum(0);
   })
 }
 

@@ -1,21 +1,24 @@
 const demand = require('../util/ormSequelize').Demand;
 const service = require('../util/ormSequelize').Service;
+const dao = require('../dao/_index');
 
 /**
  * 老人发布新的需求
  * @param UserId
- * @param content
+ * @param Content
  * @param DemandStartTime
  * @param DemandEndTime
  * @param Duration
  * @param Remark
  * @param returnNum
  */
-function postNewRequirement(UserId, content, DemandStartTime, DemandEndTime, Duration, Remark, returnNum)
+function postNewRequirement(UserId, Content, DemandStartTime, DemandEndTime, Duration, Remark, returnNum)
 {
     const myDateTime  = new Date();
     service.findAndCountAll({
-        order:"ServiceID DESC"
+        'order': [
+            ['ServiceID', 'DESC']
+        ]
     }).then(function (result) {
         var ServiceID = -1;
         if(result.count > 0)
@@ -26,13 +29,27 @@ function postNewRequirement(UserId, content, DemandStartTime, DemandEndTime, Dur
         {
             ServiceID = 0;
         }
-        service.insertService(ServiceID, myDateTime.toLocaleString(), Duration, content, DemandStartTime, DemandEndTime, 0,
-            -1).then(function(){
-                demand.insertDemand(ServiceID, UserId, Remark).then(function(){
-                    return returnNum(1);
-                })
-        })
+        console.log(ServiceID + myDateTime.toLocaleString());
+        dao.insertService(ServiceID, myDateTime.toLocaleString(), Duration, Content, DemandStartTime, DemandEndTime, 0,
+            -1, function(num){
+            if(num === 1){
+                dao.insertDemand(ServiceID, UserId, Remark, function(num1){
+                    if(num1 === 1){
+                        return returnNum(1);
+                    }
+                    else
+                    {
+                        return returnNum(0);
+                    }
+                });
+            }
+            else{
+                return returnNum(0);
+            }
+            });
     });
+
+    // console.log("sdf" + UserId + Content + DemandStartTime + DemandEndTime + Duration + Remark);
 }
 
 /**

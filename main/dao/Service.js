@@ -2,7 +2,7 @@ const service = require('../util/ormSequelize').Service;
 
 function insertService(ServiceID, CreateTime, Duration, Content,
   DemandStartTime, DemandEndTime, Status,
-  ChainHASH) {
+  ChainHASH, returnNum) {
   service.create({
     "ServiceID": ServiceID,
     "CreateTime": CreateTime,
@@ -14,10 +14,12 @@ function insertService(ServiceID, CreateTime, Duration, Content,
     "ChainHASH": ChainHASH
   }).then(function(result) {
     console.log('insertService ok');
-    console.log(result.message)
+    console.log(result.message);
+    return returnNum(1);
   }).catch(function(err) {
     console.log('insertService error');
-    console.log(err.message)
+    console.log(err.message);
+    return returnNum(0);
   })
 }
 
