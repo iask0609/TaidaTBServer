@@ -58,7 +58,10 @@ function getDemandByUserID(UserID, returnList){
                 list.push(res1.rows[0].dataValues);
             })
         }
-        return returnList(list);
+        setTimeout(function(){
+            console.log(list);
+            return returnList(list);
+        }, 500);
     })
 }
 
