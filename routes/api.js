@@ -22,9 +22,14 @@ router.post("/allUserLogin", function(req, res){
  * 获取个人信息
  */
 router.post("/getUserInfo", function(req, res){
-    bll.getUserInfo(req.body.UserId, function (info) {
+    bll.getUserInfo(req.body.UserId, function (list) {
         res.json({
-            "info": info
+            "UserName": list.Name,
+            "Gender": list.Gender,
+            "Phone":  list.Phone,
+            "Email": list.Email,
+            "IDNumber": list.IDNumber,
+            "region": "[" + list.Province + "," + list.City + "," + list.District + "]"
         });
     })
 });
