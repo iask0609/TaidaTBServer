@@ -61,27 +61,24 @@ function allUserLogin(Account, Password, theRes)
   })
 }
 
-function getUserInfo(UserId,theRes)
+/**
+ * 获取个人信息
+ * @param UserId
+ * @param returnList
+ */
+function getUserInfo(UserId, returnList)
 {
     otherUser.findAndCountAll({
     where: {
       "UserID": UserId
     }
   }).then(function (res) {
-
-        // theRes.UserID=res.rows[0].dataValues.UserID;
-        // theRes.UserName=res.rows[0].dataValues.UserName;
-        // theRes.Gender=res.rows[0].dataValues.Gender;
-        // theRes.Name=res.rows[0].dataValues.Name;
-        // theRes.IDNumber=res.rows[0].dataValues.IDNumber;
-        // theRes.Email=res.rows[0].dataValues.Email;
-        // theRes.Phone=res.rows[0].dataValues.Phone;
-        // var region=[];
-        // region[0]=res.rows[0].dataValues.Province;
-        // region[1]=res.rows[0].dataValues.City;
-        // region[2]=res.rows[0].dataValues.District;
-        // theRes.region=region;
-        return theRes(res.rows[0].dataValues);
+      if(res.count === 0){
+          return returnList("该用户不存在");
+      }
+      else{
+          return returnList(res.rows[0].dataValues);
+      }
     })
 }
 
