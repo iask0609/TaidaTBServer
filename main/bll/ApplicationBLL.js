@@ -118,7 +118,35 @@ function applicated(UserID, returnList){
     })
 }
 
+/**
+ * 志愿者完成一次服务进行勋章申请
+ * @param UserID
+ * @param ServiceID
+ * @param Material1
+ * @param Material2
+ * @param Material3
+ * @param RealStartTime
+ * @param RealEndTime
+ * @param Remark
+ * @param returnNum
+ */
+function applicateMeadls(UserID, ServiceID, Material1, Material2, Material3,
+                   RealStartTime, RealEndTime, Remark, returnNum) {
+    dao.updateApplication(ServiceID, UserID, Material1, Material2, Material3, Remark, function(num){
+        if(num === 1){
+            dao.updateServiceFromVolunteer(ServiceID, RealStartTime, RealEndTime, function(num){
+                return returnNum(num);
+            });
+        }
+        else{
+            return returnNum(num)
+        }
+    });
+}
+
+
 exports.getServicedList = getServicedList;
 exports.applicate = applicate;
 exports.applicating = applicating;
 exports.applicated = applicated;
+exports.applicateMeadls = applicateMeadls;

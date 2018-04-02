@@ -102,10 +102,25 @@ router.post("/getServicedList", function(req, res){
 });
 
 /**
- * 志愿者完成一次服务进行申请
+ * 志愿者进行申请
  */
 router.post("/applicate", function (req, res) {
     bll.applicate(req.body.UserID, req.body.ServiceID, req.body.Material1,
+        req.body.Material2, req.body.Material3, req.body.RealStartTime, req.body.RealEndTime,
+        req.body.Remark,
+        function (num) {
+            res.json({
+                "num":num
+            })
+        })
+});
+
+
+/**
+ * 志愿者完成一次服务进行勋章申请
+ */
+router.post("/applicateMedals", function (req, res) {
+    bll.applicateMeadls(req.body.UserID, req.body.ServiceID, req.body.Material1,
         req.body.Material2, req.body.Material3, req.body.RealStartTime, req.body.RealEndTime,
         req.body.Remark,
         function (num) {

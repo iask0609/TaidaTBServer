@@ -19,7 +19,7 @@ function insertApplication(ServiceID, UserID, Material1,
 }
 
 function updateApplication(ServiceID, UserID, Material1,
-  Material2, Material3, Remark) {
+  Material2, Material3, Remark, returnNum) {
   application.findAndCountAll({
     where: {
       "ServiceID": ServiceID,
@@ -43,10 +43,12 @@ function updateApplication(ServiceID, UserID, Material1,
         }
         ).then(function(result) {
           console.log('updateApplication ok');
-          console.log(result.message)
+          console.log(result.message);
+          return returnNum(1);
         }).catch(function(err) {
           console.log('updateApplication error');
-          console.log(err.message)
+          console.log(err.message);
+          return returnNum(0);
         })
       }
     }
