@@ -107,6 +107,7 @@ router.post("/getServicedList", function(req, res){
 router.post("/applicate", function (req, res) {
     bll.applicate(req.body.UserID, req.body.ServiceID, req.body.Material1,
         req.body.Material2, req.body.Material3, req.body.RealStartTime, req.body.RealEndTime,
+        req.body.Remark,
         function (num) {
             res.json({
                 "num":num

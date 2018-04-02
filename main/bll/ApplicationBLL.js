@@ -43,8 +43,8 @@ function getServicedList(UserID, returnList){
  * @param RealEndTime
  */
 function applicate(UserID, ServiceID, Material1, Material2, Material3,
-                   RealStartTime, RealEndTime, returnNum) {
-    dao.insertApplication(ServiceID, UserID, Material1, Material2, Material3, function(num){
+                   RealStartTime, RealEndTime, Remark, returnNum) {
+    dao.insertApplication(ServiceID, UserID, Material1, Material2, Material3, Remark, function(num){
         if(num === 1){
             dao.updateServiceFromVolunteer(ServiceID, RealStartTime, RealEndTime, function(num){
                 return returnNum(num);
