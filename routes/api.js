@@ -107,11 +107,27 @@ router.post("/getServicedList", function(req, res){
 });
 
 /**
- * 志愿者完成一次服务进行申请
+ * 志愿者进行申请
  */
 router.post("/applicate", function (req, res) {
     bll.applicate(req.body.UserID, req.body.ServiceID, req.body.Material1,
         req.body.Material2, req.body.Material3, req.body.RealStartTime, req.body.RealEndTime,
+        req.body.Remark,
+        function (num) {
+            res.json({
+                "num":num
+            })
+        })
+});
+
+
+/**
+ * 志愿者完成一次服务进行勋章申请
+ */
+router.post("/applicateMedals", function (req, res) {
+    bll.applicateMeadls(req.body.UserID, req.body.ServiceID, req.body.Material1,
+        req.body.Material2, req.body.Material3, req.body.RealStartTime, req.body.RealEndTime,
+        req.body.Remark,
         function (num) {
             res.json({
                 "num":num
@@ -162,6 +178,17 @@ router.post("/getOldManName", function(req, res){
     bll.getOldManName(req.body.ServiceID, function(Name){
         res.json({
             "Name": Name
+        })
+    })
+});
+
+/**
+ * 查询所有未被服务的老人需求
+ */
+router.get("/getAllDemand", function(req, res){
+    bll.getAllDemand(function(list){
+        res.json({
+            "list": list
         })
     })
 });

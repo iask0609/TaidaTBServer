@@ -96,6 +96,7 @@ function updateServiceFromVolunteer(ServiceID, RealStartTime, RealEndTime, retur
               return returnNum(1);
           }).catch(function(err) {
               console.log('updateServiceFromVolunteer error');
+              console.log(err.message);
               return returnNum(0);
           })
       }

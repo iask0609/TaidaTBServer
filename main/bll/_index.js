@@ -11,3 +11,5 @@ module.exports.applicating = require('./ApplicationBLL').applicating;
 module.exports.applicated = require('./ApplicationBLL').applicated;
 module.exports.changeUserInformation = require('./OtherUserBLL').changeUserInformation;
 module.exports.getOldManName = require('./OtherUserBLL').getOldManName;
+module.exports.applicateMeadls = require('./ApplicationBLL').applicateMeadls;
+module.exports.getAllDemand = require('./DemandBLL').getAllDemand;

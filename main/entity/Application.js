@@ -30,6 +30,10 @@ module.exports = function(sequelize, DataTypes) {
     Material3: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    Remark: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
   }, {
     createdAt: false,
