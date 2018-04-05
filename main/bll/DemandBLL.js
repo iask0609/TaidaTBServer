@@ -1,6 +1,7 @@
 const demand = require('../util/ormSequelize').Demand;
 const service = require('../util/ormSequelize').Service;
 const dao = require('../dao/_index');
+const serviceList = require('../util/ormSequelize').ServiceList;
 
 /**
  * 老人发布新的需求
@@ -106,6 +107,19 @@ function updateDemand(UserID, ServiceID, Duration, content, DemandStartTime, Dem
     });
 }
 
+/**
+ * 查询所有未被服务的老人需求
+ * @param returnList
+ */
+function getAllDemand(returnList){
+    serviceList.findAndCountAll({
+
+    }).then(function(res){
+        return returnList(res);
+    })
+}
+
 exports.postNewRequirement = postNewRequirement;
 exports.getDemandByUserID = getDemandByUserID;
 exports.updateDemand = updateDemand;
+exports.getAllDemand = getAllDemand;

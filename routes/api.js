@@ -175,4 +175,15 @@ router.post("/getOldManName", function(req, res){
     })
 });
 
+/**
+ * 查询所有未被服务的老人需求
+ */
+router.get("/getAllDemand", function(req, res){
+    bll.getAllDemand(function(list){
+        res.json({
+            "list": list
+        })
+    })
+});
+
 module.exports = router;
