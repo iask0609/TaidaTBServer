@@ -23,13 +23,16 @@ router.post("/allUserLogin", function(req, res){
  */
 router.post("/getUserInfo", function(req, res){
     bll.getUserInfo(req.body.UserId, function (list) {
+
         res.json({
             "UserName": list.Name,
             "Gender": list.Gender,
             "Phone":  list.Phone,
             "Email": list.Email,
             "IDNumber": list.IDNumber,
-            "region": "[" + list.Province + "," + list.City + "," + list.District + "]"
+            "Province":list.Province,
+            "City":list.City,
+            "District":list.District
         });
     })
 });
@@ -44,7 +47,9 @@ router.post("/volunteerApplicate", function (req, res) {
         });
     })
 });
-
+/*
+通知请求
+ */
 router.post("/noticeOperation", function(req,res){
     bll.noticeOperation(function(list){
         res.json({
@@ -130,6 +135,19 @@ router.post("/applicateMedals", function (req, res) {
         })
 });
 
+/*
+* 志愿者在搜索界面中点击的申请
+ */
+router.post("/applicateInSearch", function (req, res) {
+    bll.applicateInSearch(req.body.UserID, req.body.ServiceID,
+        function (num){
+            res.json({
+                "num":num
+            })
+        })
+});
+
+
 /**
  * 志愿者正在申请的服务列表
  */
@@ -157,7 +175,9 @@ router.post("/applicated", function(req, res){
  */
 router.post("/changeUserInformation", function(req, res){
     bll.changeUserInformation(req.body.UserID, req.body.Gender,
-        req.body.Name, req.body.IDNumber, req.body.Email, req.body.Phone, function(num){
+        req.body.Name, req.body.IDNumber, req.body.Email, req.body.Phone,
+        req.body.Province,req.body.City,req.body.District,
+        function(num){
         res.json({
             "num": num
         })

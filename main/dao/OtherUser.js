@@ -38,7 +38,7 @@ function selectOtherUserByUserID(UserID, ReturnList) {
   })
 }
 
-function updateOtherUserByUserID(UserID, Gender, Name, IDNumber, Email, Phone, returnNum) {
+function updateOtherUserByUserID(UserID, Gender, Name, IDNumber, Email, Phone,Province,City,District, returnNum) {
   otherUser.findAndCountAll({
     where: {
       "UserID": UserID
@@ -53,7 +53,10 @@ function updateOtherUserByUserID(UserID, Gender, Name, IDNumber, Email, Phone, r
           "Name": Name,
           "IDNumber": IDNumber,
           "Email": Email,
-          "Phone": Phone
+          "Phone": Phone,
+            "Province": Province,
+            "City": City,
+            "District": District
         }, {
           where: {
             "UserID": UserID

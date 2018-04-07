@@ -56,6 +56,22 @@ function applicate(UserID, ServiceID, Material1, Material2, Material3,
     });
 }
 
+/*
+* 志愿者在搜索界面中点击的申请
+ */
+function applicateInSearch(UserID, ServiceID, returnNum) {
+    dao.insertApplication(ServiceID, UserID, '0', '0', '0', '0', function(num){
+        service.update({"Status": num},
+            {
+                where: {"ServiceID": ServiceID}
+            }
+        ).then(function(result) {
+            return returnNum(num);
+        })
+
+    });
+}
+
 /**
  * 志愿者正在申请的服务列表
  * @param UserID
@@ -150,3 +166,4 @@ exports.applicate = applicate;
 exports.applicating = applicating;
 exports.applicated = applicated;
 exports.applicateMeadls = applicateMeadls;
+exports.applicateInSearch=applicateInSearch;
