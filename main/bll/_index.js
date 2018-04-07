@@ -13,3 +13,4 @@ module.exports.changeUserInformation = require('./OtherUserBLL').changeUserInfor
 module.exports.getOldManName = require('./OtherUserBLL').getOldManName;
 module.exports.applicateMeadls = require('./ApplicationBLL').applicateMeadls;
 module.exports.getAllDemand = require('./DemandBLL').getAllDemand;
+module.exports.applicateInSearch = require('./ApplicationBLL').applicateInSearch;

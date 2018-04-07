@@ -135,6 +135,19 @@ router.post("/applicateMedals", function (req, res) {
         })
 });
 
+/*
+* 志愿者在搜索界面中点击的申请
+ */
+router.post("/applicateInSearch", function (req, res) {
+    bll.applicateInSearch(req.body.UserID, req.body.ServiceID,
+        function (num){
+            res.json({
+                "num":num
+            })
+        })
+});
+
+
 /**
  * 志愿者正在申请的服务列表
  */
