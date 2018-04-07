@@ -186,4 +186,16 @@ router.get("/getAllDemand", function(req, res){
     })
 });
 
+/**
+ * 条件查询老人的需求
+ */
+router.post("/getDemandByCondition", function(req, res){
+    bll.getDemandByCondition(req.body.UserID, req.body.Content, req.body.Duration,
+        req.body.DemandStartTime, req.body.type, function(list){
+            res.json({
+                "list": list
+            })
+        })
+});
+
 module.exports = router;
