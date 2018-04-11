@@ -8,8 +8,6 @@ const bll = require('../main/bll/_index');
  */
 router.post("/allUserLogin", function(req, res){
     bll.allUserLogin(req.body.Account, req.body.Password, function (num) {
-
-
         res.json({
             "num": num,
             "account": req.body.Account,
@@ -33,6 +31,14 @@ router.post("/getUserInfo", function(req, res){
             "Province":list.Province,
             "City":list.City,
             "District":list.District
+        });
+    })
+});
+
+router.post("/query", function(req, res){
+    bll.query(function(num){
+        res.json({
+            "num": num
         });
     })
 });
@@ -192,5 +198,4 @@ router.get("/getAllDemand", function(req, res){
         })
     })
 });
-
 module.exports = router;
