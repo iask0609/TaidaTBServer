@@ -16,3 +16,4 @@ module.exports.getAllDemand = require('./DemandBLL').getAllDemand;
 module.exports.getDemandByCondition = require('./DemandBLL').getDemandByCondition;
 module.exports.getDemandByConditionNoDuration=require('./DemandBLL').getDemandByConditionNoDuration
 module.exports.applicateInSearch = require('./ApplicationBLL').applicateInSearch;
+module.exports.getCheckingList = require('./CheckInfoBLL').getCheckingList;

@@ -230,4 +230,15 @@ router.post("/getDemandByConditionNoDuration", function(req, res){
         })
 });
 
+/*
+* 得到审核人员的审核列表
+ */
+router.post("/getCheckList",function (req,res) {
+    bll.getCheckingList(req.body.UserID, req.body.status, function (list) {
+        res.json({
+            "list":list
+        })
+    })
+});
+
 module.exports = router;
