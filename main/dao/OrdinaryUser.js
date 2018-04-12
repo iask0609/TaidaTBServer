@@ -57,6 +57,14 @@ function updateOrdinaryUser(UserID, Duration, ServedDuration) {
   )
 }
 
+function getAllOrdinaryUser(returnList) {
+    ordinaryUser.findAndCountAll().then(function (res) {
+        console.log("dao曾"+res.count);
+        return returnList(res);
+    })
+}
+
 exports.insertOrdinaryUser = insertOrdinaryUser;
 exports.selectOrdinaryUserByUserID = selectOrdinaryUserByUserID;
 exports.updateOrdinaryUser = updateOrdinaryUser;
+exports.getAllOrdinaryUser=getAllOrdinaryUser;
