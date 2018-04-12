@@ -7,9 +7,9 @@ const bll = require('../main/bll/_index');
  * 用户登录
  */
 router.post("/allUserLogin", function(req, res){
+    console.log(req.body);
+
     bll.allUserLogin(req.body.Account, req.body.Password, function (num) {
-
-
         res.json({
             "num": num,
             "account": req.body.Account,
