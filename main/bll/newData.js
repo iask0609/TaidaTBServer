@@ -1,7 +1,8 @@
-function newData(){
+function newData(userId){
     var exec = require('child_process').exec;
-
-    var command = "geth --datadir data5 init genesis.json";
+    var name = 'data' + userId;
+    var command = "geth --datadir " + name +" init genesis.json";
+    var website = "http://localhost:" + rpcport;
     //现在是创造节点 这个节点的地址可以根据用户自身独特的地址来设置
     var child1 = exec( command ,{cwd: '/home/suzy/go1/go-ethereum/myprivatchain'},
         function (error, stdout, stderr) {

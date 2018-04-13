@@ -5,7 +5,17 @@ function transaction(){
     var exec = require('child_process').exec;
     var command = "geth --identity \"TestNode\" --rpc --rpcport \"8591\" --datadir data5 --port \"30307\" --nodiscover console";
     //这个command语句也是可以进行拼接的 需要前台给我这个用户的账号对应的文件名 这样可以获取这个人在链上的账号
+    var command1 = "geth --rpcapi eth,web3,personal --rpc";
     var child2 = exec(command
+        ,{cwd: '/home/suzy/go1/go-ethereum/myprivatchain'},
+        function (error, stdout, stderr) {
+            console.log('stdout: ' + stdout);
+            console.log('stderr: ' + stderr);
+            if (error !== null) {
+                console.log('exec error: ' + error);
+            }
+        });
+    var child3 = exec(command1
         ,{cwd: '/home/suzy/go1/go-ethereum/myprivatchain'},
         function (error, stdout, stderr) {
             console.log('stdout: ' + stdout);
@@ -17,40 +27,55 @@ function transaction(){
     var Web3 = require('web3');
     var web3 = new Web3('http://localhost:8591');
     var Eth = require('web3-eth');
-    var eth = new Eth(Eth.givenProvider || 'http://localhost:8591');
+    var eth = new Eth('http://localhost:8591');
     var Personal = require('web3-eth-personal');
     var personal = new Personal('http://localhost:8591');
+    var Accounts = require('web3-eth-accounts');
+    var accounts = new Accounts('http://localhost:8591');
     var accountList;
-    web3.eth.getAccounts().then((res)=> {
+    eth.getAccounts().then((res)=> {
         accountList = res;
     });
-    // web3.eth.personal.unlockAccount('0x1132d04C51361bD75f9de88B3D07A5BbE07d70A9', '123456', 100)
-    //     .then(function(res){
-    //         console.log(res);
-    //         haha = res;
-    //     });
+
+    eth.getBalance('0x1132d04C51361bD75f9de88B3D07A5BbE07d70A9').then(function (res) {
+        var ethNum0 = web3.utils.fromWei(res, 'ether');
+        console.log(ethNum0)
+    });
+    eth.getBalance('0x6cBA8F5bb74098B2667ae8D8ffA62541A260418C').then(function (res) {
+        var ethNum1 = web3.utils.fromWei(res, 'ether');
+        console.log(ethNum1)
+    });
+
+    //check balance here
+    //cannot reslove the following part
+    personal.unlockAccount('0x1132d04C51361bD75f9de88B3D07A5BbE07d70A9', '123456');
+
+    console.log('1');
+    console.log('1');
+
+
     //unlock
-    web3.eth.sendTransaction({
+    eth.sendTransaction({
         from: '0x1132d04C51361bD75f9de88B3D07A5BbE07d70A9',
         to: '0x6cBA8F5bb74098B2667ae8D8ffA62541A260418C',
         value: '5000000000000000'
     }).then(function(receipt){
-            console.log(receipt);
-            console.log('send:');
-            findEth(send).then(function(result){
-                console.log(result);
-            });
-            console.log('rec:')
-            findEth(rece).then(function(result){
-                console.log(result);
-            });
+        console.log(receipt);
+        console.log('send:');
+        findEth(send).then(function(result){
+            console.log(result);
         });
+        console.log('rec:')
+        findEth(rece).then(function(result){
+            console.log(result);
+        });
+    });
     //transfer
-    web3.eth.accounts.signTransaction({
+    eth.accounts.signTransaction({
         to: '0x6cBA8F5bb74098B2667ae8D8ffA62541A260418C',
-        value: 5000000000000000,
-        gas: 2000000
-    },'45aac2f38e67fa7916a0d06a6e79aaaaeb4786e9')
+        value: '5000000000000000',
+        gas: '2000000'
+    },'0x45aac2f38e67fa7916a0d06a6e79aaaaeb4786e9')
         .then(function(res){
             web3.eth.sendSignedTransaction(res.rawTransaction)
                 .on('receipt', console.log);
