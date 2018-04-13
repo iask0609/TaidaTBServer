@@ -64,6 +64,7 @@ function applicate(UserID, ServiceID, Material1, Material2, Material3,
                         originalArray.sort(function(){ return 0.5 - Math.random(); });
                         for(var i = 0; i < 5; i++){
                             var randomIndex=originalArray[i];
+                            //random five checker
                             console.log("randomIndex"+randomIndex);
                             var checkStaffID=userlist.rows[randomIndex].dataValues.UserID;
                             dao.insertCheckInfo(ServiceID,checkStaffID,function (value2) {
