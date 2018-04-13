@@ -7,6 +7,8 @@ const bll = require('../main/bll/_index');
  * 用户登录
  */
 router.post("/allUserLogin", function(req, res){
+    console.log(req.body);
+
     bll.allUserLogin(req.body.Account, req.body.Password, function (num) {
         res.json({
             "num": num,
@@ -141,6 +143,19 @@ router.post("/applicateMedals", function (req, res) {
         })
 });
 
+/*
+* 志愿者在搜索界面中点击的申请
+ */
+router.post("/applicateInSearch", function (req, res) {
+    bll.applicateInSearch(req.body.UserID, req.body.ServiceID,
+        function (num){
+            res.json({
+                "num":num
+            })
+        })
+});
+
+
 /**
  * 志愿者正在申请的服务列表
  */
@@ -198,4 +213,40 @@ router.get("/getAllDemand", function(req, res){
         })
     })
 });
+
+/**
+ * 条件查询老人的需求
+ */
+router.post("/getDemandByCondition", function(req, res){
+    bll.getDemandByCondition(req.body.UserID, req.body.Content, req.body.Duration,
+        req.body.DemandStartTime, req.body.type, function(list){
+            res.json({
+                "list": list
+            })
+        })
+});
+
+/**
+ * 条件查询老人的需求
+ */
+router.post("/getDemandByConditionNoDuration", function(req, res){
+    bll.getDemandByConditionNoDuration(req.body.UserID, req.body.Content,
+        req.body.DemandStartTime, req.body.type, function(list){
+            res.json({
+                "list": list
+            })
+        })
+});
+
+/*
+* 得到审核人员的审核列表
+ */
+router.post("/getCheckList",function (req,res) {
+    bll.getCheckingList(req.body.UserID, req.body.status, function (list) {
+        res.json({
+            "list":list
+        })
+    })
+});
+
 module.exports = router;

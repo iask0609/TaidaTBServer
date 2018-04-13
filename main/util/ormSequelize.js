@@ -27,6 +27,7 @@ module.exports.A_Admin = require('../entity/A_Admin')(seq, Sequelize);
 module.exports.Administrator = require('../entity/Administrator')(seq, Sequelize);
 module.exports.AllUser = require('../entity/AllUser')(seq, Sequelize);
 module.exports.Application = require('../entity/Application')(seq, Sequelize);
+module.exports.CheckInfo=require('../entity/CheckInfo')(seq, Sequelize);
 module.exports.B_Admin = require('../entity/B_Admin')(seq, Sequelize);
 module.exports.CheckNotice = require('../entity/CheckNotice')(seq, Sequelize);
 module.exports.Demand = require('../entity/Demand')(seq, Sequelize);

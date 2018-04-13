@@ -1,5 +1,6 @@
 const application = require('../util/ormSequelize').Application;
 const service = require('../util/ormSequelize').Service;
+const ordinaryUser=require('../util/ormSequelize').OrdinaryUser;
 const dao = require('../dao/_index');
 
 /**
@@ -44,15 +45,60 @@ function getServicedList(UserID, returnList){
  */
 function applicate(UserID, ServiceID, Material1, Material2, Material3,
                    RealStartTime, RealEndTime, Remark, returnNum) {
-    dao.insertApplication(ServiceID, UserID, Material1, Material2, Material3, Remark, function(num){
+
+    dao.updateApplication(ServiceID, UserID, Material1, Material2, Material3, Remark, function(num){
         if(num === 1){
-            dao.updateServiceFromVolunteer(ServiceID, RealStartTime, RealEndTime, function(num){
+            dao.updateServiceFromVolunteer(ServiceID, RealStartTime, RealEndTime, function(value){
+                if(value===1){
+                    dao.getAllOrdinaryUser(function(userlist)
+                    {//选择审核者
+                        console.log("选择审核")
+                        // console.log(userlist)
+                        var indexRange=userlist.count;
+                        console.log("选择范围"+userlist.count)
+                        var originalArray=new Array;
+                        for(var j=0;j<indexRange;j++)
+                        {
+                            originalArray[j]=j;
+                        }
+                        originalArray.sort(function(){ return 0.5 - Math.random(); });
+                        for(var i = 0; i < 5; i++){
+                            var randomIndex=originalArray[i];
+                            console.log("randomIndex"+randomIndex);
+                            var checkStaffID=userlist.rows[randomIndex].dataValues.UserID;
+                            dao.insertCheckInfo(ServiceID,checkStaffID,function (value2) {
+                                console.log("插入成功");
+                            })
+                        }
+                        // console.log("array");
+                        // console.log(originalArray);
+                    })
+
+                }
                 return returnNum(num);
             });
+
         }
         else{
             return returnNum(num)
         }
+    });
+
+}
+
+/*
+* 志愿者在搜索界面中点击的申请
+ */
+function applicateInSearch(UserID, ServiceID, returnNum) {
+    dao.insertApplication(ServiceID, UserID, '0', '0', '0', '0', function(num){
+        service.update({"Status": num},
+            {
+                where: {"ServiceID": ServiceID}
+            }
+        ).then(function(result) {
+            return returnNum(num);
+        })
+
     });
 }
 
@@ -150,3 +196,4 @@ exports.applicate = applicate;
 exports.applicating = applicating;
 exports.applicated = applicated;
 exports.applicateMeadls = applicateMeadls;
+exports.applicateInSearch=applicateInSearch;

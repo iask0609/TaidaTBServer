@@ -26,5 +26,7 @@
     "web3-eth": "~1.0.0-beta.33",
     "web3-eth-accounts": "~1.0.0-beta.33",
     "web3-eth-personal": "~1.0.0-beta.33"
+    "serve-favicon": "~2.4.5",
+    "cors": "~2.8.4"
   }
 }
