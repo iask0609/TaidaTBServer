@@ -22,6 +22,7 @@ function getCheckingList(checkUserID,status, returnList)
     ).then(
         function(res)
         {
+
             var list = [];
             for(var i = 0; i < res.count; i++){
                 var serviceID = res.rows[i].dataValues.ServiceID;
@@ -65,15 +66,15 @@ function getCheckingList(checkUserID,status, returnList)
                             }
                         }).then(function (value) {
                             obj.oldManName=value.rows[0].dataValues.Name
+                            list.push(obj);
                         })
                     })
-                    list.push(obj);
+
                 })
             }
-            setTimeout(function(){
-                console.log("取到审核列表");
-                return returnList(list);
-            }, 500);
+
+            console.log("取到审核列表");
+            return returnList(list);
 
         }
     )
