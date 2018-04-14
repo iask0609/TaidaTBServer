@@ -16,6 +16,20 @@ function insertDemand(ServiceID, UserID, Remark, returnNum) {
   })
 }
 
+function getOldManIDByServiceID(ServiceID,returnNum) {
+    demand.findAndCountAll({
+        where:{"ServiceID": ServiceID}
+    }).then(function (value) {
+        returnNum=value.rows[0].dataValues.UserID;
+        console.log("success")
+        return returnNum;
+    }).catch(function(err) {
+        console.log('insertDemand error');
+        console.log(err.message);
+        return returnNum(0);
+    })
+}
+
 function updateDemand(ServiceID, UserID, Remark, returnNum) {
   demand.findAndCountAll({
     where: {
@@ -49,3 +63,5 @@ function updateDemand(ServiceID, UserID, Remark, returnNum) {
 
 exports.insertDemand = insertDemand;
 exports.updateDemand = updateDemand;
+
+exports.getOldManIDByServiceID = getOldManIDByServiceID;
