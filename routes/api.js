@@ -19,6 +19,30 @@ router.post("/allUserLogin", function(req, res){
 });
 
 /**
+ * 用户注册
+ */
+router.post("/UserRegister", function(req, res){
+    console.log(req.body);
+
+    bll.userRegister(req.body.account,
+        req.body.username,
+        req.body.password,
+        req.body.phone,
+        req.body.email,
+        req.body.gender,
+        req.body.province,
+        req.body.city,
+        req.body.district,
+        req.body.IDNumber,
+
+        function (num) {
+        res.json({
+            "num": num
+        });
+    })
+});
+
+/**
  * 获取个人信息
  */
 router.post("/getUserInfo", function(req, res){

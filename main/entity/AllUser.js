@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes) {
   return sequelize.define('AllUser', {
     UserID: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       primaryKey: true
     },
     Account: {

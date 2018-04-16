@@ -1,5 +1,7 @@
 module.exports.allUserLogin = require('./AllUser').allUserLogin;
 module.exports.getUserInfo = require('./AllUser').getUserInfo;
+module.exports.userRegister = require('./AllUser').userRegister;
+
 module.exports.volunteerApplicate = require('./OrdinaryUser').volunteerApplicate;
 module.exports.noticeOperation=require('./NoticeBLL').noticeOperation;
 module.exports.postNewRequirement=require('./DemandBLL').postNewRequirement;
