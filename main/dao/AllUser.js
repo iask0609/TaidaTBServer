@@ -1,8 +1,7 @@
 const allUser = require('../util/ormSequelize').AllUser;
 
-function insertAllUser(UserID, Account, Password, ChainHASH) {
+function insertAllUser( Account, Password, ChainHASH) {
   allUser.create({
-    "UserID": UserID,
     "Account": Account,
     "Password": Password,
     "ChainHASH": ChainHASH

@@ -1,5 +1,6 @@
 const allUser = require('../util/ormSequelize').AllUser;
 const otherUser=require('../util/ormSequelize').OtherUser;
+const ordinaryUser=require('../util/ormSequelize').OrdinaryUser;
 const dao = require('../dao/_index');
 
 /**
@@ -82,5 +83,68 @@ function getUserInfo(UserId, returnList)
     })
 }
 
+/*
+* 用户信息注册
+ */
+function userRegister(account,username,password,phone,email,gender,province,city,district,IDNumber,returnNum)
+{
+    var num=-1;
+    //首先判断用户名是否重复
+    allUser.findAndCountAll({
+        where:{ "Account": account}
+    }).then(function (value) {
+        num=value.count;
+    })
+
+    if(num>0){
+        return returnNum(0);
+    }else
+    {
+        //账户不重复才能创建用户
+        var userId=-1;
+        allUser.create({
+            "Account": account,
+            "Password": password,
+            "ChainHASH": 'unknown'
+        }).then(function(result){
+            console.log("得到的object"+result);
+
+            // 获取userId
+            allUser.findAndCountAll({
+                where:{ "Account": account}
+            }).then(function (value) {
+                console.log("获取userid"+value);
+                userId=value.rows[0].dataValues.UserID;
+
+
+                otherUser.create({
+                    "UserID": userId,
+                    "UserName": account,
+                    "Gender": gender,
+                    "Name": username,
+                    "IDNumber": IDNumber,
+                    "Email": email,
+                    "Phone": phone,
+                    "Province": province,
+                    "City": city,
+                    "District": district
+                }).then(function (value) {
+                    console.log('insertOtherUser ok'+value);
+                    dao.insertOrdinaryUser(userId,0,0);
+                    return returnNum(1);
+                })
+
+            })
+
+        })
+
+
+    }
+
+
+
+
+}
 exports.allUserLogin = allUserLogin;
 exports.getUserInfo=getUserInfo;
+exports.userRegister=userRegister;

@@ -33,3 +33,5 @@ module.exports.insertSuperAdmin = require('./SuperAdmin').insertSuperAdmin;
 module.exports.selectSuperAdminByUserID = require('./SuperAdmin').selectSuperAdminByUserID;
 module.exports.insertCheckInfo=require('./CheckInfo').insertCheckInfo;
 module.exports.updateCheckInfo=require('./CheckInfo').updateCheckInfo;
+
+module.exports.getOldManIDByServiceID=require('./Demand').getOldManIDByServiceID;
