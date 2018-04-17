@@ -3,10 +3,10 @@
 //当前函数的作用是transcation between two ramdom accounts
 function transaction(){
     var exec = require('child_process').exec;
-    var command = "geth --identity \"TestNode\" --rpc --rpcport \"8591\" --datadir data5 --port \"30307\" --nodiscover console";
+    var command = "geth --identity \"TestNode\" --rpc --rpcport \"8591\" --datadir data5 --port \"30307\" console";
     //这个command语句也是可以进行拼接的 需要前台给我这个用户的账号对应的文件名 这样可以获取这个人在链上的账号
     var command1 = "geth --rpcapi eth,web3,personal --rpc";
-    var child2 = exec(command
+    exec(command
         ,{cwd: '/home/suzy/go1/go-ethereum/myprivatchain'},
         function (error, stdout, stderr) {
             console.log('stdout: ' + stdout);
@@ -15,7 +15,7 @@ function transaction(){
                 console.log('exec error: ' + error);
             }
         });
-    var child3 = exec(command1
+    exec(command1
         ,{cwd: '/home/suzy/go1/go-ethereum/myprivatchain'},
         function (error, stdout, stderr) {
             console.log('stdout: ' + stdout);
@@ -25,7 +25,7 @@ function transaction(){
             }
         });
     var Web3 = require('web3');
-    var web3 = new Web3('http://localhost:8591');
+    var web3 = new Web3();
     var Eth = require('web3-eth');
     var eth = new Eth('http://localhost:8591');
     var Personal = require('web3-eth-personal');
