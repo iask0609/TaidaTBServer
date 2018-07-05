@@ -108,6 +108,7 @@ router.post("/postNewRequirement", function(req, res){
 router.post("/getDemandByUserID", function(req, res){
     bll.getDemandByUserID(req.body.UserID, function(list){
         res.json({
+            "num": 1,
             "list": list
         })
     })
@@ -268,7 +269,32 @@ router.post("/getDemandByConditionNoDuration", function(req, res){
 router.post("/getCheckList",function (req,res) {
     bll.getCheckingList(req.body.UserID, req.body.status, function (list) {
         res.json({
+            "num": 1,
             "list":list
+        })
+    })
+});
+
+
+/**
+ * 根据用户账号获取ID
+ */
+router.post("/getUserIDbyAccount", function (req, res) {
+    bll.getUserIDbyAccount(req.body.Account, function (num) {
+        res.json({
+            "UserID": num
+        })
+    })
+});
+
+
+/**
+ * 根据ServiID获取到志愿者的信息
+ */
+router.post("/getUserByService", function(req, res) {
+    bll.getUserByService(req.body.ServiceID, function (list) {
+        res.json({
+            "list": list
         })
     })
 });

@@ -191,6 +191,38 @@ function applicateMeadls(UserID, ServiceID, Material1, Material2, Material3,
     });
 }
 
+/**
+ * 根据ServiID获取到志愿者的信息
+ * @param ServiceID
+ * @param returnNum
+ */
+function getUserByService(ServiceID, returnList) {
+    application.findAndCountAll({
+        where:{
+            "ServiceID": ServiceID
+        }
+    }).then(function (result) {
+        if (result.count > 0) {
+            var userID = result.row[0].dataValues.UserID;
+            otherUser.findAndCountAll({
+                where: {
+                    "UserID": userID
+                }
+            }).then(function (res) {
+                if (res.count > 0) {
+                    return returnList(res.row[0].dataValues)
+                }
+                else {
+                    return returnList("");
+                }
+            })
+        }
+        else {
+            return returnList("");
+        }
+    })
+}
+
 
 exports.getServicedList = getServicedList;
 exports.applicate = applicate;
@@ -198,3 +230,4 @@ exports.applicating = applicating;
 exports.applicated = applicated;
 exports.applicateMeadls = applicateMeadls;
 exports.applicateInSearch=applicateInSearch;
+exports.getUserByService=getUserByService;

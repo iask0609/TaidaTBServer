@@ -1,7 +1,7 @@
 module.exports.allUserLogin = require('./AllUser').allUserLogin;
 module.exports.getUserInfo = require('./AllUser').getUserInfo;
 module.exports.userRegister = require('./AllUser').userRegister;
-
+module.exports.getUserIDbyAccount = require('./AllUser').getUserIDbyAccount;
 module.exports.volunteerApplicate = require('./OrdinaryUser').volunteerApplicate;
 module.exports.noticeOperation=require('./NoticeBLL').noticeOperation;
 module.exports.postNewRequirement=require('./DemandBLL').postNewRequirement;
@@ -20,3 +20,4 @@ module.exports.getDemandByCondition = require('./DemandBLL').getDemandByConditio
 module.exports.getDemandByConditionNoDuration=require('./DemandBLL').getDemandByConditionNoDuration
 module.exports.applicateInSearch = require('./ApplicationBLL').applicateInSearch;
 module.exports.getCheckingList = require('./CheckInfoBLL').getCheckingList;
+module.exports.getUserByService = require('./ApplicationBLL').getUserByService;

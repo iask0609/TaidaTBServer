@@ -49,11 +49,6 @@ function transaction(){
     //check balance here
     //cannot reslove the following part
     personal.unlockAccount('0x1132d04C51361bD75f9de88B3D07A5BbE07d70A9', '123456');
-
-    console.log('1');
-    console.log('1');
-
-
     //unlock
     eth.sendTransaction({
         from: '0x1132d04C51361bD75f9de88B3D07A5BbE07d70A9',

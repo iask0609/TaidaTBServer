@@ -141,10 +141,30 @@ function userRegister(account,username,password,phone,email,gender,province,city
 
     }
 
-
-
-
+    /**
+     * 根据用户账号获取ID
+     * @param Account
+     * @param UserID
+     */
 }
+
+function getUserIDbyAccount(Account, UserID)
+{
+    allUser.findAndCountAll({
+        where: {
+            "Account": Account
+        }
+    }).then(function (res) {
+        if(res.count === 0){
+            return UserID(-1);
+        }
+        else{
+            return UserID(res.rows[0].dataValues.UserID);
+        }
+    })
+}
+
 exports.allUserLogin = allUserLogin;
 exports.getUserInfo=getUserInfo;
 exports.userRegister=userRegister;
+exports.getUserIDbyAccount = getUserIDbyAccount;
