@@ -121,8 +121,40 @@ function deleteServiceByServiceID(ServiceID) {
   })
 }
 
+function updateMedalStatue(ServiceID, medalnum, getmedaltime, returnNum) {
+  service.findAndCountAll({
+    where: {
+      "ServiceID": ServiceID
+    }
+  }).then(
+    function(result) {
+      if (result.count === 0) {
+        console.log('this service is not exist.')
+      } else {
+        service.update({
+          "medalnum": medalnum,
+          "getmedaltime": getmedaltime
+        }, {
+          where: {
+            "ServiceID": ServiceID
+          }
+        }
+        ).then(function(result) {
+          console.log('updateMedalStatue ok');
+          return returnNum(1);
+        }).catch(function(err) {
+          console.log('updateMedalStatue error');
+          return returnNum(0);
+        })
+      }
+    }
+  )
+}
+
+
 exports.insertService = insertService;
 exports.selectServiceByServiceID = selectServiceByServiceID;
 exports.updateService = updateService;
 exports.deleteServiceByServiceID = deleteServiceByServiceID;
 exports.updateServiceFromVolunteer = updateServiceFromVolunteer;
+exports.updateMedalStatue = updateMedalStatue;

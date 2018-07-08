@@ -299,4 +299,15 @@ router.post("/getUserByService", function(req, res) {
     })
 });
 
+/**
+ * 超级管理员添加管理员用户
+ */
+router.post("/addAdmin",function(req,res){
+    bll.addAdmin(req.body.Account,req.body.Password,req.body.theRes,function(num){
+        res.json({
+            "addtype": num
+        })
+    })
+})
+
 module.exports = router;

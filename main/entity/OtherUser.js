@@ -50,6 +50,10 @@ module.exports = function(sequelize, DataTypes) {
     District:{
       type: DataTypes.INTEGER,
       allowNull: true
+    },
+    CanCheck:{
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
   }, {
     createdAt: false,

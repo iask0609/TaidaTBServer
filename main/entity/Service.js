@@ -37,12 +37,21 @@ module.exports = function(sequelize, DataTypes) {
     },
     Status: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: false
     },
     ChainHASH: {
       type: DataTypes.STRING,
+      allowNull: false
+    },
+    medalnum:{
+      type: DataTypes.DOUBLE,
+      allowNull:true
+    },
+    getmedaltime:{
+      type: DataTypes.TIME,
       allowNull: true
     }
+
   }, {
     createdAt: false,
     updatedAt: false,

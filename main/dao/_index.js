@@ -24,14 +24,15 @@ module.exports.getAllOrdinaryUser = require('./OrdinaryUser').getAllOrdinaryUser
 module.exports.insertOtherUser = require('./OtherUser').insertOtherUser;
 module.exports.selectOtherUserByUserID = require('./OtherUser').selectOtherUserByUserID;
 module.exports.updateOtherUserByUserID = require('./OtherUser').updateOtherUserByUserID;
+module.exports.updateUserCheck = require('./OtherUser').updateUserCheck;
 module.exports.insertService = require('./Service').insertService;
 module.exports.selectServiceByServiceID = require('./Service').selectServiceByServiceID;
 module.exports.updateService = require('./Service').updateService;
 module.exports.deleteServiceByServiceID = require('./Service').deleteServiceByServiceID;
 module.exports.updateServiceFromVolunteer = require('./Service').updateServiceFromVolunteer;
+module.exports.updateMedalStatue = require('./Service').updateMedalStatue;
 module.exports.insertSuperAdmin = require('./SuperAdmin').insertSuperAdmin;
 module.exports.selectSuperAdminByUserID = require('./SuperAdmin').selectSuperAdminByUserID;
 module.exports.insertCheckInfo=require('./CheckInfo').insertCheckInfo;
 module.exports.updateCheckInfo=require('./CheckInfo').updateCheckInfo;
-
 module.exports.getOldManIDByServiceID=require('./Demand').getOldManIDByServiceID;

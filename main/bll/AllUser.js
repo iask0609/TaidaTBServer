@@ -94,60 +94,56 @@ function userRegister(account,username,password,phone,email,gender,province,city
         where:{ "Account": account}
     }).then(function (value) {
         num=value.count;
-    })
-
-    if(num>0){
-        return returnNum(0);
-    }else
-    {
-        //账户不重复才能创建用户
-        var userId=-1;
-        allUser.create({
-            "Account": account,
-            "Password": password,
-            "ChainHASH": 'unknown'
-        }).then(function(result){
-            console.log("得到的object"+result);
-
-            // 获取userId
-            allUser.findAndCountAll({
-                where:{ "Account": account}
-            }).then(function (value) {
-                console.log("获取userid"+value);
-                userId=value.rows[0].dataValues.UserID;
-
-
-                otherUser.create({
-                    "UserID": userId,
-                    "UserName": account,
-                    "Gender": gender,
-                    "Name": username,
-                    "IDNumber": IDNumber,
-                    "Email": email,
-                    "Phone": phone,
-                    "Province": province,
-                    "City": city,
-                    "District": district
+        if(num==0){
+            //账户不重复才能创建用户
+            var userId=-1;
+            allUser.create({
+                "Account": account,
+                "Password": password,
+                "ChainHASH": 'unknown'
+            }).then(function(result){
+                console.log("得到的object"+result);
+    
+                // 获取userId
+                allUser.findAndCountAll({
+                    where:{ "Account": account}
                 }).then(function (value) {
-                    console.log('insertOtherUser ok'+value);
-                    dao.insertOrdinaryUser(userId,0,0);
-                    return returnNum(1);
+                    console.log("获取userid"+value);
+                    userId=value.rows[0].dataValues.UserID;
+    
+                //通过调用web在链上创建账户
+                    otherUser.create({
+                        "UserID": userId,
+                        "UserName": account,
+                        "Gender": gender,
+                        "Name": username,
+                        "IDNumber": IDNumber,
+                        "Email": email,
+                        "Phone": phone,
+                        "Province": province,
+                        "City": city,
+                        "District": district
+                    }).then(function (value) {
+                        console.log('insertOtherUser ok'+value);
+                        dao.insertOrdinaryUser(userId,0,0);
+                        return returnNum(1);
+                    })
+    
                 })
-
+    
             })
+    
+        }else{
+            return returnNum(0);
+        }
+    })
+}
 
-        })
-
-
-    }
-
-    /**
+/**
      * 根据用户账号获取ID
      * @param Account
      * @param UserID
      */
-}
-
 function getUserIDbyAccount(Account, UserID)
 {
     allUser.findAndCountAll({

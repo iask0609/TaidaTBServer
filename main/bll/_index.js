@@ -21,3 +21,4 @@ module.exports.getDemandByConditionNoDuration=require('./DemandBLL').getDemandBy
 module.exports.applicateInSearch = require('./ApplicationBLL').applicateInSearch;
 module.exports.getCheckingList = require('./CheckInfoBLL').getCheckingList;
 module.exports.getUserByService = require('./ApplicationBLL').getUserByService;
+module.exports.addAdmin = require('./Adminstrator').addAdmin;
