@@ -12,13 +12,17 @@ module.exports = function(sequelize, DataTypes) {
     },
     Duration: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       primaryKey: false
     },
     ServedDuration: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       primaryKey: false
+    },
+    CanCheck:{
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   }, {
     createdAt: false,

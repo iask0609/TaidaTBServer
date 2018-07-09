@@ -308,6 +308,28 @@ router.post("/addAdmin",function(req,res){
             "addtype": num
         })
     })
-})
+});
+
+/*
+遍历所有服务Item
+ */
+router.get("/itemOperation", function(req,res){
+    bll.itemOperation(function(list){
+        res.json({
+            "list": list
+        });
+    })
+});
+
+/**
+ * 根据大类型遍历具体服务Item
+ */
+router.post("/itemOperationByType", function(req, res){
+    bll.itemOperationByType(req.body.itemID, function(list){
+        res.json({
+            "list": list
+        })
+    })
+});
 
 module.exports = router;
