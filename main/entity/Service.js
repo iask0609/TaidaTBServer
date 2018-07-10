@@ -44,7 +44,12 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    ChainHASH: {
+    
+    ContractChainHASH: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    TransferHASH:{
       type: DataTypes.STRING,
       allowNull: false
     },
