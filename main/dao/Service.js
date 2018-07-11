@@ -151,7 +151,17 @@ function updateMedalStatue(ServiceID, medalnum, getmedaltime, returnNum) {
     }
   )
 }
-
+function updateContractHash(ServiceID, address){
+  service.update({
+    "ContractChainHASH":address
+  },{
+    where:{
+      "ServiceID":ServiceID
+    }
+  }).then((result)=>{
+    console.log('set contract address ok');
+  });
+}
 
 exports.insertService = insertService;
 exports.selectServiceByServiceID = selectServiceByServiceID;
@@ -159,3 +169,4 @@ exports.updateService = updateService;
 exports.deleteServiceByServiceID = deleteServiceByServiceID;
 exports.updateServiceFromVolunteer = updateServiceFromVolunteer;
 exports.updateMedalStatue = updateMedalStatue;
+exports.updateContractHash = updateContractHash;

@@ -22,6 +22,7 @@ function postNewRequirement(UserId, Content, DemandStartTime, DemandEndTime, Dur
             ['ServiceID', 'DESC']
         ]
     }).then(function (result) {
+        // 无法保证并发情况下ServiceID的唯一性
         var ServiceID = -1;
         if(result.count > 0)
         {
