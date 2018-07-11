@@ -160,7 +160,23 @@ function getUserIDbyAccount(Account, UserID)
     })
 }
 
+function getUserAddress(UserID, adderss){
+    allUser.findAndCountAll({
+        where: {
+            "UserID": UserID
+        }
+    }).then(function(res){
+        if(res.count === 0)
+            return adderss(-1);
+        else{
+            console.log(res.rows);
+            return adderss(res.rows[0].dataValues.ChainHASH);
+        }
+    })
+}
+
 exports.allUserLogin = allUserLogin;
 exports.getUserInfo=getUserInfo;
 exports.userRegister=userRegister;
 exports.getUserIDbyAccount = getUserIDbyAccount;
+exports.getUserAddress = getUserAddress;

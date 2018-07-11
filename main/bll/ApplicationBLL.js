@@ -2,6 +2,8 @@ const application = require('../util/ormSequelize').Application;
 const service = require('../util/ormSequelize').Service;
 const ordinaryUser=require('../util/ormSequelize').OrdinaryUser;
 const dao = require('../dao/_index');
+const getUserAddress = require('./AllUser.js').getUserAddress;
+const addContract = require('../blockchain/addContract.js').addContract;
 
 /**
  * 查询志愿者的全部已经服务的信息
@@ -50,31 +52,33 @@ function applicate(UserID, ServiceID, Material1, Material2, Material3,
         if(num === 1){
             dao.updateServiceFromVolunteer(ServiceID, RealStartTime, RealEndTime, function(value){
                 if(value===1){
-                    dao.getAllOrdinaryUser(function(userlist)
-                    {//选择审核者
-                        console.log("选择审核")
-                        // console.log(userlist)
-                        var indexRange=userlist.count;
-                        console.log("选择范围"+userlist.count)
-                        var originalArray=new Array;
-                        for(var j=0;j<indexRange;j++)
-                        {
-                            originalArray[j]=j;
-                        }
-                        originalArray.sort(function(){ return 0.5 - Math.random(); });
-                        for(var i = 0; i < 5; i++){
-                            var randomIndex=originalArray[i];
-                            //random five checker
-                            console.log("randomIndex"+randomIndex);
-                            var checkStaffID=userlist.rows[randomIndex].dataValues.UserID;
-                            dao.insertCheckInfo(ServiceID,checkStaffID,function (value2) {
-                                console.log("插入成功");
+                    getUserAddress(UserID, (userAddress)=>{
+                        if(userAddress == -1)
+                            return;
+                        console.log('address get:' + userAddress);
+                        addContract('http://localhost', UserID+8500,userAddress,'123456',(contractAddress) => {
+                            dao.updateContractHash(ServiceID, contractAddress);
+                        });
+                
+                        dao.getCheckUser(function(userlist){   
+                            //选择审核者
+                            console.log("选择审核人")
+                            var indexRange=userlist.count;
+                            console.log("审核候选人数： "+userlist.count)
+                            var randomSet = new Set();
+                            while(randomSet.size < 5)
+                            {
+                                randomSet.add(Math.floor(Math.random() * indexRange) + 1);
+                            }
+                            randomSet.forEach(function(randomIndex){
+                                console.log("randomIndex"+randomIndex);
+                                var checkStaffID=userlist.rows[randomIndex-1].dataValues.UserID;
+                                dao.insertCheckInfo(ServiceID,checkStaffID,function (value2) {
+                                    console.log("插入成功");
+                                });
                             })
-                        }
-                        // console.log("array");
-                        // console.log(originalArray);
-                    })
-
+                        })
+                    });
                 }
                 return returnNum(num);
             });

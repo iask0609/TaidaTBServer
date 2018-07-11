@@ -64,7 +64,20 @@ function getAllOrdinaryUser(returnList) {
     })
 }
 
+function getCheckUser(returnList) {
+  ordinaryUser.findAndCountAll(
+    {
+      where: {
+        "CanCheck": true
+      }
+    }
+  ).then(function(res)
+  {
+    return returnList(res);
+  })
+}
 exports.insertOrdinaryUser = insertOrdinaryUser;
 exports.selectOrdinaryUserByUserID = selectOrdinaryUserByUserID;
 exports.updateOrdinaryUser = updateOrdinaryUser;
 exports.getAllOrdinaryUser=getAllOrdinaryUser;
+exports.getCheckUser = getCheckUser;
