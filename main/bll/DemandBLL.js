@@ -33,7 +33,7 @@ function postNewRequirement(UserId, Content, DemandStartTime, DemandEndTime, Dur
         }
         console.log(ServiceID + myDateTime.toLocaleString());
         dao.insertService(ServiceID, myDateTime.toLocaleString(), Duration, Content, DemandStartTime, DemandEndTime, 0,
-            -1, function(num){
+            -1,-1, function(num){
             if(num === 1){
                 dao.insertDemand(ServiceID, UserId, Remark, function(num1){
                     if(num1 === 1){
