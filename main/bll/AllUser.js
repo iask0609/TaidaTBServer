@@ -2,6 +2,7 @@ const allUser = require('../util/ormSequelize').AllUser;
 const otherUser=require('../util/ormSequelize').OtherUser;
 const ordinaryUser=require('../util/ormSequelize').OrdinaryUser;
 const dao = require('../dao/_index');
+const bll = require('./_index');
 
 /**
  * 用户登陆
@@ -103,15 +104,25 @@ function userRegister(account,username,password,phone,email,gender,province,city
                 "ChainHASH": 'unknown'
             }).then(function(result){
                 console.log("得到的object"+result);
-    
+                
                 // 获取userId
                 allUser.findAndCountAll({
                     where:{ "Account": account}
                 }).then(function (value) {
                     console.log("获取userid"+value);
                     userId=value.rows[0].dataValues.UserID;
-    
-                //通过调用web在链上创建账户
+                    console.log("获取userid"+userId);
+                    //通过调用web在链上创建账户
+                   // var hash = bll.AddUserNode(userId);
+                    // console.log('hash!!!!'+hash);
+                    bll.AddUserNode(userId,function(userHash){
+                    console.log("--------userhash!!!" + userHash); 
+                    allUser.update({
+                        "ChainHASH": String(userHash)},
+                        {
+                            where:{"UserID": userId}
+                        })
+                    }); 
                     otherUser.create({
                         "UserID": userId,
                         "UserName": account,
@@ -125,7 +136,7 @@ function userRegister(account,username,password,phone,email,gender,province,city
                         "District": district
                     }).then(function (value) {
                         console.log('insertOtherUser ok'+value);
-                        dao.insertOrdinaryUser(userId,0,0);
+                        dao.insertOrdinaryUser(userId,0,0,0);
                         return returnNum(1);
                     })
     

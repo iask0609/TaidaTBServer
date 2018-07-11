@@ -8,16 +8,21 @@ module.exports = function(sequelize, DataTypes) {
     },
     CreateTime: {
       type: DataTypes.TIME,
-      allowNull: true,
+      allowNull: false,
       primaryKey: false
     },
     Duration: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: false
     },
     Content: {
-      type: DataTypes.STRING,
-      allowNull: true
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: false,
+        references: {
+            model: 'ServerItem',
+            key: 'ID'
+          }
     },
     DemandStartTime: {
       type: DataTypes.TIME,
@@ -40,6 +45,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     ContractChainHASH: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    TransferHASH:{
       type: DataTypes.STRING,
       allowNull: false
     },

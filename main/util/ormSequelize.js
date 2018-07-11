@@ -38,4 +38,6 @@ module.exports.Service = require('../entity/Service')(seq, Sequelize);
 module.exports.SuperAdmin = require('../entity/SuperAdmin')(seq, Sequelize);
 module.exports.NoticeView = require('../entity/NoticeView')(seq, Sequelize);
 module.exports.ServiceList = require('../entity/ServiceList')(seq, Sequelize);
+module.exports.ServerItem = require('../entity/ServerItem')(seq, Sequelize);
+module.exports.ServerType = require('../entity/ServerType')(seq, Sequelize);
 module.exports.sequelize=seq;

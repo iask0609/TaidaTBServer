@@ -1,10 +1,11 @@
 const ordinaryUser = require('../util/ormSequelize').OrdinaryUser;
 
-function insertOrdinaryUser(UserID, Duration, ServedDuration) {
+function insertOrdinaryUser(UserID, Duration, ServedDuration,CanCheck) {
   ordinaryUser.create({
     "UserID": UserID,
     "Duration": Duration,
-    "ServedDuration": ServedDuration
+    "ServedDuration": ServedDuration,
+    "CanCheck": CanCheck
   }).then(function(result) {
     console.log('insertOrdinaryUser ok');
     console.log(result.message)

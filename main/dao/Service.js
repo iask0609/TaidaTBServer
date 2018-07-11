@@ -2,7 +2,7 @@ const service = require('../util/ormSequelize').Service;
 
 function insertService(ServiceID, CreateTime, Duration, Content,
   DemandStartTime, DemandEndTime, Status,
-  ChainHASH, returnNum) {
+  ContractChainHASH, TransferHASH, returnNum) {
   service.create({
     "ServiceID": ServiceID,
     "CreateTime": CreateTime,
@@ -11,7 +11,8 @@ function insertService(ServiceID, CreateTime, Duration, Content,
     "DemandStartTime": DemandStartTime,
     "DemandEndTime": DemandEndTime,
     "Status": Status,            // 当为0时说明还未被满足，为1时说明已被满足
-    "ChainHASH": ChainHASH
+    "ContractChainHASH": ContractChainHASH,
+    "TransferHASH": TransferHASH
   }).then(function(result) {
     console.log('insertService ok');
     console.log(result.message);
