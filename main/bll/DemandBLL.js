@@ -113,9 +113,13 @@ function updateDemand(UserID, ServiceID, Duration, content, DemandStartTime, Dem
  * 查询所有未被服务的老人需求
  * @param returnList
  */
-function getAllDemand(returnList){
+function getAllDemand(UserID,returnList){
     serviceList.findAndCountAll({
-
+        where:{
+            "UserID":{
+                $not:[UserID]
+            }
+        }
     }).then(function(res){
         return returnList(res);
     })
