@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const test = require('../main/bll/test');
-const newData = require('../main/bll/newData');
+//const newData = require('../main/bll/newData');
 const transaction = require('../main/bll/Transaction')
 
 
@@ -20,13 +20,13 @@ router.get('/open', function(req, res) {
 })
 
 
-router.get("/newData", function (req, res){
-    newData.newData(function(){
-        res.json({
-            "num": num
-        })
-    })
-})
+// router.get("/newData", function (req, res){
+//     newData.newData(function(){
+//         res.json({
+//             "num": num
+//         })
+//     })
+// })
 
 
 router.get("/transaction", function (req, res){

@@ -22,7 +22,6 @@ function postNewRequirement(UserId, Content, DemandStartTime, DemandEndTime, Dur
             ['ServiceID', 'DESC']
         ]
     }).then(function (result) {
-        // 无法保证并发情况下ServiceID的唯一性
         var ServiceID = -1;
         if(result.count > 0)
         {
@@ -113,9 +112,14 @@ function updateDemand(UserID, ServiceID, Duration, content, DemandStartTime, Dem
  * 查询所有未被服务的老人需求
  * @param returnList
  */
-function getAllDemand(returnList){
+function getAllDemand(UserID,returnList){
+    //不应查到自己发布的需求
     serviceList.findAndCountAll({
-
+        where:{
+            "UserID": {
+                $not:[UserID]
+            }
+        }
     }).then(function(res){
         return returnList(res);
     })
