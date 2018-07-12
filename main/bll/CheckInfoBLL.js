@@ -77,64 +77,18 @@ function getCheckingList(checkUserID,status, returnList)
                 return returnList(list);
             }, 500);
         }
-        // {
-        //
-        //     var list = [];
-        //     for(var i = 0; i < res.count; i++){
-        //         var serviceID = res.rows[i].dataValues.ServiceID;
-        //         var obj = new Object();
-        //         obj.serviceId=serviceID;
-        //         service.findAndCountAll({
-        //             where:{
-        //                 "ServiceID": serviceID
-        //             }
-        //         }).then(function(res1){
-        //
-        //             var temp=res1.rows[0].dataValues;
-        //             obj.content=temp.Content;
-        //             obj.startTime=temp.DemandStartTime;
-        //             obj.endTime=temp.DemandEndTime;
-        //             obj.duration=temp.Duration;
-        //             application.findAndCountAll({
-        //                 where:{
-        //                     "ServiceID": serviceID
-        //                 }
-        //             }).then(function (res2) {
-        //                 obj.volunteerID=res2.rows[0].dataValues.UserID;
-        //                 obj.remark=res2.rows[0].dataValues.Remark;
-        //                 otherUser.findAndCountAll({
-        //                     where:{
-        //                         "UserID": obj.volunteerID
-        //                     }
-        //                 }).then(function (value) {
-        //                     obj.volunteerName=value.rows[0].dataValues.Name
-        //                 })
-        //             })
-        //             demand.findAndCountAll({
-        //                 where:{
-        //                     "ServiceID": serviceID
-        //                 }
-        //             }).then(function (value) {
-        //                 obj.oldManID=value.rows[0].dataValues.UserID;
-        //                 otherUser.findAndCountAll({
-        //                     where:{
-        //                         "UserID": obj.oldManID
-        //                     }
-        //                 }).then(function (value) {
-        //                     obj.oldManName=value.rows[0].dataValues.Name
-        //                     list.push(obj);
-        //
-        //                 })
-        //             })
-        //
-        //         })
-        //     }
-        //
-        //     console.log("取到审核列表"+list);
-        //     return returnList(list);
-        //
-        // }
     )
 }
-
+/**
+ * 
+ * @param user
+ * @param service
+ * @param score1
+ * @param score2 
+ * @param score3
+ * @param score4
+ */
+function checkApplication(user, service, score1, score2, score3, score4){
+    
+}
 exports.getCheckingList = getCheckingList;

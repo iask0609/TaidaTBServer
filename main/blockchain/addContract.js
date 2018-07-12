@@ -28,8 +28,6 @@ async function waitBlock(contract, updateDB) {
         updateDB(receipt.contractAddress);
         break;
       }
-      console.log("Waiting a mined block to include your contract... currently in block " + web3.eth.blockNumber);
     }
-    console.log('out');
   }
 exports.addContract = addContract;

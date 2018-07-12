@@ -3,7 +3,7 @@ const otherUser=require('../util/ormSequelize').OtherUser;
 const ordinaryUser=require('../util/ormSequelize').OrdinaryUser;
 const dao = require('../dao/_index');
 const bll = require('./_index');
-
+var AddUserNode = require('../blockchain/AddUserNode.js');
 /**
  * 用户登陆
  * @param Account
@@ -112,16 +112,14 @@ function userRegister(account,username,password,phone,email,gender,province,city
                     console.log("获取userid"+value);
                     userId=value.rows[0].dataValues.UserID;
                     console.log("获取userid"+userId);
-                    //通过调用web在链上创建账户
-                   // var hash = bll.AddUserNode(userId);
-                    // console.log('hash!!!!'+hash);
-                    bll.AddUserNode(userId,function(userHash){
+                    //通过调用web3在链上创建账户
+                    AddUserNode(userId,function(userHash, callback){
                     console.log("--------userhash!!!" + userHash); 
                     allUser.update({
                         "ChainHASH": String(userHash)},
                         {
                             where:{"UserID": userId}
-                        })
+                        }).then(callback)
                     }); 
                     otherUser.create({
                         "UserID": userId,
@@ -145,6 +143,7 @@ function userRegister(account,username,password,phone,email,gender,province,city
             })
     
         }else{
+            console.log('用户名'+account+'已经被创建')
             return returnNum(0);
         }
     })
