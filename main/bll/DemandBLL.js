@@ -114,12 +114,20 @@ function updateDemand(UserID, ServiceID, Duration, content, DemandStartTime, Dem
  * @param returnList
  */
 function getAllDemand(UserID,returnList){
+<<<<<<< HEAD
     //不应查到自己发布的需求
     serviceList.findAndCountAll({
         where:{
             // "UserID": {
             //     $not:[UserID]
             // }
+=======
+    serviceList.findAndCountAll({
+        where:{
+            "UserID":{
+                $not:[UserID]
+            }
+>>>>>>> 6ed1caf098dad45fc400b5eb8fade4860cddaa9a
         }
     }).then(function(res){
         return returnList(res);
