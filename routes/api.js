@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const bll = require('../main/bll/_index');
+const blockchain = require('../main/blockchain/_index');
 
 /**
  * 用户登录
@@ -328,6 +329,17 @@ router.post("/itemOperationByType", function(req, res){
     bll.itemOperationByType(req.body.itemID, function(list){
         res.json({
             "list": list
+        })
+    })
+});
+
+/**
+ * 查看交易链
+ */
+router.post("/transactionInfo",function(req,res){
+    blockchain.transactionInfo(req.body.UserID,req.body.chainHash,function(list){
+        res.json({
+            "list":list
         })
     })
 });
