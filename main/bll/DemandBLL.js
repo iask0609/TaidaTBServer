@@ -22,7 +22,6 @@ function postNewRequirement(UserId, Content, DemandStartTime, DemandEndTime, Dur
             ['ServiceID', 'DESC']
         ]
     }).then(function (result) {
-        // 无法保证并发情况下ServiceID的唯一性
         var ServiceID = -1;
         if(result.count > 0)
         {
@@ -114,20 +113,12 @@ function updateDemand(UserID, ServiceID, Duration, content, DemandStartTime, Dem
  * @param returnList
  */
 function getAllDemand(UserID,returnList){
-<<<<<<< HEAD
     //不应查到自己发布的需求
     serviceList.findAndCountAll({
         where:{
-            // "UserID": {
-            //     $not:[UserID]
-            // }
-=======
-    serviceList.findAndCountAll({
-        where:{
-            "UserID":{
+            "UserID": {
                 $not:[UserID]
             }
->>>>>>> 6ed1caf098dad45fc400b5eb8fade4860cddaa9a
         }
     }).then(function(res){
         return returnList(res);
