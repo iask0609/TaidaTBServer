@@ -8,7 +8,7 @@ function insertOrdinaryUser(UserID, Duration, ServedDuration,CanCheck) {
     "CanCheck": CanCheck
   }).then(function(result) {
     console.log('insertOrdinaryUser ok');
-    console.log(result.message)
+    console.log('result: '+result.message)
   }).catch(function(err) {
     console.log('insertOrdinaryUser error');
     console.log(err.message)

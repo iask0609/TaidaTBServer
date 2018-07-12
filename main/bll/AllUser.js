@@ -109,12 +109,9 @@ function userRegister(account,username,password,phone,email,gender,province,city
                 allUser.findAndCountAll({
                     where:{ "Account": account}
                 }).then(function (value) {
-                    console.log("获取userid"+value);
                     userId=value.rows[0].dataValues.UserID;
-                    console.log("获取userid"+userId);
                     //通过调用web3在链上创建账户
                     AddUserNode(userId,function(userHash, callback){
-                    console.log("--------userhash!!!" + userHash); 
                     allUser.update({
                         "ChainHASH": String(userHash)},
                         {

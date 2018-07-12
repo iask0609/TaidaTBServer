@@ -9,24 +9,24 @@ function Node(UserID){
         host: config.host,
         port: config.port(UserID),
         initCommand: "geth --datadir " + config.nodeFile(UserID) + " init genesis.json",
-        startCommand: "geth --rpc --rpcport \"" + config.rpcport(UserID) + "\" --datadir " + this.nodeFile +  " --port \"" + this.port + "\" --rpcapi \"eth,web3,personal\"",
+        startCommand: "geth --rpc --rpcport \"" + config.rpcport(UserID) + "\" --datadir " + config.nodeFile(UserID) +  " --port \"" + config.port(UserID) + "\" --rpcapi \"eth,web3,personal\"",
         init: function (callback){
             var that = this;
             var exec = require('child_process').exec;
-            console.log(that.initCommand);
             exec(this.initCommand,
             {cwd: that.cwd},
             (error, stdout, stderr)=> {
                 if(error)
                 {
-                    console.log(error);
+                    console.log('error:' + error);
                     return;
                 }
-                console.log(UserID + '\'snode in '+ that.nodeFile+ 'successfully created');
-                if(callback == undefined)
-                    return;
                 else
-                    callback();
+                {
+                    console.log(UserID + '\'snode in '+ that.nodeFile+ ' successfully created');
+                    if(callback)
+                        callback();
+                }
             }
         );
         },
@@ -34,8 +34,11 @@ function Node(UserID){
             var that = this;
             var exec = require('child_process').exec;
             var child = exec(this.startCommand, {cwd: that.cwd});
-            var web3 = new Web3(new Web3.providers.HttpProvider(this.host + ':'+this.rpcport));
-            work(web3, child);
+            var url = this.host + ':'+this.rpcport;
+            setTimeout(() => {
+                var web3 = new Web3(new Web3.providers.HttpProvider(url));
+                work(web3, child);
+            }, 3000); 
         }
     }
 }

@@ -1,5 +1,5 @@
 module.exports = {
-    basePath : 'C:\\Users\\Dell\\Desktop\\blockchain',
+    basePath : '/home/lzh/Projects/BlockChain/',
     nodeFile:function nodeFile(UserID){
         return this.basePath+'node'+UserID;
     },
