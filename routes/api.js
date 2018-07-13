@@ -344,4 +344,14 @@ router.post("/transactionInfo",function(req,res){
     })
 });
 
+/**
+ * 查询已转移的勋章信息
+ */
+router.post("/getGiveInfo", function(req, res){
+    bll.getGiveInfo(req.body.UserID, function(list){
+        res.json({
+            "list": list
+        })
+    })
+});
 module.exports = router;
