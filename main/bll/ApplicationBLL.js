@@ -56,7 +56,7 @@ function applicate(UserID, ServiceID, Material1, Material2, Material3,
                         if(userAddress == -1)
                             return;
                         console.log('address get:' + userAddress);
-                        addContract('http://localhost', UserID+8500,userAddress,'123456',(contractAddress) => {
+                        addContract(UserID,userAddress,ServiceID,(contractAddress) => {
                             dao.updateContractHash(ServiceID, contractAddress);
                         });
                 
