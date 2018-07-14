@@ -353,4 +353,14 @@ router.post("/checkApplication", function(req, res){
          req.body.Score3, req.body.Score3,req.body.Score4 );
 })
 
+/*
+ * 查询已转移的勋章信息
+ */
+router.post("/getGiveInfo", function(req, res){
+    bll.getGiveInfo(req.body.UserID, function(list){
+        res.json({
+            "list": list
+        })
+    })
+});
 module.exports = router;
