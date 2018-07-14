@@ -4,6 +4,10 @@ const application = require('../util/ormSequelize').Application;
 const demand = require('../util/ormSequelize').Demand;
 const otherUser = require('../util/ormSequelize').OtherUser;
 const dao = require('../dao/_index');
+const getUserAddress = require('./AllUser').getUserAddress;
+const voteForApplication = require('../blockchain/voteForApplication');
+const transact = require('../blockchain/transact');
+
 /**
  * 查询审核者的待审核申请
  * @param checkUserID
@@ -80,7 +84,7 @@ function getCheckingList(checkUserID,status, returnList)
     )
 }
 /**
- * 
+ * 审核人给勋章申请打分
  * @param user
  * @param service
  * @param score1
@@ -88,7 +92,17 @@ function getCheckingList(checkUserID,status, returnList)
  * @param score3
  * @param score4
  */
-function checkApplication(user, service, score1, score2, score3, score4){
-    
+var getServiceInfo = require('../dao/Service').getServiceInfo;
+function checkApplication(UserID, ServiceID, score1, score2, score3, score4){
+    dao.selectContractHash(ServiceID,  (contractHash)=>{
+        getUserAddress(UserID, (userAddress)=>{
+            voteForApplication(UserID,userAddress, contractHash, score1, score2, score3, score4, (score)=>{
+                getServiceInfo(UserID, (UserID1, UserAddress1, UserID2, UserAddress2)=>{
+                    transact(UserID, UserAddress1, UserAddress2, score);
+                })
+            });
+        })
+    })
 }
-exports.getCheckingList = getCheckingList;
+module.exports.getCheckingList = getCheckingList;
+module.exports.checkApplication =  checkApplication;
