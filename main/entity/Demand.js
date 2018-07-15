@@ -19,7 +19,11 @@ module.exports = function(sequelize, DataTypes) {
         key: 'UserID'
       }
     },
-      Remark: {
+    Remark: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    Comment: {
       type: DataTypes.STRING,
       allowNull: true
     }

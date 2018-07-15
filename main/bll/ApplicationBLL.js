@@ -4,7 +4,7 @@ const ordinaryUser=require('../util/ormSequelize').OrdinaryUser;
 const dao = require('../dao/_index');
 const getUserAddress = require('./AllUser.js').getUserAddress;
 const addContract = require('../blockchain/addContract.js').addContract;
-
+const otherUser = require('../util/ormSequelize').OtherUser;
 /**
  * 查询志愿者的全部已经服务的信息
  * @param UserID
@@ -207,14 +207,16 @@ function getUserByService(ServiceID, returnList) {
         }
     }).then(function (result) {
         if (result.count > 0) {
-            var userID = result.row[0].dataValues.UserID;
+            //console.log(result);
+            //var userID = result.row[0].dataValues.UserID;
+            var userID = result.rows[0].dataValues.UserID;
             otherUser.findAndCountAll({
                 where: {
                     "UserID": userID
                 }
             }).then(function (res) {
                 if (res.count > 0) {
-                    return returnList(res.row[0].dataValues)
+                    return returnList(res.rows[0].dataValues);
                 }
                 else {
                     return returnList("");
