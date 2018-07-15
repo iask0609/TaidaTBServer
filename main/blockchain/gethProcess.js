@@ -39,6 +39,12 @@ function Node(UserID){
                 var web3 = new Web3(new Web3.providers.HttpProvider(url));
                 work(web3, child);
             }, 3000); 
+        },
+        web3: function(){
+            var url = this.host + ':'+this.rpcport;
+            var web3 = new Web3(new Web3.providers.HttpProvider(url));
+            console.log('web3 connect to ' + url);
+            return web3;
         }
     }
 }

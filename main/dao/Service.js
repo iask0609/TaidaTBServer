@@ -1,4 +1,7 @@
 const service = require('../util/ormSequelize').Service;
+const Demand = require('../util/ormSequelize').Demand;
+const Application = require('../util/ormSequelize').Application;
+const getUserAddress = require('../bll/AllUser.js').getUserAddress;
 
 function insertService(ServiceID, CreateTime, Duration, Content,
   DemandStartTime, DemandEndTime, Status,
@@ -163,6 +166,38 @@ function updateContractHash(ServiceID, address){
   });
 }
 
+function selectContractHash(ServiceID, callback){
+  service.findAndCountAll({
+    where:{
+      "ServiceID":ServiceID
+    }
+  }).then((result)=>{
+    callback(result.rows[0].dataValues.ContractChainHASH)
+  });
+}
+
+function getServiceInfo(ServiceID, ServiceInfo){
+  Demand.findAndCountAll({
+    where:{
+      'ServiceID': ServiceID
+    }
+  }).then((demand)=>{
+    var UserID1 = demand.rows[0].dataValues.UserID;
+    Application.findAndCountAll({
+      where:{
+        'ServiceID': ServiceID
+      }
+    }).then((applicate)=>{
+      var UserID2 = applicate.row[0].dataValues.UserID;
+      getUserAddress(UserID1, (UserAdderss1)=>{
+        getUserAddress(UserID2, (UserAdderss2)=>{
+          ServiceInfo(UserID1,UserAdderss1,UserID2,UserAdderss2);
+        })
+      });
+    })
+  })
+}
+
 exports.insertService = insertService;
 exports.selectServiceByServiceID = selectServiceByServiceID;
 exports.updateService = updateService;
@@ -170,3 +205,5 @@ exports.deleteServiceByServiceID = deleteServiceByServiceID;
 exports.updateServiceFromVolunteer = updateServiceFromVolunteer;
 exports.updateMedalStatue = updateMedalStatue;
 exports.updateContractHash = updateContractHash;
+exports.selectContractHash = selectContractHash;
+exports.getServiceInfo = getServiceInfo;
