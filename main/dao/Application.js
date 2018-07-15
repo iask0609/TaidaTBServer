@@ -13,7 +13,7 @@ function insertApplication(ServiceID, UserID, Material1,
     console.log('insertApplication ok');
     return returnNum(1);
   }).catch(function(err) {
-    console.log('insertApplication error');
+    console.log('insertApplication error:' + err);
       return returnNum(0);
   })
 }

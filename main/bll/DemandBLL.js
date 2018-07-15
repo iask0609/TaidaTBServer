@@ -16,7 +16,7 @@ const otherUser = require('../util/ormSequelize').OtherUser;
  */
 function postNewRequirement(UserId, Content, DemandStartTime, DemandEndTime, Duration, Remark, returnNum)
 {
-    const myDateTime  = new Date();
+    const myDateTime  = new Date().toISOString().slice(0, 19).replace('T', ' ');
     service.findAndCountAll({
         'order': [
             ['ServiceID', 'DESC']
@@ -31,8 +31,8 @@ function postNewRequirement(UserId, Content, DemandStartTime, DemandEndTime, Dur
         {
             ServiceID = 0;
         }
-        console.log(ServiceID + myDateTime.toLocaleString());
-        dao.insertService(ServiceID, myDateTime.toLocaleString(), Duration, Content, DemandStartTime, DemandEndTime, 0,
+        console.log(ServiceID +'   '+ myDateTime);
+        dao.insertService(ServiceID, myDateTime, Duration, Content, DemandStartTime, DemandEndTime, 0,
             -1,-1, function(num){
             if(num === 1){
                 dao.insertDemand(ServiceID, UserId, Remark, function(num1){

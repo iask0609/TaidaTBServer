@@ -24,4 +24,6 @@ module.exports.getUserByService = require('./ApplicationBLL').getUserByService;
 module.exports.addAdmin = require('./Adminstrator').addAdmin;
 module.exports.itemOperation = require('./ServerItemBLL').itemOperation;
 module.exports.itemOperationByType = require('./ServerItemBLL').itemOperationByType;
+module.exports.checkApplication = require('./CheckInfoBLL').checkApplication;
 module.exports.AddUserNode = require('./AddUserNode').AddUserNode;
+module.exports.getGiveInfo = require('./MedalInfoBLL').getGiveInfo;

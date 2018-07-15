@@ -40,4 +40,5 @@ module.exports.NoticeView = require('../entity/NoticeView')(seq, Sequelize);
 module.exports.ServiceLists = require('../entity/ServiceLists')(seq, Sequelize);
 module.exports.ServerItem = require('../entity/ServerItem')(seq, Sequelize);
 module.exports.ServerType = require('../entity/ServerType')(seq, Sequelize);
+module.exports.MedalInfoList = require('../entity/MedalInfoList')(seq, Sequelize);
 module.exports.sequelize=seq;
