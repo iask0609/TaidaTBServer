@@ -9,9 +9,9 @@ module.exports = function(sequelize, DataTypes) {
         },
         Title: {
             type: DataTypes.STRING,
-            allowNull: true
-        },
-        Content: {
+                allowNull: true
+            },
+            Content: {
             type: DataTypes.STRING,
             allowNull: true
         },

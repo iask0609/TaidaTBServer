@@ -1,7 +1,7 @@
 const demand = require('../util/ormSequelize').Demand;
 const service = require('../util/ormSequelize').Service;
 const dao = require('../dao/_index');
-const serviceList = require('../util/ormSequelize').ServiceList;
+const serviceLists = require('../util/ormSequelize').ServiceLists;
 const otherUser = require('../util/ormSequelize').OtherUser;
 
 /**
@@ -16,7 +16,7 @@ const otherUser = require('../util/ormSequelize').OtherUser;
  */
 function postNewRequirement(UserId, Content, DemandStartTime, DemandEndTime, Duration, Remark, returnNum)
 {
-    const myDateTime  = new Date();
+    const myDateTime  = new Date().toISOString().slice(0, 19).replace('T', ' ');
     service.findAndCountAll({
         'order': [
             ['ServiceID', 'DESC']
@@ -31,8 +31,8 @@ function postNewRequirement(UserId, Content, DemandStartTime, DemandEndTime, Dur
         {
             ServiceID = 0;
         }
-        console.log(ServiceID + myDateTime.toLocaleString());
-        dao.insertService(ServiceID, myDateTime.toLocaleString(), Duration, Content, DemandStartTime, DemandEndTime, 0,
+        console.log(ServiceID +'   '+ myDateTime);
+        dao.insertService(ServiceID, myDateTime, Duration, Content, DemandStartTime, DemandEndTime, 0,
             -1,-1, function(num){
             if(num === 1){
                 dao.insertDemand(ServiceID, UserId, Remark, function(num1){
@@ -65,11 +65,12 @@ function getDemandByUserID(UserID, returnList){
             "UserID": UserID
         }
     }).then(function(res){
+        console.log(res);
         var list = [];
         var serviceID = -1;
         for(var i = 0; i < res.count; i++){
             serviceID = res.rows[i].dataValues.ServiceID;
-            service.findAndCountAll({
+            serviceLists.findAndCountAll({
                 where:{
                     "ServiceID": serviceID
                 }
@@ -114,7 +115,7 @@ function updateDemand(UserID, ServiceID, Duration, content, DemandStartTime, Dem
  */
 function getAllDemand(UserID,returnList){
     //不应查到自己发布的需求
-    serviceList.findAndCountAll({
+    serviceLists.findAndCountAll({
         where:{
             "UserID": {
                 $not:[UserID]
@@ -136,15 +137,17 @@ function getAllDemand(UserID,returnList){
  */
 function getDemandByCondition(UserID, Content, Duration, DemandStartTime, type, returnList){
 
-    serviceList.findAndCountAll({
+    serviceLists.findAndCountAll({
         where:{
-
             "Content": {
                 "$like": "%" + Content + "%"
             },
             "Duration": Duration,
             "DemandStartTime":{
                 "$gte": DemandStartTime
+            },
+            "UserID": {
+                $not:[UserID]
             }
         }
     }).then(function(res){
@@ -158,6 +161,7 @@ function getDemandByCondition(UserID, Content, Duration, DemandStartTime, type, 
                 return returnList();
             }
             else{
+                //按地区推荐
                 var province = res1.rows[0].dataValues.Province;
                 var city = res1.rows[0].dataValues.City;
                 var distinct = res1.rows[0].dataValues.District;
@@ -201,7 +205,7 @@ function getDemandByCondition(UserID, Content, Duration, DemandStartTime, type, 
 
 function getDemandByConditionNoDuration(UserID, Content, DemandStartTime, type, returnList){
 
-    serviceList.findAndCountAll({
+    serviceLists.findAndCountAll({
         where:{
 
             "Content": {
@@ -210,6 +214,9 @@ function getDemandByConditionNoDuration(UserID, Content, DemandStartTime, type, 
 
             "DemandStartTime":{
                 "$gte": DemandStartTime
+            },
+            "UserID": {
+                $not:[UserID]
             }
         }
     }).then(function(res){
