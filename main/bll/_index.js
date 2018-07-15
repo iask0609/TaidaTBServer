@@ -29,3 +29,5 @@ module.exports.AddUserNode = require('./AddUserNode').AddUserNode;
 module.exports.getGiveInfo = require('./MedalInfoBLL').getGiveInfo;
 module.exports.getGetInfo = require('./MedalInfoBLL').getGetInfo;
 module.exports.getTransactionInfo = require('./MedalInfoBLL').getTransactionInfo;
+module.exports.changeNoticeChecked = require('./NoticeBLL').changeNoticeChecked;
+

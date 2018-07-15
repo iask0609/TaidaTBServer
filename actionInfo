@@ -1,0 +1,654 @@
+[33mcommit 39d04e00f6159a5969dadd7000e8ffabcc58b0c2[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Virginia <virginia206@163.com>
+Date:   Fri Jul 13 11:48:02 2018 +0800
+
+    Modify Medal git add -Agit add -Agit add -A!
+
+[33mcommit 1dd058c911f235efb5aa64ece67864b84a3ff3ad[m
+Merge: 7395dc9 b945780
+Author: AmandaChin <33803569+AmandaChin@users.noreply.github.com>
+Date:   Fri Jul 13 10:42:41 2018 +0800
+
+    Merge pull request #4 from Victarry/master
+    
+    重构区块链相关代码
+
+[33mcommit b945780a4091f49140837f6ff878dda29582d304[m
+Author: lzh <nkulzh16@gmail.com>
+Date:   Thu Jul 12 22:22:22 2018 +0800
+
+    fix some bug
+
+[33mcommit d92801dd8e054a348878f3bc66a2d9b548c14e56[m
+Author: Liu Zhenhuan <nkulzh16@gmail.com>
+Date:   Thu Jul 12 21:13:15 2018 +0800
+
+    Create genesis.json
+
+[33mcommit ba98d1796782117d35460006a2047ef2c3cbb581[m
+Merge: c547f01 7395dc9
+Author: Liu Zhenhuan <nkulzh16@gmail.com>
+Date:   Thu Jul 12 19:53:37 2018 +0800
+
+    Merge pull request #2 from AmandaChin/master
+    
+    update
+
+[33mcommit c547f01c6d356aaf3fbad2c99553f4d72b0b9f35[m
+Author: Victarry <nkulzh16@gmail.com>
+Date:   Thu Jul 12 17:23:43 2018 +0800
+
+    重构区块链相关代码
+
+[33mcommit 7395dc93f14f61f0c9a993a0316fec427a45663d[m
+Merge: fcf13da 7db8a8d
+Author: AmandaChin <15732152800@163.com>
+Date:   Thu Jul 12 14:29:45 2018 +0800
+
+    Merge branch 'master' of https://github.com/AmandaChin/TaidaTBServer
+
+[33mcommit fcf13dade4ca0246729c650e6d2499311acda426[m
+Author: AmandaChin <15732152800@163.com>
+Date:   Thu Jul 12 11:31:58 2018 +0800
+
+    加入查看交易链函数
+
+[33mcommit 7db8a8d3b30f0efe9349013c704ac9d1ff62eae7[m
+Author: AmandaChin <15732152800@163.com>
+Date:   Thu Jul 12 10:00:32 2018 +0800
+
+    hebing
+
+[33mcommit bfe791e9eac8d01e96c8301822117a805e9dc611[m
+Merge: b29b95c 6ed1caf
+Author: AmandaChin <15732152800@163.com>
+Date:   Thu Jul 12 09:59:17 2018 +0800
+
+    合并修改
+
+[33mcommit 6ed1caf098dad45fc400b5eb8fade4860cddaa9a[m
+Author: AmandaChin <15732152800@163.com>
+Date:   Wed Jul 11 21:46:46 2018 +0800
+
+    删除newData 修改 getAllDemand 函数
+
+[33mcommit b29b95c871f4f2b0072f223baffaeb3df22ea682[m
+Merge: b73ed66 7dbd9c4
+Author: AmandaChin <15732152800@163.com>
+Date:   Wed Jul 11 20:42:53 2018 +0800
+
+    Merge branch 'master' of https://github.com/AmandaChin/TaidaTBServer
+
+[33mcommit b73ed66d44bc6d3e0f127403753e26bcd87d27b9[m
+Author: AmandaChin <15732152800@163.com>
+Date:   Wed Jul 11 20:42:38 2018 +0800
+
+    修改getALLDeman
+
+[33mcommit c9aa9019ef32d501d5350e4348c47a949caedcd3[m
+Merge: aa5d974 7dbd9c4
+Author: Liu Zhenhuan <nkulzh16@gmail.com>
+Date:   Wed Jul 11 17:57:05 2018 +0800
+
+    Merge pull request #1 from AmandaChin/master
+    
+    Merge pull request #3 from Victarry/master
+
+[33mcommit 7dbd9c4a893e0d34baff0e3be3f4d1f91ed6222b[m
+Merge: 4179c18 aa5d974
+Author: AmandaChin <33803569+AmandaChin@users.noreply.github.com>
+Date:   Wed Jul 11 17:53:49 2018 +0800
+
+    Merge pull request #3 from Victarry/master
+    
+    applicate(用户完成服务提交勋章申请)，完成智能合约的提交和合约地址的保存
+
+[33mcommit aa5d9746c70bde8c9265424652a692241e7d4f7f[m
+Merge: de97253 4179c18
+Author: AmandaChin <33803569+AmandaChin@users.noreply.github.com>
+Date:   Wed Jul 11 17:53:30 2018 +0800
+
+    Merge branch 'master' into master
+
+[33mcommit de97253ddaaca679cad3e88e14f34a930bcad581[m
+Author: Victarry <nkulzh16@gmail.com>
+Date:   Wed Jul 11 17:48:43 2018 +0800
+
+    applicate(用户完成服务提交勋章申请)，完成智能合约的提交和合约地址的保存
+
+[33mcommit 4179c184a7406dc5b78ad5897ac844b8a417c981[m
+Merge: 04b2b50 e6cf4ad
+Author: AmandaChin <15732152800@163.com>
+Date:   Wed Jul 11 15:20:18 2018 +0800
+
+    addUserNode Merge branch 'master' of https://github.com/AmandaChin/TaidaTBServer
+
+[33mcommit e6cf4ad9245cb099a854d53c640c3d2f1f4fd6f4[m
+Author: AmandaChin <15732152800@163.com>
+Date:   Wed Jul 11 15:16:06 2018 +0800
+
+    修改insertService
+
+[33mcommit 04b2b502067564c68166f02d2f23934f61454b87[m
+Author: AmandaChin <15732152800@163.com>
+Date:   Wed Jul 11 15:03:52 2018 +0800
+
+    登录函数新增与链上同步创建节点
+
+[33mcommit 0b6eb2eedb57c5ef242c998a8ab08613e8f4b572[m
+Author: AmandaChin <15732152800@163.com>
+Date:   Tue Jul 10 15:25:35 2018 +0800
+
+    Service 新增链哈希字段
+
+[33mcommit faf4e0f9cdf37e5bff6c2c986d2918fbe0f56306[m
+Merge: eab361d 28b1e04
+Author: AmandaChin <15732152800@163.com>
+Date:   Tue Jul 10 11:01:56 2018 +0800
+
+    Merge branch 'master' of https://github.com/AmandaChin/TaidaTBServer
+
+[33mcommit eab361d5d9f40ff1835b4d0d9781deeaf0711b8a[m
+Author: AmandaChin <15732152800@163.com>
+Date:   Mon Jul 9 18:07:25 2018 +0800
+
+    修改Service的content字段，新增ServerItem的BLL
+
+[33mcommit 28b1e04c1f1ae9946bfd6e67919495743980dea2[m
+Merge: 9840904 a60a4ad
+Author: AmandaChin <33803569+AmandaChin@users.noreply.github.com>
+Date:   Sun Jul 8 20:39:49 2018 +0800
+
+    Merge pull request #1 from Victarry/master
+    
+    添加.vscode到gitignore
+
+[33mcommit a60a4ade235a120dc33bb322d4f3751e67ec6eff[m
+Author: Victarry <nkulzh16@gmail.com>
+Date:   Sun Jul 8 20:37:13 2018 +0800
+
+    添加.vscode到gitignore
+
+[33mcommit 9840904987519c87aa816bf9b015581112e89116[m
+Author: AmandaChin <15732152800@163.com>
+Date:   Sun Jul 8 20:25:43 2018 +0800
+
+    新增AddAdmin函数,dao层实体层新增ServerItem和ServerType，修改了Alluser注册bug,增加部分字段.
+
+[33mcommit 03df4a8303dbc8ceb6034c78dd006c7fa639040d[m
+Author: AmandaChin <15732152800@163.com>
+Date:   Thu Jul 5 23:32:51 2018 +0800
+
+    first commit
+
+[33mcommit d8b89bfe0799d198922cfb15c7cdeec5a6bc994e[m
+Merge: 54c9e93 7a49e90
+Author: Yutong <1776599544@qq.com>
+Date:   Tue Apr 17 11:24:31 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       .idea/workspace.xml
+
+[33mcommit 54c9e938ee11fdbeba8c86c25729a27c25d91dc5[m
+Author: Yutong <1776599544@qq.com>
+Date:   Tue Apr 17 11:22:02 2018 +0800
+
+    条件查询老人的需求
+
+[33mcommit 7a49e908f0830b6edadd904344ba4e55843116ab[m
+Author: XJJ <julietxiao99@qq.com>
+Date:   Mon Apr 16 14:29:31 2018 +0800
+
+    增加了注册逻辑
+
+[33mcommit f6e5311adfce442c51747d9e9f48204beebcf550[m
+Author: XJJ <julietxiao99@qq.com>
+Date:   Sat Apr 14 13:33:23 2018 +0800
+
+    改了审核列表处的bug
+    pull时需要改一下util/db_manager.js的域名
+
+[33mcommit 29fb8342ddc865fdc6860a8bced48b974b90bde1[m
+Author: XJJ <julietxiao99@qq.com>
+Date:   Fri Apr 13 19:04:27 2018 +0800
+
+    aaa
+
+[33mcommit da98389b600c14aa7bfad06554070d5b15821f2d[m
+Merge: 2bdaf04 c310996
+Author: XJJ <julietxiao99@qq.com>
+Date:   Fri Apr 13 19:03:53 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       .idea/workspace.xml
+
+[33mcommit 2bdaf04989e592c19b7ef430f45d6b01ea3b38a1[m
+Author: XJJ <julietxiao99@qq.com>
+Date:   Fri Apr 13 19:03:24 2018 +0800
+
+    a
+
+[33mcommit c3109964176f153a0dcac83035082aa1a264f670[m
+Author: Yutong <1776599544@qq.com>
+Date:   Fri Apr 13 19:01:59 2018 +0800
+
+    条件查询老人的需求
+
+[33mcommit 6d0085bf858b207a7448615b0ea7d7a8645aec7e[m
+Merge: e81dba1 fb247df
+Author: Yutong <1776599544@qq.com>
+Date:   Fri Apr 13 10:15:27 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       main/bll/_index.js
+    #       package-lock.json
+    #       package.json
+    #       routes/api.js
+
+[33mcommit e81dba195940559f05cc70c51d465a9ac2787b2a[m
+Author: Yutong <1776599544@qq.com>
+Date:   Fri Apr 13 10:06:03 2018 +0800
+
+    change
+
+[33mcommit fb247dfcdcd43c2fbad6baeabdc5e4c8d3a0a0d5[m
+Author: XJJ <julietxiao99@qq.com>
+Date:   Thu Apr 12 21:41:59 2018 +0800
+
+    审核列表
+
+[33mcommit ba92c289b4ec18b6db892dbb3c4c5483e37dcd9d[m
+Merge: c653721 c761519
+Author: XJJ <julietxiao99@qq.com>
+Date:   Thu Apr 12 19:09:43 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       .idea/workspace.xml
+
+[33mcommit c653721a4ab29a97c6d0a81dda9b468a8594c819[m
+Author: XJJ <julietxiao99@qq.com>
+Date:   Thu Apr 12 19:03:38 2018 +0800
+
+    增加审核表实体，bll,dao层，修改applicate后台逻辑
+
+[33mcommit c76151982e5f54b2a9d487a19f08c22794943864[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Thu Apr 12 09:27:23 2018 +0800
+
+    添加了包 需要npm install 一下
+
+[33mcommit a941cc8257bba773400410fe5745151f3fb4e8ab[m
+Author: Yutong <1776599544@qq.com>
+Date:   Wed Apr 11 17:26:13 2018 +0800
+
+    change
+
+[33mcommit 09f3c83a2374d3029d4f238a0d43f243428abedd[m
+Author: Yutong <1776599544@qq.com>
+Date:   Wed Apr 11 17:24:35 2018 +0800
+
+    change
+
+[33mcommit a686cde5f80cfb51fbc9606214ee09dc337e45d9[m
+Author: XJJ <julietxiao99@qq.com>
+Date:   Sun Apr 8 13:48:50 2018 +0800
+
+    修改一些小错误
+
+[33mcommit 92c325134be457e748d741dc47e476007774b6ae[m
+Merge: e98e4c8 02600b4
+Author: Lance CHEN <946304724@qq.com>
+Date:   Sat Apr 7 19:59:01 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       .idea/workspace.xml
+    #       main/bll/_index.js
+
+[33mcommit e98e4c80e3423a6cc1a1c4f6173b59edfa3cdf9f[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Sat Apr 7 19:57:27 2018 +0800
+
+    条件查询老人的需求
+
+[33mcommit 02600b4ab595fe3ce2353a57ecf04f2f0dd8ebf4[m
+Author: XJJ <julietxiao99@qq.com>
+Date:   Sat Apr 7 17:35:39 2018 +0800
+
+    增加了搜索中的申请函数
+
+[33mcommit ac413decffc25283898e8ee2e2e36beff5f4d2bf[m
+Merge: 011b85c f2cb9c7
+Author: XJJ <julietxiao99@qq.com>
+Date:   Thu Apr 5 14:54:49 2018 +0800
+
+    merge Change
+
+[33mcommit 011b85c6322c5d0e58e493a0a4aa6122a28aabc7[m
+Author: XJJ <julietxiao99@qq.com>
+Date:   Thu Apr 5 14:53:57 2018 +0800
+
+    一些修改
+
+[33mcommit f2cb9c733b16efb078fe4feaa4869c39e33db8c0[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Thu Apr 5 11:50:33 2018 +0800
+
+    查询所有未被服务的老人需求
+
+[33mcommit 0204f30318a98a732af8ad0b90757c079cdf001c[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Mon Apr 2 16:43:33 2018 +0800
+
+    志愿者完成一次服务进行勋章申请
+
+[33mcommit 4726016084bf096cdbb75ceeca004e0ba0ac4ae2[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Mon Apr 2 15:53:38 2018 +0800
+
+    添加了remark属性
+
+[33mcommit 2c82411619ca9eb097c5801852477df3753d4bd1[m
+Merge: cf9e4c3 6abae00
+Author: XJJ <julietxiao99@qq.com>
+Date:   Sat Mar 31 11:52:36 2018 +0800
+
+    可以修改个人信息地址了
+
+[33mcommit cf9e4c3fcf4dd06241ffd4bc421dc91fccce24d4[m
+Author: XJJ <julietxiao99@qq.com>
+Date:   Sat Mar 31 10:24:41 2018 +0800
+
+    workspace.xml
+
+[33mcommit 6abae001c77a6c50d18a1f0433ca4db800efd4f9[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Sat Mar 31 09:24:27 2018 +0800
+
+    获取个人信息
+
+[33mcommit f1b152ceefab8cbeaba640c1ea1d553fbeaa16ab[m
+Author: XJJ <julietxiao99@qq.com>
+Date:   Fri Mar 30 23:55:30 2018 +0800
+
+    workspace
+
+[33mcommit cddb49dcc7e101254107f6aa9d96522331659e53[m
+Merge: b156e19 a378972
+Author: XJJ <julietxiao99@qq.com>
+Date:   Fri Mar 30 23:51:45 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       .idea/workspace.xml
+
+[33mcommit b156e194480e0a3c19318dc6bfb5403bd3d96012[m
+Author: XJJ <julietxiao99@qq.com>
+Date:   Fri Mar 30 23:49:35 2018 +0800
+
+    改动getUserInfo函数
+
+[33mcommit a378972af560c53f1d8e7a9be7445bcc8e650cc8[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Fri Mar 30 21:41:29 2018 +0800
+
+    修改两个函数
+
+[33mcommit feaef77a9257e7d5be75b895aa39d2e363a12161[m
+Merge: 72cbd89 52927e2
+Author: Lance CHEN <946304724@qq.com>
+Date:   Fri Mar 30 16:12:35 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 72cbd89b74ad71f314449d05efb7eec18adc5222[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Fri Mar 30 16:12:15 2018 +0800
+
+    志愿者根据自己服务的ServiceID查询这个服务对应的老人的Name
+
+[33mcommit 52927e221635e3c11e8e10ebb05145727df71b44[m
+Merge: e4d015a 6749221
+Author: XJJ <julietxiao99@qq.com>
+Date:   Fri Mar 30 15:36:14 2018 +0800
+
+    Merge branch 'master' of gitlab.com:Lance.CHEN/Server
+
+[33mcommit e4d015a9f4953d25101691a10b6152fccc3c6124[m
+Author: XJJ <julietxiao99@qq.com>
+Date:   Fri Mar 30 15:35:49 2018 +0800
+
+    修改
+
+[33mcommit 674922164db65c4141700fc0ccebd3ce5a3e2319[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Fri Mar 30 15:31:20 2018 +0800
+
+    修改个人信息
+
+[33mcommit 197bc164988610ffe522d3f7eb69463c402aa2e2[m
+Merge: 3e504fb a26f38d
+Author: Lance CHEN <946304724@qq.com>
+Date:   Fri Mar 30 14:10:12 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       .idea/workspace.xml
+
+[33mcommit 3e504fbe81f624b01817441b14601bbc020fbbdc[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Fri Mar 30 14:09:34 2018 +0800
+
+    修改 postNewRequirement
+
+[33mcommit a26f38d77d34bfd0f6e0a4e10fb7f088159ec258[m
+Author: XJJ <julietxiao99@qq.com>
+Date:   Fri Mar 30 13:24:08 2018 +0800
+
+    修改
+
+[33mcommit 37dfa8b75ca0341a3069357490e6a39eefe7ff62[m
+Author: XJJ <julietxiao99@qq.com>
+Date:   Fri Mar 30 13:17:32 2018 +0800
+
+    修改一些错误
+
+[33mcommit 6010d93eb0d00316b818ce5af9596ac8072203a3[m
+Author: XJJ <julietxiao99@qq.com>
+Date:   Fri Mar 30 13:08:37 2018 +0800
+
+    增加个人信息获取
+
+[33mcommit c0d8984d5bc21264d8ac1450f957ada44d3e6c08[m
+Merge: 389515b 3436867
+Author: XJJ <julietxiao99@qq.com>
+Date:   Fri Mar 30 10:04:45 2018 +0800
+
+    同步
+
+[33mcommit 389515bf09212042814529687b0396042a92fe2f[m
+Author: XJJ <julietxiao99@qq.com>
+Date:   Fri Mar 30 10:02:24 2018 +0800
+
+    小改动
+
+[33mcommit 343686784d91b8ab8f3c7f3e16bb11a2d3e507b3[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Thu Mar 29 19:07:40 2018 +0800
+
+    修改 gitignore
+
+[33mcommit 3b5de846977e6a25bd8115326b08fe1b2777b3d8[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Thu Mar 29 19:06:13 2018 +0800
+
+    删除无用的
+
+[33mcommit ccde82d16928b2e9550a4252ca609af6c0ccbdf7[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Thu Mar 29 19:05:18 2018 +0800
+
+    删除无用的
+
+[33mcommit 7865059cb557abb1f93b8e597d83d4c35f4879b6[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Thu Mar 29 19:01:02 2018 +0800
+
+    修改 根据老人的ID查找其所有的需求 的bug
+
+[33mcommit fd70984ccd0dcaf20b671dd6f01ec20784a1d7fd[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Thu Mar 29 15:05:20 2018 +0800
+
+    不太优雅的解决了 根据志愿者的ID查找其所有的服务 的异步的问题
+
+[33mcommit 94e80f7868132d0971495f1d8feca77aa7aa5926[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Tue Mar 27 16:14:27 2018 +0800
+
+    完善了dao层的基本操作
+    修改了用户登陆函数的bug
+    修改了传参时的字符编码格式
+
+[33mcommit 3af7f169285b356e91706bb915872b5a48bb038f[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Mon Mar 26 20:40:08 2018 +0800
+
+    完成付榆童的后台功能一期
+
+[33mcommit 87fc2757ae0e4fe0e2f9822b6cf40d230293dea9[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Mon Mar 26 20:05:50 2018 +0800
+
+    完成请求相关的后台
+
+[33mcommit 0f23eb6ac733660cd2684d1d5fcb2883b7e411aa[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Mon Mar 26 17:18:47 2018 +0800
+
+    完成部分请求相关的后台
+
+[33mcommit 9ed9adb2ee7a8e04d2404f46fefcb68317211d9f[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Mon Mar 26 17:18:32 2018 +0800
+
+    完成部分请求相关的后台
+
+[33mcommit bcb4b240e3f37428f657eb84318f30cb83f654d8[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Mon Mar 26 16:31:33 2018 +0800
+
+    完成需求相关的后台
+
+[33mcommit bdfbb6c980b61a5700fce3c931ef3a6adc34430e[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Mon Mar 26 12:32:43 2018 +0800
+
+    解决冲突
+
+[33mcommit 4c31ac44cdb23725c4811e908304417de8f5b1f0[m
+Merge: 63a2e22 a2dcb59
+Author: Lance CHEN <946304724@qq.com>
+Date:   Mon Mar 26 12:32:05 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       .idea/workspace.xml
+
+[33mcommit 63a2e22c1a18783bb1332142b5395835efa76dd6[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Mon Mar 26 12:30:40 2018 +0800
+
+    解决冲突
+
+[33mcommit a2dcb5913be6f492c4bf55edb732e30b97c57971[m
+Merge: f7b52cc ada8bdf
+Author: fuyutong <1776599544@qq.com>
+Date:   Mon Mar 26 11:39:44 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       .idea/workspace.xml
+
+[33mcommit f7b52ccac3cea1d443e55bf9b132df4797405f80[m
+Author: fuyutong <1776599544@qq.com>
+Date:   Mon Mar 26 11:37:05 2018 +0800
+
+    测通
+
+[33mcommit ada8bdf211724a668ebc05d3d183b431cc090087[m
+Author: XJJ <julietxiao99@qq.com>
+Date:   Sun Mar 25 22:01:21 2018 +0800
+
+    增加通知的后台:NoticeOperation
+
+[33mcommit 923e1ea2c4f65ae60c34d358d7a34cace8189795[m
+Merge: 6237511 4d95998
+Author: Lance CHEN <946304724@qq.com>
+Date:   Sat Mar 24 09:43:38 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       .idea/workspace.xml
+
+[33mcommit 62375115e096692f3113fec7d4eb22c5f533504d[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Sat Mar 24 09:43:00 2018 +0800
+
+    完成志愿者申请接口
+
+[33mcommit 4d9599817a803be6bb02b7936830978b56eccb46[m
+Author: fuyutong <1776599544@qq.com>
+Date:   Wed Mar 21 09:49:45 2018 +0800
+
+    测通
+
+[33mcommit d97e284c0ef8858b906c11349b66c5999ef95355[m
+Author: XJJ <julietxiao99@qq.com>
+Date:   Sun Mar 4 22:06:26 2018 +0800
+
+    测试push
+
+[33mcommit 6fc89af8ce36e26f89047abdcbc878b4342cb3b6[m
+Author: XJJ <julietxiao99@qq.com>
+Date:   Sun Mar 4 22:05:11 2018 +0800
+
+    test
+
+[33mcommit e15d18e1cc85cc1c4523399a64d8b4394075e1fb[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Sun Mar 4 10:43:29 2018 +0800
+
+    完成志愿者申请接口
+
+[33mcommit cebf47e5035891a228c0e4694eb6b1127afd889b[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Sat Mar 3 11:04:16 2018 +0800
+
+    测通
+
+[33mcommit 3d7f8d85dcaee60a03cd850344e141b88515f22a[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Fri Mar 2 21:20:53 2018 +0800
+
+    初步完成
+
+[33mcommit 52864dde32398ae3b0e550d7837632d2fd4d0a32[m
+Author: Lance CHEN <946304724@qq.com>
+Date:   Fri Mar 2 19:38:01 2018 +0800
+
+    Initial commit
