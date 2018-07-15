@@ -83,13 +83,25 @@ router.post("/volunteerApplicate", function (req, res) {
 通知请求
  */
 router.post("/noticeOperation", function(req,res){
-    bll.noticeOperation(function(list){
+    bll.noticeOperation(req.body.UserID,function(list){
         res.json({
             "list": list
         });
     })
 });
 
+
+/*
+改变通知状态
+ */
+router.post("/changeNoticeChecked", function(req,res){
+    console.log(req.body.NoticeID)
+    bll.changeNoticeChecked(req.body.NoticeID,req.body.UserID,function(list){
+        res.json({
+            "list": list
+        });
+    })
+});
 /**
  * 老人发布新的需求
  */
