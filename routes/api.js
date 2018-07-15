@@ -3,7 +3,6 @@ var router = express.Router();
 
 const bll = require('../main/bll/_index');
 const blockchain = require('../main/blockchain/_index');
-
 /**
  * 用户登录
  */
@@ -352,6 +351,29 @@ router.post("/getGiveInfo", function(req, res){
         res.json({
             "list": list
         })
+    })
+});
+
+/**
+ * 查询已获得的勋章信息
+ */
+router.post("/getGetInfo", function(req, res){
+    console.log("testgetinfo")
+    bll.getGetInfo(req.body.UserID, function(list){
+        res.json({
+            "list": list
+        })
+    })
+});
+
+/** 
+* 查询已转移的勋章信息的交易链详情 
+*/
+router.post("/getTransactionInfo", function(req, res){
+        bll.getTransactionInfo(req.body.UserId,req.body.transactionHash,function(list){        
+            res.json({           
+                 "list": list        
+            })    
     })
 });
 module.exports = router;

@@ -26,3 +26,5 @@ module.exports.itemOperation = require('./ServerItemBLL').itemOperation;
 module.exports.itemOperationByType = require('./ServerItemBLL').itemOperationByType;
 module.exports.AddUserNode = require('./AddUserNode').AddUserNode;
 module.exports.getGiveInfo = require('./MedalInfoBLL').getGiveInfo;
+module.exports.getGetInfo = require('./MedalInfoBLL').getGetInfo;
+module.exports.getTransactionInfo = require('./MedalInfoBLL').getTransactionInfo;
