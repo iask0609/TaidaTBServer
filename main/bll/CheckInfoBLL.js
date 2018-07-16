@@ -107,7 +107,9 @@ function checkApplication(UserID, ServiceID, score1, score2, score3, score4){
                 })
             }, (score)=>{
                 getServiceInfo(UserID, (UserID1, UserAddress1, UserID2, UserAddress2)=>{
-                    transact(UserID1, UserAddress1, UserAddress2, score);
+                    transact(UserID1, UserAddress1, UserAddress2, score, (TransactionHash) => {
+                        updateServiceTransaction(ServiceID, TransactionHash);
+                    });
                 })
 
             });
@@ -115,5 +117,16 @@ function checkApplication(UserID, ServiceID, score1, score2, score3, score4){
         })
     })
 }
+
+function updateServiceTransaction(ServiceID, TransactionHash) {
+    service.update({
+        TransferHASH: TransactionHash
+    }, {
+        where: {
+            ServiceID: ServiceID
+        }
+    })
+}
+
 module.exports.getCheckingList = getCheckingList;
 module.exports.checkApplication =  checkApplication;

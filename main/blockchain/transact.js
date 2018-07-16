@@ -1,7 +1,7 @@
-var Node = require('./gethProcess')
-const config = require('./config')
+var Node = require('./gethProcess');
+const config = require('./config');
 
-function transact(UserID1, UserAddress1, UserAddress2, coin){
+function transact(UserID1, UserAddress1, UserAddress2, coin, updateService) {
     node = Node(UserID1);
     node.start((web3, child)=>{
         web3.eth.personal.unlockAccount(UserAddress,'123456', 10000).then((response)=>{
@@ -9,8 +9,8 @@ function transact(UserID1, UserAddress1, UserAddress2, coin){
                 from: UserAddress1,
                 to:UserAddress2,
                 value: coin
-            }).then((receipt)=>{
-                console.log(receipt);
+            }).on('transactionHash', function (hash) {
+                updateService(hash);
             })
         })
     })
