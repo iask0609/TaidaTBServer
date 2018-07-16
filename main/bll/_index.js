@@ -30,4 +30,8 @@ module.exports.getGiveInfo = require('./MedalInfoBLL').getGiveInfo;
 module.exports.getGetInfo = require('./MedalInfoBLL').getGetInfo;
 module.exports.getTransactionInfo = require('./MedalInfoBLL').getTransactionInfo;
 module.exports.changeNoticeChecked = require('./NoticeBLL').changeNoticeChecked;
+module.exports.getServiceType = require('./ServerItemBLL').getServiceType;
+module.exports.getMaterial = require('./ApplicationBLL').getMaterial;
+
+
 

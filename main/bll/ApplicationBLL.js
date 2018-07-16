@@ -228,6 +228,21 @@ function getUserByService(ServiceID, returnList) {
         }
     })
 }
+/**
+*根据用户ID与服务ID获取申请材料
+ */
+
+function getMaterial(ServiceID,UserID,returnList)
+{
+    application.findAndCountAll({
+        where:{
+            "ServiceID": ServiceID,
+            "UserID": UserID
+        }
+    }).then(function(res){
+        return returnList(res);
+    })
+}
 
 
 exports.getServicedList = getServicedList;
@@ -237,3 +252,4 @@ exports.applicated = applicated;
 exports.applicateMeadls = applicateMeadls;
 exports.applicateInSearch=applicateInSearch;
 exports.getUserByService=getUserByService;
+exports.getMaterial=getMaterial;

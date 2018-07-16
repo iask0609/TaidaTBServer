@@ -34,5 +34,22 @@ function itemOperationByType(itemID,returnList)
 }
 
 
+/**
+*根据服务选项的ID查看服务类型
+ */
+
+ function getServiceType(ServiceContentID,returnList)
+{
+    serverItem.findAndCountAll({
+        where:{
+            "ID": ServiceContentID,
+        }
+    }).then(function(res){
+        return returnList(res);
+    })
+}
+
+
 exports.itemOperation = itemOperation;
+exports.getServiceType = getServiceType;
 exports.itemOperationByType = itemOperationByType;
