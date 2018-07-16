@@ -96,11 +96,22 @@ var getServiceInfo = require('../dao/Service').getServiceInfo;
 function checkApplication(UserID, ServiceID, score1, score2, score3, score4){
     dao.selectContractHash(ServiceID,  (contractHash)=>{
         getUserAddress(UserID, (userAddress)=>{
-            voteForApplication(UserID,userAddress, contractHash, score1, score2, score3, score4, (score)=>{
-                getServiceInfo(UserID, (UserID1, UserAddress1, UserID2, UserAddress2)=>{
-                    transact(UserID, UserAddress1, UserAddress2, score);
+            voteForApplication(UserID,userAddress, contractHash, score1, score2, score3, score4,()=>{
+                checkInfo.update({
+                    status: 1
+                },{
+                    where:{
+                        ServiceID: ServiceID,
+                        UserID: UserID
+                    }
                 })
+            }, (score)=>{
+                getServiceInfo(UserID, (UserID1, UserAddress1, UserID2, UserAddress2)=>{
+                    transact(UserID1, UserAddress1, UserAddress2, score);
+                })
+
             });
+
         })
     })
 }
