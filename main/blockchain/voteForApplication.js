@@ -1,7 +1,7 @@
 var Node = require('./gethProcess');
 var config = require('./config')
 
-function voteForApplication(userID,userAddress, contractHash, score1, score2, score3, score4, sendCoin){
+function voteForApplication(userID,userAddress, contractHash, score1, score2, score3, score4,updateDB, sendCoin){
     node = Node(userID);
     node.start((web3, child)=>{
         var contract = new web3.eth.Contract(config.abiDefinition, contractHash);
@@ -9,6 +9,7 @@ function voteForApplication(userID,userAddress, contractHash, score1, score2, sc
             contract.methods.scoring(score1, score2, score3, score4).send({
                 from: userAddress
             }).then((reciept)=>{
+                updateDB();
                 console.log('score ok');
                 contract.methods.getProposalCount.call().then((result)=>{
                     if(result >= 4)
