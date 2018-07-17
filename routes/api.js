@@ -7,7 +7,7 @@ const blockchain = require('../main/blockchain/_index');
  * 用户登录
  */
 router.post("/allUserLogin", function(req, res){
-    console.log(req.body);
+    console.log('用户登录请求: ' + req.body);
 
     bll.allUserLogin(req.body.Account, req.body.Password, function (num) {
         res.json({
@@ -22,7 +22,7 @@ router.post("/allUserLogin", function(req, res){
  * 用户注册
  */
 router.post("/UserRegister", function(req, res){
-    console.log(req.body);
+    console.log("用户注册请求:" + req.body);
 
     bll.userRegister(req.body.account,
         req.body.username,
@@ -104,6 +104,8 @@ router.post("/changeNoticeChecked", function(req,res){
 });
 /**
  * 老人发布新的需求
+ * Content: int
+ * DemandTime datetime
  */
 router.post("/postNewRequirement", function(req, res){
    bll.postNewRequirement(req.body.UserId, req.body.Content, req.body.DemandStartTime,

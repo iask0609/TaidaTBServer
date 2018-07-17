@@ -128,7 +128,6 @@ function userRegister(account,username,password,phone,email,gender,province,city
                         "City": city,
                         "District": district
                     }).then(function (value) {
-                        console.log('insertOtherUser ok'+value);
                         dao.insertOrdinaryUser(userId,0,0,0);
                         return returnNum(1);
                     })
