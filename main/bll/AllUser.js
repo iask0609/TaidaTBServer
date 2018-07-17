@@ -103,8 +103,6 @@ function userRegister(account,username,password,phone,email,gender,province,city
                 "Password": password,
                 "ChainHASH": 'unknown'
             }).then(function(result){
-                console.log("得到的object"+result);
-                
                 // 获取userId
                 allUser.findAndCountAll({
                     where:{ "Account": account}
@@ -116,7 +114,7 @@ function userRegister(account,username,password,phone,email,gender,province,city
                         "ChainHASH": String(userHash)},
                         {
                             where:{"UserID": userId}
-                        }).then(callback)
+                        }).then(() => callback())
                     }); 
                     otherUser.create({
                         "UserID": userId,

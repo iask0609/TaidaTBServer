@@ -1,7 +1,7 @@
 module.exports = {
-    basePath : '/home/suzy/文档/blockChain',
+    basePath: '/home/lzh/Projects/BlockChain',
     nodeFile:function nodeFile(UserID){
-        return this.basePath+'node'+parseInt(UserID);
+        return this.basePath + '/node' + parseInt(UserID); //注意base路径和file路径之间的"/"
     },
     rpcport: function rpcport(UserID){
         return parseInt(UserID)+8500;
