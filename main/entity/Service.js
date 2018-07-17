@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: false
     },
     Duration: {
-      type: DataTypes.INTEGER,
+        type: DataTypes.DOUBLE,
       allowNull: false
     },
     Content: {

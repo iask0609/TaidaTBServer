@@ -22,14 +22,14 @@ function postNewRequirement(UserId, Content, DemandStartTime, DemandEndTime, Dur
             ['ServiceID', 'DESC']
         ]
     }).then(function (result) {
-        var ServiceID = -1;
+        let ServiceID = 1;
         if(result.count > 0)
         {
             ServiceID = result.rows[0].dataValues.ServiceID + 1;
         }
         else
         {
-            ServiceID = 0;
+            ServiceID = 1;
         }
         console.log(ServiceID +'   '+ myDateTime);
         dao.insertService(ServiceID, myDateTime, Duration, Content, DemandStartTime, DemandEndTime, 0,
@@ -37,21 +37,20 @@ function postNewRequirement(UserId, Content, DemandStartTime, DemandEndTime, Dur
             if(num === 1){
                 dao.insertDemand(ServiceID, UserId, Remark, function(num1){
                     if(num1 === 1){
-                        return returnNum(1);
+                        returnNum(1);
                     }
                     else
                     {
-                        return returnNum(0);
+                        returnNum(0);
                     }
                 });
             }
             else{
-                return returnNum(0);
+                returnNum(0);
             }
             });
     });
 
-    // console.log("sdf" + UserId + Content + DemandStartTime + DemandEndTime + Duration + Remark);
 }
 
 /**
