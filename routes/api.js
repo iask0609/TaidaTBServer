@@ -61,14 +61,6 @@ router.post("/getUserInfo", function(req, res){
     })
 });
 
-router.post("/query", function(req, res){
-    bll.query(function(num){
-        res.json({
-            "num": num
-        });
-    })
-});
-
 /**
  * 志愿者申请记录列表
  */
@@ -158,21 +150,6 @@ router.post("/getServicedList", function(req, res){
  */
 router.post("/applicate", function (req, res) {
     bll.applicate(req.body.UserID, req.body.ServiceID, req.body.Material1,
-        req.body.Material2, req.body.Material3, req.body.RealStartTime, req.body.RealEndTime,
-        req.body.Remark,
-        function (num) {
-            res.json({
-                "num":num
-            })
-        })
-});
-
-
-/**
- * 志愿者完成一次服务进行勋章申请
- */
-router.post("/applicateMedals", function (req, res) {
-    bll.applicateMeadls(req.body.UserID, req.body.ServiceID, req.body.Material1,
         req.body.Material2, req.body.Material3, req.body.RealStartTime, req.body.RealEndTime,
         req.body.Remark,
         function (num) {
@@ -422,5 +399,14 @@ router.post("/getMaterial", function(req, res){
         })
 })
 });
+
+
+router.post("/uploadFile", function (req, res) {
+    req.pipe(req.busboy);
+
+    req.busboy.on('file', function (fieldname, file, filename) {
+        uploadFile(filename, file);
+    });
+})
 
 module.exports = router;

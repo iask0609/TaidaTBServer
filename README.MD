@@ -9,12 +9,11 @@ main/bll/DemandBLL.js中postNewRequirement数据库操作可优化
 数据库错误异常链处理
 
 
-## 待修复
+## 待修复!!!
 查看交易链重构
 
 
-
-## 待添加
+## 待添加!!!
 区块链挖矿和添加节点问题
 
 ## 测试进度
@@ -22,3 +21,9 @@ main/bll/DemandBLL.js中postNewRequirement数据库操作可优化
 
 - 发布需求：　ServerItem ID2不连续问题待统一　后台多用户插入通过
 
+- 申请需求: 
+
+
+
+## 数据库相关
+1. 设置Demand和Application中ServiceID为唯一主键

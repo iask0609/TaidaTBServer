@@ -8,7 +8,7 @@ var cors = require('cors');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var api = require('./routes/api');
-
+var busboy = require('connect-busboy');
 var app = express();
 
 // view engine setup
@@ -23,6 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
+app.use(busboy());
 
 app.use('/', index);
 app.use('/users', users);

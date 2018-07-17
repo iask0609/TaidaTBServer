@@ -36,7 +36,7 @@ function getServicedList(UserID, returnList){
 }
 
 /**
- * 志愿者完成一次服务进行申请
+ * 志愿者完成一次服务进行申请,发起勋章的申请,进入审核程序
  * @param UserID
  * @param ServiceID
  * @param Material1
@@ -44,6 +44,7 @@ function getServicedList(UserID, returnList){
  * @param Material3
  * @param RealStartTime
  * @param RealEndTime
+ * @param Remark
  */
 function applicate(UserID, ServiceID, Material1, Material2, Material3,
                    RealStartTime, RealEndTime, Remark, returnNum) {
@@ -95,13 +96,17 @@ function applicate(UserID, ServiceID, Material1, Material2, Material3,
 * 志愿者在搜索界面中点击的申请
  */
 function applicateInSearch(UserID, ServiceID, returnNum) {
-    dao.insertApplication(ServiceID, UserID, '0', '0', '0', '0', function(num){
-        service.update({"Status": num},
+    dao.insertApplication(ServiceID, UserID, '', '', '', '', function (num) {
+        if (num == 0) {
+            returnNum(0);
+            return;
+        }
+        service.update({"Status": 1},
             {
                 where: {"ServiceID": ServiceID}
             }
-        ).then(function(result) {
-            return returnNum(num);
+        ).then(function () {
+            returnNum(1);
         })
 
     });
@@ -170,32 +175,6 @@ function applicated(UserID, returnList){
 }
 
 /**
- * 志愿者完成一次服务进行勋章申请
- * @param UserID
- * @param ServiceID
- * @param Material1
- * @param Material2
- * @param Material3
- * @param RealStartTime
- * @param RealEndTime
- * @param Remark
- * @param returnNum
- */
-function applicateMeadls(UserID, ServiceID, Material1, Material2, Material3,
-                   RealStartTime, RealEndTime, Remark, returnNum) {
-    dao.updateApplication(ServiceID, UserID, Material1, Material2, Material3, Remark, function(num){
-        if(num === 1){
-            dao.updateServiceFromVolunteer(ServiceID, RealStartTime, RealEndTime, function(num){
-                return returnNum(num);
-            });
-        }
-        else{
-            return returnNum(num)
-        }
-    });
-}
-
-/**
  * 根据ServiID获取到志愿者的信息
  * @param ServiceID
  * @param returnNum
@@ -244,12 +223,37 @@ function getMaterial(ServiceID,UserID,returnList)
     })
 }
 
+/*
+*上传文件到OSS
+ */
+const fs = require('fs');
+var co = require('co');
+var OSS = require('ali-oss');
+
+function uploadFile(filename, filestream) {
+    let client = new OSS({
+        region: 'oss-cn-beijing',
+        accessKeyId: 'Hby8v7PyYLI9fq1S',
+        accessKeySecret: 'N6AZiAdwNQZX8SZ1YuVevbXGA6sYxY'
+    });
+    client.useBucket('timebank-applicant');
+
+    co(function* () {
+        // use 'chunked encoding'
+        var stream = file;
+        var result = yield client.putStream(filename, filestream);
+        console.log(result);
+    }).catch(function (err) {
+        console.log(err);
+    });
+
+
+}
 
 exports.getServicedList = getServicedList;
 exports.applicate = applicate;
 exports.applicating = applicating;
 exports.applicated = applicated;
-exports.applicateMeadls = applicateMeadls;
 exports.applicateInSearch=applicateInSearch;
 exports.getUserByService=getUserByService;
 exports.getMaterial=getMaterial;
