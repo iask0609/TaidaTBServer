@@ -165,6 +165,7 @@ router.post("/applicate", function (req, res) {
 router.post("/applicateInSearch", function (req, res) {
     bll.applicateInSearch(req.body.UserID, req.body.ServiceID,
         function (num){
+            console.log(num)
             res.json({
                 "num":num
             })
@@ -247,6 +248,28 @@ router.post("/getDemandByCondition", function(req, res){
  */
 router.post("/getDemandByConditionNoDuration", function(req, res){
     bll.getDemandByConditionNoDuration(req.body.UserID, req.body.Content,
+        req.body.DemandStartTime, req.body.type, function(list){
+            res.json({
+                "list": list
+            })
+        })
+});
+
+/**
+ * 条件查询老人的需求
+ */
+router.post("/getDemandByConditionNoDurationNoContent", function(req, res){
+    bll.getDemandByConditionNoDurationNoContent(req.body.UserID, req.body.DemandStartTime, req.body.type, function(list){
+            res.json({
+                "list": list
+            })
+        })
+});
+/**
+ * 条件查询老人的需求
+ */
+router.post("/getDemandByConditionNoContent", function(req, res){
+    bll.getDemandByConditionNoContent(req.body.UserID,req.body.Duration,
         req.body.DemandStartTime, req.body.type, function(list){
             res.json({
                 "list": list

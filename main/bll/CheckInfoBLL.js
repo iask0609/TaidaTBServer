@@ -7,6 +7,7 @@ const dao = require('../dao/_index');
 const getUserAddress = require('./AllUser').getUserAddress;
 const voteForApplication = require('../blockchain/voteForApplication');
 const transact = require('../blockchain/transact');
+const serviceLists = require('../util/ormSequelize').ServiceLists;
 
 /**
  * 查询审核者的待审核申请
@@ -30,7 +31,7 @@ function getCheckingList(checkUserID,status, returnList)
             for(var i = 0; i < res.count; i++){
                 serviceID = res.rows[i].dataValues.ServiceID;
 
-                service.findAndCountAll({
+                serviceLists.findAndCountAll({
                     where:{
                     "ServiceID": serviceID
                     }
