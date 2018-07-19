@@ -5,6 +5,8 @@ const dao = require('../dao/_index');
 const getUserAddress = require('./AllUser.js').getUserAddress;
 const addContract = require('../blockchain/addContract.js').addContract;
 const otherUser = require('../util/ormSequelize').OtherUser;
+const serviceLists = require('../util/ormSequelize').ServiceLists;
+
 /**
  * 查询志愿者的全部已经服务的信息
  * @param UserID
@@ -20,7 +22,7 @@ function getServicedList(UserID, returnList){
         var serviceID = -1;
         for(var i = 0; i < res.count; i++){
             serviceID = res.rows[i].dataValues.ServiceID;
-            service.findAndCountAll({
+            serviceLists.findAndCountAll({
                 where:{
                     "ServiceID": serviceID
                 }

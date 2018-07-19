@@ -80,7 +80,7 @@ function getDemandByUserID(UserID, returnList){
         setTimeout(function(){
             console.log(list);
             return returnList(list);
-        }, 500);
+        }, 2000);
     })
 }
 
@@ -118,7 +118,8 @@ function getAllDemand(UserID,returnList){
         where:{
             "UserID": {
                 $not:[UserID]
-            }
+            },
+            "Status": 0
         }
     }).then(function(res){
         return returnList(res);
@@ -138,16 +139,15 @@ function getDemandByCondition(UserID, Content, Duration, DemandStartTime, type, 
 
     serviceLists.findAndCountAll({
         where:{
-            "Content": {
-                "$like": "%" + Content + "%"
-            },
+            "ContentID": Content,
             "Duration": Duration,
             "DemandStartTime":{
                 "$gte": DemandStartTime
             },
             "UserID": {
                 $not:[UserID]
-            }
+            },
+            "Status": 0
         }
     }).then(function(res){
         // return returnList(res);
@@ -207,16 +207,16 @@ function getDemandByConditionNoDuration(UserID, Content, DemandStartTime, type, 
     serviceLists.findAndCountAll({
         where:{
 
-            "Content": {
-                "$like": "%" + Content + "%"
-            },
+            "ContentID": Content
+            ,
 
             "DemandStartTime":{
                 "$gte": DemandStartTime
             },
             "UserID": {
                 $not:[UserID]
-            }
+            },
+            "Status": 0
         }
     }).then(function(res){
         // return returnList(res);
@@ -270,6 +270,136 @@ function getDemandByConditionNoDuration(UserID, Content, DemandStartTime, type, 
         })
     })
 }
+function getDemandByConditionNoDurationNoContent(UserID, DemandStartTime, type, returnList){
+
+    serviceLists.findAndCountAll({
+        where:{
+
+            "DemandStartTime":{
+                "$gte": DemandStartTime
+            },
+            "UserID": {
+                $not:[UserID]
+            },
+            "Status": 0
+        }
+    }).then(function(res){
+        // return returnList(res);
+        otherUser.findAndCountAll({
+            where:{
+                "UserID": UserID
+            }
+        }).then(function(res1){
+            if(res1.count === 0){
+                return returnList();
+            }
+            else{
+                var province = res1.rows[0].dataValues.Province;
+                var city = res1.rows[0].dataValues.City;
+                var distinct = res1.rows[0].dataValues.District;
+                // return returnList(res);
+                console.log(type);
+                var list = [];
+                if(type == 1){
+                    for(var i =0; i < res.count; i++){
+                        if(res.rows[i].dataValues.District === distinct){
+                            list.push(res.rows[i].dataValues);
+                        }
+                    }
+                    return returnList(list);
+                }
+                if(type == 2){
+                    for(var i =0; i < res.count; i++){
+                        if(res.rows[i].dataValues.City === city){
+                            list.push(res.rows[i].dataValues);
+                        }
+                    }
+                    return returnList(list);
+                }
+                if(type == 3){
+                    for(var i =0; i < res.count; i++){
+                        if(res.rows[i].dataValues.Province === province){
+                            list.push(res.rows[i].dataValues);
+                        }
+                    }
+                    return returnList(list);
+                }
+                // if(type == 4){
+                //     return returnList(res);
+                // }
+                // else{
+                //     return returnList();
+                // }
+                return returnList(res);
+            }
+        })
+    })
+}
+function getDemandByConditionNoContent(UserID, Duration, DemandStartTime, type, returnList){
+
+    serviceLists.findAndCountAll({
+        where:{
+            "Duration": Duration,
+            "DemandStartTime":{
+                "$gte": DemandStartTime
+            },
+            "UserID": {
+                $not:[UserID]
+            },
+            "Status": 0
+        }
+    }).then(function(res){
+        // return returnList(res);
+        otherUser.findAndCountAll({
+            where:{
+                "UserID": UserID
+            }
+        }).then(function(res1){
+            if(res1.count === 0){
+                return returnList();
+            }
+            else{
+                //按地区推荐
+                var province = res1.rows[0].dataValues.Province;
+                var city = res1.rows[0].dataValues.City;
+                var distinct = res1.rows[0].dataValues.District;
+                // return returnList(res);
+                console.log(type);
+                var list = [];
+                if(type == 1){
+                    for(var i =0; i < res.count; i++){
+                        if(res.rows[i].dataValues.District === distinct){
+                            list.push(res.rows[i].dataValues);
+                        }
+                    }
+                    return returnList(list);
+                }
+                if(type == 2){
+                    for(var i =0; i < res.count; i++){
+                        if(res.rows[i].dataValues.City === city){
+                            list.push(res.rows[i].dataValues);
+                        }
+                    }
+                    return returnList(list);
+                }
+                if(type == 3){
+                    for(var i =0; i < res.count; i++){
+                        if(res.rows[i].dataValues.Province === province){
+                            list.push(res.rows[i].dataValues);
+                        }
+                    }
+                    return returnList(list);
+                }
+                if(type == 4){
+                    return returnList(res);
+                }else
+                {
+                    return returnList();
+                }
+            }
+        })
+    })
+}
 
 exports.postNewRequirement = postNewRequirement;
 exports.getDemandByUserID = getDemandByUserID;
@@ -277,3 +407,5 @@ exports.updateDemand = updateDemand;
 exports.getAllDemand = getAllDemand;
 exports.getDemandByCondition = getDemandByCondition;
 exports.getDemandByConditionNoDuration=getDemandByConditionNoDuration;
+exports.getDemandByConditionNoDurationNoContent=getDemandByConditionNoDurationNoContent;
+exports.getDemandByConditionNoContent=getDemandByConditionNoContent;
