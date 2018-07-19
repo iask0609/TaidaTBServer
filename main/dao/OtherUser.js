@@ -74,36 +74,7 @@ function updateOtherUserByUserID(UserID, Gender, Name, IDNumber, Email, Phone,Pr
   )
 }
 
-function updateUserCheck(UserID, CanCheck) {
-  allUser.findAndCountAll({
-    where: {
-      "UserID": UserID
-    }
-  }).then(
-    function(result) {
-      if (result.count === 0) {
-        console.log('this alluser is not exist.')
-      } else {
-        allUser.update({
-          "CanCheck": CanCheck
-        }, {
-          where: {
-            "UserID": UserID
-          }
-        }
-        ).then(function(result) {
-          console.log('updateUserCheck ok');
-          console.log(result.message)
-        }).catch(function(err) {
-          console.log('updateUserCheck error');
-          console.log(err.message)
-        })
-      }
-    }
-  )
-}
 
 exports.insertOtherUser = insertOtherUser;
 exports.selectOtherUserByUserID = selectOtherUserByUserID;
 exports.updateOtherUserByUserID = updateOtherUserByUserID;
-exports.updateUserCheck = updateUserCheck;

@@ -39,5 +39,47 @@ function changeNoticeChecked(NoticeID,UserID){
         })
 }
 
+/**
+ * 管理员发布新的通知
+ * @param UserId
+ * @param Content
+ * @param Title
+ * @param ReleaseTime
+ * @param DeleteTime
+ * @param returnNum
+ */
+function postNewNotice(UserId, Title, Content, ReleaseTime, DeleteTime, returnNum)
+{
+    const myDateTime  = new Date();
+    notice.findAndCountAll({
+        'order': [
+            ['NoticeID', 'DESC']
+        ]
+    }).then(function (result) {
+        var NoticeID = -1;
+        if(result.count > 0)
+        {
+            NoticeID = result.rows[0].dataValues.NoticeID + 1;
+        }
+        else
+        {
+            NoticeID = 0;
+        }
+    
+        dao.insertDemand(NoticeID, UserId, Title, Content, 0, 0, ReleaseTime, DeleteTime, function(num1){
+            if(num1 === 1){
+                return returnNum(1);
+              }
+            else
+              {
+                return returnNum(0);
+              }
+        });
+    });
+
+    // console.log("sdf" + UserId + Content + DemandStartTime + DemandEndTime + Duration + Remark);
+}
+
 exports.noticeOperation = noticeOperation;
 exports.changeNoticeChecked = changeNoticeChecked;
+exports.postNewNotice = postNewNotice;

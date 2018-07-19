@@ -33,5 +33,9 @@ module.exports.changeNoticeChecked = require('./NoticeBLL').changeNoticeChecked;
 module.exports.getServiceType = require('./ServerItemBLL').getServiceType;
 module.exports.getMaterial = require('./ApplicationBLL').getMaterial;
 module.exports.uploadFile = require('./ApplicationBLL').uploadFile;
-
+//管理员端
+module.exports.getAllUsers = require('./ForSearch').getAllUsers;
+module.exports.ChangeAuthority = require('./ForSearch').ChangeAuthority;
+module.exports.getUsersByCondition = require('./ForSearch').getUsersByCondition;
+module.exports.postNewNotice = require('./NoticeBLL').postNewNotice;
 
