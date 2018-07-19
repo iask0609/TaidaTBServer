@@ -58,6 +58,36 @@ function updateOrdinaryUser(UserID, Duration, ServedDuration) {
   )
 }
 
+
+function updateUserCheck(UserID, CanCheck) {
+  ordinaryUser.findAndCountAll({
+    where: {
+      "UserID": UserID
+    }
+  }).then(
+    function(result) {
+      if (result.count === 0) {
+        console.log('this alluser is not exist.')
+      } else {
+        ordinaryUser.update({
+          "CanCheck": CanCheck
+        }, {
+          where: {
+            "UserID": UserID
+          }
+        }
+        ).then(function(result) {
+          console.log('updateUserCheck ok');
+          console.log(result.message)
+        }).catch(function(err) {
+          console.log('updateUserCheck error');
+          console.log(err.message)
+        })
+      }
+    }
+  )
+}
+
 function getAllOrdinaryUser(returnList) {
     ordinaryUser.findAndCountAll().then(function (res) {
         console.log("dao曾"+res.count);

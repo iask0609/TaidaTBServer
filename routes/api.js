@@ -436,4 +436,53 @@ router.post("/uploadFile", function (req, res) {
     });
 });
 
+/**
+ * *********************************************************管理员端分界线*****************************************************************************
+ */
+/**
+ * 管理员发布新的通知
+ */
+router.post("/postNewNotice", function(req, res){
+    bll.postNewNotice(req.body.UserId, req.body.Title, req.body.Content,
+        req.body.ReleaseTime, req.body.DeleteTime, function(num){
+        res.json({
+            "num": num
+        });
+        })
+ });
+
+ /**
+ * 查询所有用户信息
+ */
+router.post("/getAllUsers", function(req, res){
+    bll.getAllUsers(function(list){
+        res.json({
+            "list": list
+        })
+    })
+});
+
+/**
+ * 条件查询用户
+ */
+router.post("/getUsersByCondition", function(req, res){
+    bll.getUsersByCondition(req.body.UserID, req.body.UserName, req.body.Name,
+        req.body.IDNumber, function(list){
+            res.json({
+                "list": list
+            })
+        })
+});
+
+/**
+ * 更改权限
+ */
+router.post("/ChangeAuthority", function(req, res){
+    bll.ChangeAuthority(req.body.UserID, function(list){
+            res.json({
+                "list": list
+            })
+        })
+});
+
 module.exports = router;
