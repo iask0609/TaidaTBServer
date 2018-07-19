@@ -226,28 +226,34 @@ function getMaterial(ServiceID,UserID,returnList)
 /*
 *上传文件到OSS
  */
-const fs = require('fs');
-var co = require('co');
-var OSS = require('ali-oss');
 
-function uploadFile(filename, filestream) {
+
+function uploadFile(filename, filestream, returnList) {
+    const fs = require('fs');
+    var co = require('co');
+    var OSS = require('ali-oss');
     let client = new OSS({
         region: 'oss-cn-beijing',
         accessKeyId: 'Hby8v7PyYLI9fq1S',
         accessKeySecret: 'N6AZiAdwNQZX8SZ1YuVevbXGA6sYxY'
     });
     client.useBucket('timebank-applicant');
-
     co(function* () {
         // use 'chunked encoding'
-        var stream = file;
-        var result = yield client.putStream(filename, filestream);
-        console.log(result);
+        //var stream = file;
+        //重构名字
+        //生成四维随机数
+        var randomNum = Math.floor(Math.random()*10000)
+        var timestamp =Date.parse(new Date());
+        var newname = randomNum.toString() + timestamp.toString();
+        var result = yield client.putStream(newname, filestream);
+        console.log(result); 
+        return returnList(result);
     }).catch(function (err) {
         console.log(err);
     });
-
-
+    
+   
 }
 
 exports.getServicedList = getServicedList;
@@ -257,3 +263,4 @@ exports.applicated = applicated;
 exports.applicateInSearch=applicateInSearch;
 exports.getUserByService=getUserByService;
 exports.getMaterial=getMaterial;
+exports.uploadFile = uploadFile;

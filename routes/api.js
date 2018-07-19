@@ -405,8 +405,12 @@ router.post("/uploadFile", function (req, res) {
     req.pipe(req.busboy);
 
     req.busboy.on('file', function (fieldname, file, filename) {
-        uploadFile(filename, file);
+        bll.uploadFile(filename, file,function(list){
+            res.json({
+                 "list": list
+            })}
+        );
     });
-})
+});
 
 module.exports = router;
