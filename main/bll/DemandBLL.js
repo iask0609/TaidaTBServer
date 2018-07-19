@@ -64,24 +64,43 @@ function getDemandByUserID(UserID, returnList){
             "UserID": UserID
         }
     }).then(function(res){
-        console.log(res);
-        var list = [];
-        var serviceID = -1;
-        for(var i = 0; i < res.count; i++){
-            serviceID = res.rows[i].dataValues.ServiceID;
-            serviceLists.findAndCountAll({
-                where:{
-                    "ServiceID": serviceID
-                }
-            }).then(function(res1){
-                list.push(res1.rows[0].dataValues);
-            })
-        }
-        setTimeout(function(){
-            console.log(list);
-            return returnList(list);
-        }, 2000);
+        // console.log(res);
+        // var list = [];
+        // var serviceID = -1;
+        // for(var i = 0; i < res.count; i++){
+        //     serviceID = res.rows[i].dataValues.ServiceID;
+        //     serviceLists.findAndCountAll({
+        //         where:{
+        //             "ServiceID": serviceID
+        //         }
+        //     }).then(function(res1){
+        //         list.push(res1.rows[0].dataValues);
+        //     })
+        // }
+        HandleList(res,(list)=>{
+            returnList(list);
+        })
     })
+}
+/**
+ * 处理getDemandByUserID异步
+ */
+function HandleList(res,callback){
+    var list = [];
+    var serviceID = -1;
+    for(var i = 0; i < res.count; i++){
+        serviceID = res.rows[i].dataValues.ServiceID;
+        serviceLists.findAndCountAll({
+            where:{
+                "ServiceID": serviceID
+            }
+        }).then(function(res1){
+            list.push(res1.rows[0].dataValues);
+            if(list.length==res.count){
+                callback(list)
+            }
+        })
+    }
 }
 
 /**

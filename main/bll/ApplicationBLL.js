@@ -18,23 +18,32 @@ function getServicedList(UserID, returnList){
             "UserID": UserID
         }
     }).then(function(res){
-        var list = [];
-        var serviceID = -1;
-        for(var i = 0; i < res.count; i++){
-            serviceID = res.rows[i].dataValues.ServiceID;
-            serviceLists.findAndCountAll({
-                where:{
-                    "ServiceID": serviceID
-                }
-            }).then(function(res1){
-                list.push(res1.rows[0].dataValues);
-            })
-        }
-        setTimeout(function(){
-            console.log(list);
-            return returnList(list);
-        }, 500);
+        doLists(res,(list)=>{
+            returnList(list);
+        })
     })
+}
+
+//异步处理list
+function doLists(res,callback){
+    var list = [];
+    var serviceID = -1;
+    var i;
+    for(i = 0; i < res.count; i++){
+        serviceID = res.rows[i].dataValues.ServiceID;
+        serviceLists.findAndCountAll({
+            where:{
+                "ServiceID": serviceID
+            }
+        }).then(function(res1){
+            list.push(res1.rows[0].dataValues);
+            if(list.length == res.count){
+                var list2 = list;
+                callback(list);
+            }
+        })
+    };
+ 
 }
 
 /**
@@ -247,7 +256,7 @@ function uploadFile(filename, filestream, returnList) {
         //生成四维随机数
         var randomNum = Math.floor(Math.random()*10000)
         var timestamp =Date.parse(new Date());
-        var newname = randomNum.toString() + timestamp.toString();
+        var newname = randomNum.toString() + timestamp.toString()+'.jpg';
         var result = yield client.putStream(newname, filestream);
         console.log(result); 
         return returnList(result);

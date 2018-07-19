@@ -26,63 +26,70 @@ function getCheckingList(checkUserID,status, returnList)
         }
     ).then(
         function(res){
-            var list = [];
-            var serviceID = -1;
-            for(var i = 0; i < res.count; i++){
-                serviceID = res.rows[i].dataValues.ServiceID;
-
-                serviceLists.findAndCountAll({
-                    where:{
-                    "ServiceID": serviceID
-                    }
-                }).then(function (value) {
-                    var obj=new Object();
-                    obj.serviceId=value.rows[0].dataValues.ServiceID;
-                    obj.content=value.rows[0].dataValues.Content;
-                    obj.startTime=value.rows[0].dataValues.DemandStartTime;
-                    obj.endTime=value.rows[0].dataValues.DemandEndTime;
-                    obj.duration=value.rows[0].dataValues.Duration;
-
-                    application.findAndCountAll({
-                        where:{
-                            "ServiceID": obj.serviceId
-                        }
-                        }).then(function (res2){
-                        obj.volunteerID=res2.rows[0].dataValues.UserID;
-                        obj.remark=res2.rows[0].dataValues.Remark;
-                        otherUser.findAndCountAll({
-                            where:{
-                                "UserID": obj.volunteerID
-                            }
-                        }).then(function (value) {
-                            obj.volunteerName=value.rows[0].dataValues.Name
-                        })
-                    })
-
-                    demand.findAndCountAll({
-                        where:{
-                            "ServiceID": obj.serviceId
-                        }
-                        }).then(function (value2) {
-                        obj.oldManID=value2.rows[0].dataValues.UserID;
-                        otherUser.findAndCountAll({
-                            where:{
-                                "UserID": obj.oldManID
-                            }
-                        }).then(function (res4) {
-                            obj.oldManName=res4.rows[0].dataValues.Name
-                        })
-                    })
-
-                    list.push(obj);
-                })
-            }
-            setTimeout(function(){
-                console.log(list);
-                return returnList(list);
-            }, 500);
+            HandleList(res,(list)=>{
+                returnList(list);
+            })
         }
     )
+}
+/**
+ * 处理getCheckingList函数
+ */
+function HandleList(res,callback){
+    var list = [];
+    var serviceID = -1;
+    for(var i = 0; i < res.count; i++){
+        serviceID = res.rows[i].dataValues.ServiceID;
+
+        serviceLists.findAndCountAll({
+            where:{
+               "ServiceID": serviceID
+            }
+        }).then(function (value) {
+            var obj=new Object();
+            obj.serviceId=value.rows[0].dataValues.ServiceID;
+            obj.content=value.rows[0].dataValues.Content;
+            obj.startTime=value.rows[0].dataValues.DemandStartTime;
+            obj.endTime=value.rows[0].dataValues.DemandEndTime;
+            obj.duration=value.rows[0].dataValues.Duration;
+
+            application.findAndCountAll({
+                where:{
+                    "ServiceID": obj.serviceId
+                }
+            }).then(function (res2){
+                obj.volunteerID=res2.rows[0].dataValues.UserID;
+                obj.remark=res2.rows[0].dataValues.Remark;
+                otherUser.findAndCountAll({
+                    where:{
+                        "UserID": obj.volunteerID
+                    }
+                }).then(function (value) {
+                    obj.volunteerName=value.rows[0].dataValues.Name
+                })
+            })
+
+            demand.findAndCountAll({
+                where:{
+                    "ServiceID": obj.serviceId
+                }
+            }).then(function (value2) {
+                obj.oldManID=value2.rows[0].dataValues.UserID;
+                otherUser.findAndCountAll({
+                    where:{
+                        "UserID": obj.oldManID
+                    }
+                }).then(function (res4) {
+                    obj.oldManName=res4.rows[0].dataValues.Name
+                })
+            })
+
+            list.push(obj);
+            if(list.length==res.count){
+                callback(list);
+            }
+        })
+    }
 }
 /**
  * 审核人给勋章申请打分
