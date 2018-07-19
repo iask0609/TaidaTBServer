@@ -26,4 +26,4 @@ main/bll/DemandBLL.js中postNewRequirement数据库操作可优化
 
 
 ## 数据库相关
-1. 设置Demand和Application中ServiceID为唯一主键
+1. 设置Demand和Application中ServiceID为唯一主键   (已改)
