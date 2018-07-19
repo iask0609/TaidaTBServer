@@ -64,19 +64,6 @@ function getDemandByUserID(UserID, returnList){
             "UserID": UserID
         }
     }).then(function(res){
-        // console.log(res);
-        // var list = [];
-        // var serviceID = -1;
-        // for(var i = 0; i < res.count; i++){
-        //     serviceID = res.rows[i].dataValues.ServiceID;
-        //     serviceLists.findAndCountAll({
-        //         where:{
-        //             "ServiceID": serviceID
-        //         }
-        //     }).then(function(res1){
-        //         list.push(res1.rows[0].dataValues);
-        //     })
-        // }
         HandleList(res,(list)=>{
             returnList(list);
         })

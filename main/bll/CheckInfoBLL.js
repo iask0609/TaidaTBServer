@@ -66,28 +66,27 @@ function HandleList(res,callback){
                     }
                 }).then(function (value) {
                     obj.volunteerName=value.rows[0].dataValues.Name
+                    demand.findAndCountAll({
+                        where:{
+                            "ServiceID": obj.serviceId
+                        }
+                    }).then(function (value2) {
+                        obj.oldManID=value2.rows[0].dataValues.UserID;
+                        otherUser.findAndCountAll({
+                            where:{
+                                "UserID": obj.oldManID
+                            }
+                        }).then(function (res4) {
+                            obj.oldManName=res4.rows[0].dataValues.Name;
+                            list.push(obj);
+                            if(list.length==res.count){
+                                console.log(list)
+                                callback(list);
+                            }
+                        })
+                    })
                 })
             })
-
-            demand.findAndCountAll({
-                where:{
-                    "ServiceID": obj.serviceId
-                }
-            }).then(function (value2) {
-                obj.oldManID=value2.rows[0].dataValues.UserID;
-                otherUser.findAndCountAll({
-                    where:{
-                        "UserID": obj.oldManID
-                    }
-                }).then(function (res4) {
-                    obj.oldManName=res4.rows[0].dataValues.Name
-                })
-            })
-
-            list.push(obj);
-            if(list.length==res.count){
-                callback(list);
-            }
         })
     }
 }

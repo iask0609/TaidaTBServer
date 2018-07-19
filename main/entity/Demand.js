@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
       UserID: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
+      primaryKey: false,
       references: {
         model: 'OrdinaryUser',
         key: 'UserID'
