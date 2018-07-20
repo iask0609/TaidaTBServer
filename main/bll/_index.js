@@ -39,5 +39,3 @@ module.exports.ChangeAuthority = require('./ForSearch').ChangeAuthority;
 module.exports.getUsersByCondition = require('./ForSearch').getUsersByCondition;
 module.exports.postNewNotice = require('./NoticeBLL').postNewNotice;
 module.exports.getAllNotice = require('./NoticeBLL').getAllNotice;
-
-
