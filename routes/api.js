@@ -478,9 +478,9 @@ router.post("/getUsersByCondition", function(req, res){
  * 更改权限
  */
 router.post("/ChangeAuthority", function(req, res){
-    bll.ChangeAuthority(req.body.UserID, function(list){
+    bll.ChangeAuthority(req.body.UserID, function(num){
             res.json({
-                "list": list
+                "num": num
             })
         })
 });
