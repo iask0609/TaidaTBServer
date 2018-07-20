@@ -164,17 +164,22 @@ function getUserIDbyAccount(Account, UserID)
     })
 }
 
-function getUserAddress(UserID, adderss){
+/**
+ * 根据用户账ID获取地址
+ * @param UserID
+ * @param callback
+ */
+function getUserAddress(UserID, callback) {
     allUser.findAndCountAll({
         where: {
             "UserID": UserID
         }
     }).then(function(res){
         if(res.count === 0)
-            return adderss(-1);
+            callback(-1);
         else{
             console.log(res.rows);
-            return adderss(res.rows[0].dataValues.ChainHASH);
+            callback(res.rows[0].dataValues.ChainHASH);
         }
     })
 }
@@ -183,4 +188,4 @@ exports.allUserLogin = allUserLogin;
 exports.getUserInfo=getUserInfo;
 exports.userRegister=userRegister;
 exports.getUserIDbyAccount = getUserIDbyAccount;
-exports.getUserAddress = getUserAddress;
+module.exports.getUserAddress = getUserAddress;

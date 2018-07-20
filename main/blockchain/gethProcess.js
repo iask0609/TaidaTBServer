@@ -36,7 +36,7 @@ Node.prototype.start = function (work) {
         web3.eth.getAccounts(console.log);
         console.log('web3 connect to geth');
         work(web3, child1);
-    }, 5000);
+    }, 10000);
 };
 
 Node.prototype.getWeb3 = function () {

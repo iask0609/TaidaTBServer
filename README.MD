@@ -12,7 +12,7 @@ main/util/db_manager.js 修改对应主机,密码,端口等
 ## 待优化
 main/bll/DemandBLL.js中postNewRequirement数据库操作可优化
 数据库错误异常链处理
-
+启动geth进程后如何确保能够通过rpc连接
 
 ## 待修复!!!
 查看交易链重构
