@@ -86,6 +86,16 @@ function postNewNotice(UserId, Title, Content, UserLists, returnNum)
 
 }
 
+function getAllNotice(returnList)
+{
+    noticeView.findAndCountAll({
+
+    }).then(function(res){
+        return returnList(res);
+    })
+
+}
 exports.noticeOperation = noticeOperation;
 exports.changeNoticeChecked = changeNoticeChecked;
 exports.postNewNotice = postNewNotice;
+exports.getAllNotice = getAllNotice;
