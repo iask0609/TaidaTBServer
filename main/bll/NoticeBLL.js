@@ -1,7 +1,9 @@
 const noticeView = require('../util/ormSequelize').NoticeView;
+const notice = require('../util/ormSequelize').Notice;
 const otherUser=require('../util/ormSequelize').OtherUser;
 const checkNoticeView = require('../util/ormSequelize').CheckNoticeView;
 const checkNotice = require('../util/ormSequelize').CheckNotice;
+const dao = require('../dao/_index');
 /**
  * 得到全部通知
  * @param resultList
@@ -48,8 +50,10 @@ function changeNoticeChecked(NoticeID,UserID){
  * @param DeleteTime
  * @param returnNum
  */
-function postNewNotice(UserId, Title, Content, ReleaseTime, DeleteTime, returnNum)
+function postNewNotice(UserId, Title, Content, UserLists, returnNum)
 {
+    const ReleaseTime  = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    const DeleteTime = '';
     const myDateTime  = new Date();
     notice.findAndCountAll({
         'order': [
@@ -65,9 +69,12 @@ function postNewNotice(UserId, Title, Content, ReleaseTime, DeleteTime, returnNu
         {
             NoticeID = 0;
         }
-    
-        dao.insertDemand(NoticeID, UserId, Title, Content, 0, 0, ReleaseTime, DeleteTime, function(num1){
+        var list = UserLists.split(",");
+        dao.insertNotice(NoticeID, UserId, Title, Content, 0, 0, ReleaseTime, DeleteTime, function(num1){
             if(num1 === 1){
+                for(var i=0;i<list.length;i++){
+                    dao.insertCheckNotice(NoticeID,list[i],'0');
+                }
                 return returnNum(1);
               }
             else
@@ -77,7 +84,6 @@ function postNewNotice(UserId, Title, Content, ReleaseTime, DeleteTime, returnNu
         });
     });
 
-    // console.log("sdf" + UserId + Content + DemandStartTime + DemandEndTime + Duration + Remark);
 }
 
 exports.noticeOperation = noticeOperation;

@@ -1,7 +1,7 @@
 const notice = require('../util/ormSequelize').Notice;
 
 function insertNotice(NoticeID, UserID, Title, Content,
-  Effectiveness, Visibility, ReleaseTime, DeleteTime) {
+  Effectiveness, Visibility, ReleaseTime, DeleteTime,returnNum) {
   notice.create({
     "NoticeID": NoticeID,
     "UserID": UserID,
@@ -13,10 +13,12 @@ function insertNotice(NoticeID, UserID, Title, Content,
     "DeleteTime": DeleteTime
   }).then(function(result) {
     console.log('insertNotice ok');
-    console.log(result.message)
+    console.log(result.message);
+    returnNum(1);
   }).catch(function(err) {
     console.log('insertNotice error');
-    console.log(err.message)
+    console.log(err.message);
+    returnNum(0);
   })
 }
 

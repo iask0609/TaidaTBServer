@@ -443,8 +443,27 @@ router.post("/uploadFile", function (req, res) {
  * 管理员发布新的通知
  */
 router.post("/postNewNotice", function(req, res){
-    bll.postNewNotice(req.body.UserId, req.body.Title, req.body.Content,
-        req.body.ReleaseTime, req.body.DeleteTime, function(num){
+    if(req.body.UserLists){
+        console.log(req.body.UserLists);
+        var jsonStr = req.body.UserLists;
+    } else {
+        //不能正确解析json 格式的post参数
+        var body = '', jsonStr;
+        req.on('UserLists', function (chunk) {
+            body += chunk; //读取参数流转化为字符串
+        });
+        req.on('end', function () {
+            //读取参数流结束后将转化的body字符串解析成 JSON 格式
+            try {
+                jsonStr = JSON.parse(body);
+            } catch (err) {
+                jsonStr = null;
+            }
+            jsonStr ? res.send({"status":"success", "name": jsonStr.data.name, "age": jsonStr.data.age}) : res.send({"status":"error"});
+            console.log(jsonStr)
+        });
+    };
+    bll.postNewNotice(req.body.UserId, req.body.Title, req.body.Content, jsonStr, function(num){
         res.json({
             "num": num
         });
