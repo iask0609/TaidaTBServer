@@ -504,4 +504,15 @@ router.post("/ChangeAuthority", function(req, res){
         })
 });
 
+/**
+ * 获取所有通知
+ */
+router.post("/getAllNotice", function(req,res){
+    bll.getAllNotice(function(list){
+        res.json({
+            "list": list
+        });
+    })
+});
+
 module.exports = router;
