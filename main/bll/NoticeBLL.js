@@ -80,6 +80,16 @@ function postNewNotice(UserId, Title, Content, ReleaseTime, DeleteTime, returnNu
     // console.log("sdf" + UserId + Content + DemandStartTime + DemandEndTime + Duration + Remark);
 }
 
+function getAllNotice(returnList)
+{
+    noticeView.findAndCountAll({
+
+    }).then(function(res){
+        return returnList(res);
+    })
+
+}
 exports.noticeOperation = noticeOperation;
 exports.changeNoticeChecked = changeNoticeChecked;
 exports.postNewNotice = postNewNotice;
+exports.getAllNotice = getAllNotice;
