@@ -3,7 +3,7 @@ const service = require('../util/ormSequelize').Service;
 const ordinaryUser=require('../util/ormSequelize').OrdinaryUser;
 const dao = require('../dao/_index');
 const getUserAddress = require('./AllUser.js').getUserAddress;
-const addContract = require('../blockchain/addContract.js').addContract;
+const addContract = require('../blockchain/addContract.js');
 const otherUser = require('../util/ormSequelize').OtherUser;
 const serviceLists = require('../util/ormSequelize').ServiceLists;
 
@@ -18,9 +18,13 @@ function getServicedList(UserID, returnList){
             "UserID": UserID
         }
     }).then(function(res){
-        doLists(res,(list)=>{
-            returnList(list);
-        })
+        if(res.count==0){
+            returnList(res)
+        }else{
+            doLists(res,(list)=>{
+                returnList(list);
+            })
+        }
     })
 }
 
@@ -59,32 +63,31 @@ function doLists(res,callback){
  */
 function applicate(UserID, ServiceID, Material1, Material2, Material3,
                    RealStartTime, RealEndTime, Remark, returnNum) {
-
     dao.updateApplication(ServiceID, UserID, Material1, Material2, Material3, Remark, function(num){
         if(num === 1){
             dao.updateServiceFromVolunteer(ServiceID, RealStartTime, RealEndTime, function(value){
                 if(value===1){
-                    getUserAddress(UserID, (userAddress)=>{
-                        if(userAddress == -1)
+                    getUserAddress(UserID, function (userAddress) {
+                        if (userAddress === -1)
                             return;
                         console.log('address get:' + userAddress);
-                        addContract(UserID,userAddress,ServiceID,(contractAddress) => {
+                        addContract(UserID, userAddress, ServiceID, (contractAddress) => {
                             dao.updateContractHash(ServiceID, contractAddress);
                         });
-                
-                        dao.getCheckUser(function(userlist){   
+
+                        dao.getCheckUser(function (userlist) {
                             //选择审核者
                             console.log("选择审核人")
-                            var indexRange=userlist.count;
+                            let indexRange = userlist.count;
                             console.log("审核候选人数： "+userlist.count)
-                            var randomSet = new Set();
+                            let randomSet = new Set();
                             while(randomSet.size < 5)
                             {
                                 randomSet.add(Math.floor(Math.random() * indexRange) + 1);
                             }
                             randomSet.forEach(function(randomIndex){
                                 console.log("randomIndex"+randomIndex);
-                                var checkStaffID=userlist.rows[randomIndex-1].dataValues.UserID;
+                                let checkStaffID = userlist.rows[randomIndex - 1].dataValues.UserID;
                                 dao.insertCheckInfo(ServiceID,checkStaffID,function (value2) {
                                     console.log("插入成功");
                                 });

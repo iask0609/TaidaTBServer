@@ -104,7 +104,7 @@ function getCheckUser(returnList) {
     }
   ).then(function(res)
   {
-    return returnList(res);
+      returnList(res);
   })
 }
 exports.insertOrdinaryUser = insertOrdinaryUser;

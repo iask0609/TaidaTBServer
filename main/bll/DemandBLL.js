@@ -64,9 +64,15 @@ function getDemandByUserID(UserID, returnList){
             "UserID": UserID
         }
     }).then(function(res){
-        HandleList(res,(list)=>{
-            returnList(list);
-        })
+        console.log(res)
+        if(res.count==0){
+            returnList(res)
+        }else{
+            HandleList(res,(list)=>{
+                returnList(list);
+            })
+        }
+        
     })
 }
 /**
@@ -82,6 +88,7 @@ function HandleList(res,callback){
                 "ServiceID": serviceID
             }
         }).then(function(res1){
+            console.log(res1)
             list.push(res1.rows[0].dataValues);
             if(list.length==res.count){
                 callback(list)
