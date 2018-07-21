@@ -53,7 +53,7 @@ function changeNoticeChecked(NoticeID,UserID){
 function postNewNotice(UserId, Title, Content, UserLists, returnNum)
 {
     const ReleaseTime  = new Date().toISOString().slice(0, 19).replace('T', ' ');
-    const DeleteTime = '';
+    const DeleteTime = null;
     const myDateTime  = new Date();
     notice.findAndCountAll({
         'order': [
