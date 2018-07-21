@@ -121,9 +121,9 @@ function checkApplication(UserID, ServiceID, score1, score2, score3, score4){
                     }
                 })
             }, (score)=>{
-                getServiceInfo(UserID, (UserID1, UserAddress1, UserID2, UserAddress2)=>{
-                    transact(UserID1, UserAddress1, UserAddress2, score, (TransactionHash) => {
-                        updateServiceTransaction(ServiceID, TransactionHash);
+                getServiceInfo(ServiceID, (UserID1, UserAddress1, UserID2, UserAddress2) => {
+                    transact(UserID1, UserAddress1, UserAddress2, score * 0.1, (TransactionHash) => {
+                        updateServiceTransaction(ServiceID, TransactionHash, score * 0.1);
                     });
                 })
 
@@ -133,9 +133,11 @@ function checkApplication(UserID, ServiceID, score1, score2, score3, score4){
     })
 }
 
-function updateServiceTransaction(ServiceID, TransactionHash) {
+function updateServiceTransaction(ServiceID, TransactionHash, medalNum) {
     service.update({
-        TransferHASH: TransactionHash
+        TransferHASH: TransactionHash,
+        medalnum: medalNum,
+        Status: 3
     }, {
         where: {
             ServiceID: ServiceID

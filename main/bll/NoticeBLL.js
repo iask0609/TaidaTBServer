@@ -67,7 +67,7 @@ function postNewNotice(UserId, Title, Content, UserLists, returnNum)
         }
         else
         {
-            NoticeID = 0;
+            NoticeID = 1;
         }
         var list = UserLists.split(",");
         dao.insertNotice(NoticeID, UserId, Title, Content, 0, 0, ReleaseTime, DeleteTime, function(num1){

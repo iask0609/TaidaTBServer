@@ -188,4 +188,4 @@ exports.allUserLogin = allUserLogin;
 exports.getUserInfo=getUserInfo;
 exports.userRegister=userRegister;
 exports.getUserIDbyAccount = getUserIDbyAccount;
-module.exports.getUserAddress = getUserAddress;
+exports.getUserAddress = getUserAddress;
