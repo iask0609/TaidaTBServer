@@ -18,9 +18,13 @@ function getServicedList(UserID, returnList){
             "UserID": UserID
         }
     }).then(function(res){
-        doLists(res,(list)=>{
-            returnList(list);
-        })
+        if(res.count==0){
+            returnList(res)
+        }else{
+            doLists(res,(list)=>{
+                returnList(list);
+            })
+        }
     })
 }
 

@@ -25,9 +25,14 @@ function getCheckingList(checkUserID,status, returnList)
         }
     ).then(
         function(res){
-            HandleList(res,(list)=>{
-                returnList(list);
-            })
+            if(res.count==0){
+                returnList(res)
+            }else{
+                HandleList(res,(list)=>{
+                    returnList(list);
+                })
+            }
+            
         }
     )
 }
@@ -76,6 +81,7 @@ function HandleList(res,callback){
                                 "UserID": obj.oldManID
                             }
                         }).then(function (res4) {
+                            console.log(res4)
                             obj.oldManName=res4.rows[0].dataValues.Name;
                             list.push(obj);
                             if(list.length==res.count){
