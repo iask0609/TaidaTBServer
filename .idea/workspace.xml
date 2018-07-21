@@ -3,14 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="f92f1b7c-88a2-4324-be73-f5a6880f1e54" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.MD" beforeDir="false" afterPath="$PROJECT_DIR$/README.MD" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/bll/ApplicationBLL.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/bll/ApplicationBLL.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/blockchain/addContract.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/blockchain/addContract.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/blockchain/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/blockchain/config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/blockchain/gethProcess.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/blockchain/gethProcess.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/dao/OrdinaryUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/dao/OrdinaryUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/blockchain/transact.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/blockchain/transact.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/blockchain/transactionInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/blockchain/transactionInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/blockchain/voteForApplication.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/blockchain/voteForApplication.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,8 +27,44 @@
       <file leaf-file-name="voteForApplication.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/blockchain/voteForApplication.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="35">
-              <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+            <state relative-caret-position="285">
+              <caret line="30" column="19" lean-forward="true" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CheckInfoBLL.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/bll/CheckInfoBLL.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="122" lean-forward="true" selection-start-line="122" selection-end-line="122" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="transact.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/blockchain/transact.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="transactionInfo.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main/blockchain/transactionInfo.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="361">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddUserNode.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/blockchain/AddUserNode.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="18" column="29" lean-forward="true" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -39,43 +72,26 @@
       <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/blockchain/config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+            <state relative-caret-position="304">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.MD" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.MD">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="266">
-                <caret line="14" selection-start-line="14" selection-end-line="14" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="package-lock.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package-lock.json">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/dao/_index.js">
+      <file leaf-file-name="test.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="320">
-              <caret line="48" column="67" selection-start-line="48" selection-start-column="67" selection-end-line="48" selection-end-column="67" />
+              <caret line="23" column="113" selection-start-line="23" selection-start-column="113" selection-end-line="23" selection-end-column="113" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addContract.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/blockchain/addContract.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="20" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -92,26 +108,8 @@
       <file leaf-file-name="gethProcess.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/blockchain/gethProcess.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="40" selection-start-line="40" selection-end-line="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="addContract.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/blockchain/addContract.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="20" selection-end-column="41" />
+            <state relative-caret-position="209">
+              <caret line="11" column="170" selection-start-line="11" selection-start-column="170" selection-end-line="11" selection-end-column="170" />
             </state>
           </provider>
         </entry>
@@ -138,6 +136,7 @@
       <find>a</find>
       <find>getA</find>
       <find>setTimeout</find>
+      <find>======</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -147,9 +146,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="a34263a8-7238-4959-b50b-a11ed5f95065/consoles/Connection" />
-        <option value="$PROJECT_DIR$/main/blockchain/voteForApplication.js" />
         <option value="$PROJECT_DIR$/main/bll/CheckInfoBLL.js" />
-        <option value="$PROJECT_DIR$/main/blockchain/transact.js" />
         <option value="$PROJECT_DIR$/main/util/ormSequelize.js" />
         <option value="$PROJECT_DIR$/test.html" />
         <option value="$PROJECT_DIR$/test.py" />
@@ -163,15 +160,19 @@
         <option value="$PROJECT_DIR$/main/bll/_index.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/routes/api.js" />
-        <option value="$PROJECT_DIR$/main/blockchain/config.js" />
-        <option value="$PROJECT_DIR$/test.js" />
         <option value="$PROJECT_DIR$/main/dao/_index.js" />
         <option value="$PROJECT_DIR$/main/dao/OrdinaryUser.js" />
-        <option value="$PROJECT_DIR$/main/blockchain/gethProcess.js" />
         <option value="$PROJECT_DIR$/main/bll/ApplicationBLL.js" />
         <option value="$PROJECT_DIR$/main/blockchain/addContract.js" />
         <option value="$PROJECT_DIR$/README.MD" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/package-lock.json" />
+        <option value="$PROJECT_DIR$/main/blockchain/gethProcess.js" />
+        <option value="$PROJECT_DIR$/main/blockchain/voteForApplication.js" />
+        <option value="$PROJECT_DIR$/main/blockchain/config.js" />
+        <option value="$PROJECT_DIR$/test.js" />
+        <option value="$PROJECT_DIR$/main/blockchain/transact.js" />
+        <option value="$PROJECT_DIR$/main/blockchain/transactionInfo.js" />
       </list>
     </option>
   </component>
@@ -202,6 +203,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -240,7 +242,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -273,7 +274,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Node.js.start">
+  <component name="RunManager" selected="Node.js.test">
     <configuration name="start" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="bin/www" working-dir="$PROJECT_DIR$" />
     <configuration name="test" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="test.js" working-dir="$PROJECT_DIR$" />
     <list>
@@ -298,6 +299,7 @@
       <workItem from="1531831747897" duration="54000" />
       <workItem from="1531832689675" duration="20810000" />
       <workItem from="1532001218639" duration="26518000" />
+      <workItem from="1532137911728" duration="5189000" />
     </task>
     <task id="LOCAL-00001" summary="fix some bug">
       <created>1531715544479</created>
@@ -345,7 +347,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84555000" />
+    <option name="totallyTimeSpent" value="90336000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -358,53 +360,37 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="34" width="1920" height="1046" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32884398" />
       <window_info anchor="right" id="DB Browser" order="3" weight="0.32977587" />
       <window_info anchor="bottom" id="DB Execution Console" order="7" weight="0.32884398" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5010672" side_tool="true" weight="0.41189674" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32884398" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.32884398" />
+      <window_info anchor="bottom" x="1920" y="58" width="1920" height="1022" id="Run" order="2" type="WINDOWED" visible="true" weight="0.56790125" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info anchor="bottom" x="1920" y="44" width="1920" height="1036" id="Run" order="2" type="WINDOWED" weight="0.56790125" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49893278" visible="true" weight="0.4365881" />
-      <window_info anchor="bottom" id="TypeScript" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4983165" visible="true" weight="0.19423692" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49893278" weight="0.4365881" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4983165" visible="true" weight="0.19637139" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32996634" />
       <window_info id="Structure" order="1" sideWeight="0.50164473" side_tool="true" weight="0.18676628" />
       <window_info id="Favorites" order="3" sideWeight="0.5016835" side_tool="true" weight="0.1892779" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TypeScript" order="7" />
-      <window_info anchor="bottom" id="DB Execution Console" order="7" weight="0.32884398" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4983165" visible="true" weight="0.19423692" />
-      <window_info id="Structure" order="1" sideWeight="0.50164473" side_tool="true" weight="0.18676628" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32884398" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.32884398" />
-      <window_info anchor="bottom" x="1920" y="51" width="1920" height="1029" id="Run" order="2" type="WINDOWED" visible="true" weight="0.56790125" />
-      <window_info anchor="right" id="DB Browser" order="3" weight="0.32977587" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32996634" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.3289183" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5010672" side_tool="true" weight="0.41189674" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49893278" weight="0.4365881" />
-      <window_info id="Favorites" order="3" sideWeight="0.5016835" side_tool="true" weight="0.1892779" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32996634" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="bottom" id="Version Control" order="12" weight="0.32884398" />
       <window_info anchor="bottom" id="DB Execution Console" order="8" weight="0.32884398" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" x="0" y="85" width="1717" height="885" id="Run" order="2" type="WINDOWED" weight="0.56790125" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4983165" visible="true" weight="0.19423692" />
       <window_info id="Structure" order="1" sideWeight="0.50164473" side_tool="true" weight="0.18676628" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -417,7 +403,7 @@
       <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4994664" visible="true" weight="0.41189674" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50053364" side_tool="true" weight="0.32996634" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="12" weight="0.32884398" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.3289183" />
       <window_info id="Favorites" order="3" sideWeight="0.5016835" side_tool="true" weight="0.1892779" />
@@ -505,34 +491,7 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="db://a34263a8-7238-4959-b50b-a11ed5f95065/session_browsers/Connection Sessions">
-      <provider selected="true" editor-type-id="0.SESSION_BROWSER">
-        <state>
-          <refresh-interval value="0" />
-          <sorting />
-          <filter>
-            <user value="" />
-            <host value="" />
-            <status value="" />
-          </filter>
-        </state>
-      </provider>
-    </entry>
     <entry file="db://a34263a8-7238-4959-b50b-a11ed5f95065/objects/schemas/volunteerservice/tables/Service" />
-    <entry file="file://$PROJECT_DIR$/main/bll/CheckInfoBLL.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="120" selection-start-line="120" selection-end-line="120" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/blockchain/voteForApplication.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -560,17 +519,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.py" />
-    <entry file="file://$PROJECT_DIR$/main/blockchain/transact.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="db://8dd80914-f2b2-4fb7-a18f-958e5cc60bf6/objects/schemas/volunteerservice/views/CheckNoticeView">
-      <provider selected="true" editor-type-id="0.CODE">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
       <provider editor-type-id="1.DATA">
         <state row-count="0" readonly="false">
           <columns>
@@ -587,6 +536,9 @@
           <sorting />
           <content-types />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="0.CODE">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="db://8dd80914-f2b2-4fb7-a18f-958e5cc60bf6/objects/schemas/volunteerservice/tables/B_Admin">
@@ -745,13 +697,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/blockchain/AddUserNode.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/entity/Service.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -777,13 +722,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="128" column="12" lean-forward="true" selection-start-line="128" selection-start-column="12" selection-end-line="128" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/blockchain/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -843,48 +781,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/dao/_index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="48" column="67" selection-start-line="48" selection-start-column="67" selection-end-line="48" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/blockchain/gethProcess.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/blockchain/addContract.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="20" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/dao/OrdinaryUser.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="590">
           <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.MD">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="266">
-            <caret line="14" selection-start-line="14" selection-end-line="14" />
-          </first_editor>
-          <second_editor />
         </state>
       </provider>
     </entry>
@@ -902,20 +802,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/dao/Service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="121" column="9" selection-start-line="121" selection-start-column="9" selection-end-line="121" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/bll/ApplicationBLL.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3015">
-          <caret line="61" column="16" lean-forward="true" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/blockchain/Vote.sol">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
@@ -924,12 +810,110 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="366" column="31" lean-forward="true" selection-start-line="366" selection-start-column="31" selection-end-line="366" selection-end-column="31" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+        <state relative-caret-position="-116">
+          <caret line="5" column="29" lean-forward="true" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/dao/_index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="48" column="67" selection-start-line="48" selection-start-column="67" selection-end-line="48" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.MD">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="627">
+            <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/bll/ApplicationBLL.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/blockchain/voteForApplication.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="30" column="19" lean-forward="true" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/dao/Service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="121" column="9" selection-start-line="121" selection-start-column="9" selection-end-line="121" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="23" column="113" selection-start-line="23" selection-start-column="113" selection-end-line="23" selection-end-column="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/blockchain/gethProcess.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="170" selection-start-line="11" selection-start-column="170" selection-end-line="11" selection-end-column="170" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/bll/CheckInfoBLL.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="122" lean-forward="true" selection-start-line="122" selection-end-line="122" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/blockchain/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/blockchain/addContract.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="20" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/blockchain/transact.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/blockchain/AddUserNode.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="29" lean-forward="true" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/blockchain/transactionInfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>

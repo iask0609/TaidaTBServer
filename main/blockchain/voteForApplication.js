@@ -22,7 +22,9 @@ function voteForApplication(userID, userAddress, contractHash, score1, score2, s
                     console.log("已审核人数" + result);
                     if(result >= 4)
                     {
-                        contract.methods.getResult.call().then((score)=>{
+                        contract.methods.getResult().call().then((scoreList) => {
+                            let sum = scoreList.reduce((previous, current) => current += previous);
+                            let score = sum / scoreList.length;
                             sendCoin(score, setTransactionHash);
                         })
                     }

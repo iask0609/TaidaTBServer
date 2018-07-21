@@ -44,6 +44,6 @@ Node.prototype.getWeb3 = function () {
     let web3 = new Web3(new Web3.providers.HttpProvider(url));
     console.log('web3 connect to ' + url);
     return web3;
-}
+};
 
 module.exports = Node;
