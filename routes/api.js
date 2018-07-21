@@ -49,7 +49,8 @@ router.post("/getUserInfo", function(req, res){
     bll.getUserInfo(req.body.UserId, function (list) {
 
         res.json({
-            "UserName": list.Name,
+            "UserName": list.UserName,
+            "Name": list.Name,
             "Gender": list.Gender,
             "Phone":  list.Phone,
             "Email": list.Email,
@@ -199,7 +200,7 @@ router.post("/applicated", function(req, res){
  * 修改个人信息
  */
 router.post("/changeUserInformation", function(req, res){
-    bll.changeUserInformation(req.body.UserID, req.body.Gender,
+    bll.changeUserInformation(req.body.UserID, req.body.Gender,req.body.UserName,
         req.body.Name, req.body.IDNumber, req.body.Email, req.body.Phone,
         req.body.Province,req.body.City,req.body.District,
         function(num){
@@ -313,16 +314,7 @@ router.post("/getUserByService", function(req, res) {
     })
 });
 
-/**
- * 超级管理员添加管理员用户
- */
-router.post("/addAdmin",function(req,res){
-    bll.addAdmin(req.body.Account,req.body.Password,req.body.theRes,function(num){
-        res.json({
-            "addtype": num
-        })
-    })
-});
+
 
 /*
 遍历所有服务Item
@@ -512,6 +504,47 @@ router.post("/getAllNotice", function(req,res){
         res.json({
             "list": list
         });
+    })
+});
+
+/**
+ * 超级管理员添加管理员用户
+ */
+router.post("/addAdmin",function(req,res){
+    console.log(req.body.Account);
+    bll.addAdmin(req.body.Account,req.body.Password,req.body.theRes,req.body.UserName,
+        req.body.Gender,req.body.IDNumber,req.body.Email,req.body.Phone,req.body.Province,
+        req.body.City,req.body.District,function(num){
+        res.json({
+            "addtype": num
+        })
+    })
+});
+
+/**
+ * 列出所有用户的信息
+ */
+router.get("/getOrdinaryUserInfo",function(req,res){
+    bll.getOrdinaryUserInfo(function(list){
+        res.json({
+            "list":list
+        })
+    })
+});
+
+router.get("/getA_AdminInfo",function(req,res){
+    bll.getA_AdminInfo(function(list){
+        res.json({
+            "list":list
+        })
+    })
+});
+
+router.get("/getB_AdminInfo",function(req,res){
+    bll.getB_AdminInfo(function(list){
+        res.json({
+            "list":list
+        })
     })
 });
 

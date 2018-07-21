@@ -1,22 +1,18 @@
-
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('OrdinaryUserInfo', {
+    return sequelize.define('A_AdminInfo', {
       UserID: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
         references: {
-          model: 'OtherUser',
+          model: 'Administrator',
           key: 'UserID'
-        }
-      },
-      CanCheck:{
-        type: DataTypes.INTEGER,
-        allowNull: false
-      },
-      UserName: {
+      }
+    },
+    UserName: {
         type: DataTypes.STRING,
         allowNull: true,
+        primaryKey: false
       },
       Gender: {
         type: DataTypes.STRING,
@@ -54,10 +50,10 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.INTEGER,
         allowNull: true
       }
-    }, {
+    },  {
       createdAt: false,
       updatedAt: false,
-      tableName: 'OrdinaryUserInfo'
+      tableName: 'A_AdminInfo'
     })
-  }
+  };
   

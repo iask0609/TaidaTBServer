@@ -15,8 +15,8 @@ const otherUser = require('../util/ormSequelize').OtherUser;
  * @param District
  * @param returnNum
  */
-function changeUserInformation(UserID, Gender, Name, IDNumber, Email, Phone, Province,City,District,returnNum){
-    dao.updateOtherUserByUserID(UserID, Gender, Name, IDNumber, Email, Phone,Province,City,District, function(num){
+function changeUserInformation(UserID, Gender, UserName, Name, IDNumber, Email, Phone, Province,City,District,returnNum){
+    dao.updateOtherUserByUserID(UserID, Gender, UserName, Name, IDNumber, Email, Phone,Province,City,District, function(num){
         return returnNum(num);
     });
 }
