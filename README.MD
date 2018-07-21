@@ -2,7 +2,7 @@
 main/blockchain/config.js 修改basepath为本地区块链节点存放地址, 当前路径下需要有genesis.json  
 添加node1的enode
 手动启动geth node1 
-geth --datadir %datadir% --mine --minerthreads=1 --port 30300
+geth --datadir %datadir% --mine --minerthreads=1 --port 30301
 
 ## 数据库配置相关
 main/util/db_manager.js 修改对应主机,密码,端口等
