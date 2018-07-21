@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 const test = require('../main/bll/test');
 //const newData = require('../main/bll/newData');
-const transaction = require('../main/bll/Transaction')
 
 
 /* GET home page. */

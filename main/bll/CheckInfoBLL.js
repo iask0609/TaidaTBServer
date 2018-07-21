@@ -4,7 +4,6 @@ const application = require('../util/ormSequelize').Application;
 const demand = require('../util/ormSequelize').Demand;
 const otherUser = require('../util/ormSequelize').OtherUser;
 const dao = require('../dao/_index');
-const getUserAddress = require('./AllUser').getUserAddress;
 const voteForApplication = require('../blockchain/voteForApplication');
 const transact = require('../blockchain/transact');
 const serviceLists = require('../util/ormSequelize').ServiceLists;
@@ -99,10 +98,13 @@ function HandleList(res,callback){
  * @param score3
  * @param score4
  */
-var getServiceInfo = require('../dao/Service').getServiceInfo;
+const getServiceInfo = require('../dao/Service').getServiceInfo;
 function checkApplication(UserID, ServiceID, score1, score2, score3, score4){
     dao.selectContractHash(ServiceID,  (contractHash)=>{
+        let getUserAddress = require('./AllUser').getUserAddress;
         getUserAddress(UserID, (userAddress)=>{
+            console.log("审核者UserAddress:" + userAddress);
+            console.log("合同地址:" + contractHash);
             voteForApplication(UserID,userAddress, contractHash, score1, score2, score3, score4,()=>{
                 checkInfo.update({
                     status: 1
