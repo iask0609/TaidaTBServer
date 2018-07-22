@@ -429,6 +429,19 @@ router.post("/uploadFile", function (req, res) {
 });
 
 /**
+* 查询用户链上帐户余额
+*/
+router.post("/getUserAcount", function (req, res) {
+  
+    bll.getUserAccount(req.body.UserId,function(list){        
+        res.json({           
+             "list": list        
+        })    
+})
+
+});
+
+/**
  * *********************************************************管理员端分界线*****************************************************************************
  */
 /**
