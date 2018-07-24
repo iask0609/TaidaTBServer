@@ -53,8 +53,8 @@ function HandleList(res,callback){
             var obj=new Object();
             obj.serviceId=value.rows[0].dataValues.ServiceID;
             obj.content=value.rows[0].dataValues.Content;
-            obj.startTime=value.rows[0].dataValues.DemandStartTime;
-            obj.endTime=value.rows[0].dataValues.DemandEndTime;
+            obj.startTime=value.rows[0].dataValues.RealStartTime;
+            obj.endTime=value.rows[0].dataValues.RealEndTime;
             obj.duration=value.rows[0].dataValues.Duration;
 
             application.findAndCountAll({

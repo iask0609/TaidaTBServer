@@ -57,13 +57,14 @@ function doLists(res,callback){
  * @param Material1
  * @param Material2
  * @param Material3
+ * @param Material4
  * @param RealStartTime
  * @param RealEndTime
  * @param Remark
  */
-function applicate(UserID, ServiceID, Material1, Material2, Material3,
+function applicate(UserID, ServiceID, Material1, Material2, Material3,Material4,
                    RealStartTime, RealEndTime, Remark, returnNum) {
-    dao.updateApplication(ServiceID, UserID, Material1, Material2, Material3, Remark, function(num){
+    dao.updateApplication(ServiceID, UserID, Material1, Material2, Material3,Material4, Remark, function(num){
         if(num === 1){
             dao.updateServiceFromVolunteer(ServiceID, RealStartTime, RealEndTime, function(value){
                 if(value===1){

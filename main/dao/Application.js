@@ -1,13 +1,14 @@
 const application = require('../util/ormSequelize').Application;
 
 function insertApplication(ServiceID, UserID, Material1,
-  Material2, Material3, Remark, returnNum) {
+  Material2, Material3, Material4, Remark, returnNum) {
   application.create({
     "ServiceID": ServiceID,
     "UserID": UserID,
     "Material1": Material1,
     "Material2": Material2,
     "Material3": Material3,
+    "Material4": Material4,
     "Remark": Remark
   }).then(function(result) {
     console.log('insertApplication ok');
@@ -19,7 +20,7 @@ function insertApplication(ServiceID, UserID, Material1,
 }
 
 function updateApplication(ServiceID, UserID, Material1,
-  Material2, Material3, Remark, returnNum) {
+  Material2, Material3, Material4, Remark, returnNum) {
   application.findAndCountAll({
     where: {
       "ServiceID": ServiceID,
@@ -34,6 +35,7 @@ function updateApplication(ServiceID, UserID, Material1,
           "Material1": Material1,
           "Material2": Material2,
           "Material3": Material3,
+          "Material4": Material4,
           "Remark": Remark
         }, {
           where: {
