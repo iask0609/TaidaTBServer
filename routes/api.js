@@ -441,6 +441,22 @@ router.post("/getUserAccount", function (req, res) {
 
 });
 
+
+
+/**
+* 删除一条需求
+*/
+router.post("/deleteDemand", function (req, res) {
+  
+    bll.deleteDemand(req.body.serviceId,function(num){
+        console.log(num);        
+        res.json({           
+             "num": num        
+        })    
+})
+
+});
+
 /**
  * *********************************************************管理员端分界线*****************************************************************************
  */

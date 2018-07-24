@@ -14,6 +14,7 @@ module.exports.applicated = require('./ApplicationBLL').applicated;
 module.exports.changeUserInformation = require('./OtherUserBLL').changeUserInformation;
 module.exports.getOldManName = require('./OtherUserBLL').getOldManName;
 module.exports.getAllDemand = require('./DemandBLL').getAllDemand;
+module.exports.deleteDemand = require('./DemandBLL').deleteDemand;
 module.exports.open = require('./test').open;
 module.exports.getDemandByCondition = require('./DemandBLL').getDemandByCondition;
 module.exports.getDemandByConditionNoDuration=require('./DemandBLL').getDemandByConditionNoDuration
