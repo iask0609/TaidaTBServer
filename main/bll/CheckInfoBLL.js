@@ -137,7 +137,8 @@ function updateServiceTransaction(ServiceID, TransactionHash, medalNum) {
     service.update({
         TransferHASH: TransactionHash,
         medalnum: medalNum,
-        Status: 3
+        Status: 3,
+        getmedaltime: new Date().toISOString().slice(0, 19).replace('T', ' ')
     }, {
         where: {
             ServiceID: ServiceID

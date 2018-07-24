@@ -32,10 +32,10 @@ function voteForApplication(userID, userAddress, contractHash, score1, score2, s
                             let score = sum / scoreList.length;
                             console.log('最终得分情况:' + score);
                             sendCoin(score);
+                            setTimeout(child.kill, 30 * 1000);
                         })
                     }
                 });
-                setTimeout(child.kill, 3 * 60 * 1000);
             }).catch((err) => {
                 console.log("审核sendTransaction error:" + err);
                 child.kill();
