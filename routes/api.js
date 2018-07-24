@@ -431,7 +431,7 @@ router.post("/uploadFile", function (req, res) {
 /**
 * 查询用户链上帐户余额
 */
-router.post("/getUserAcount", function (req, res) {
+router.post("/getUserAccount", function (req, res) {
   
     bll.getUserAccount(req.body.UserId,function(list){        
         res.json({           

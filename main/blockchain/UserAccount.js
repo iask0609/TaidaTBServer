@@ -1,5 +1,5 @@
 const Node = require('./gethProcess');
-function getUserAccount(UserID,callback)
+function UserAccount(UserID,callback)
 {
    
     let node = new Node(UserID);
@@ -12,4 +12,4 @@ function getUserAccount(UserID,callback)
     });
 }
 
-exports.getUserAccount = getUserAccount;
+exports.UserAccount = UserAccount;
