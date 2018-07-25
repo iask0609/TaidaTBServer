@@ -1,5 +1,5 @@
 module.exports = {
-    basePath: '/home/lzh/Projects/BlockChain',
+    basePath: '/home/lzh/Desktop/blockchain',
     nodeFile:function nodeFile(UserID){
         return this.basePath + '/node' + parseInt(UserID); //注意base路径和file路径之间的"/"
     },
@@ -10,7 +10,7 @@ module.exports = {
     {
         return parseInt(UserID)+30300;
     },
-    baseEnode: "enode://42db65b2f4142deb725f60f853d412fbda0e5544a60afc0a7000ac213b94edfc398f8186535cd702fd57d4ab3b251b0765d9be2053edbebba5280911907e9e1f@127.0.0.1:30301",
+    baseEnode: "enode://13426e8969add19ad066db13a4db31813726a3cfdb95497dc3597f4f673c48d05da383cc24acd81ddc928cd01cf8915989359a1a46b413d6cc6cf3aa3f1ca7c1@127.0.0.1:30301",
     host:'http://localhost',
     abiDefinition: JSON.parse('[{"constant":true,"inputs":[],"name":"getProposalId","outputs":[{"name":"theId","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"proposal","outputs":[{"name":"id","type":"uint256"},{"name":"voteCount","type":"uint256"},{"name":"serviceContentScore","type":"uint256"},{"name":"serviceTimeScore","type":"uint256"},{"name":"serviceAttitudeScore","type":"uint256"},{"name":"elderlyEvaluation","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"sponsor","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"voters","outputs":[{"name":"voted","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"score0","type":"uint256"},{"name":"score1","type":"uint256"},{"name":"score2","type":"uint256"},{"name":"score3","type":"uint256"}],"name":"scoring","outputs":[{"name":"err","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getExample","outputs":[{"name":"result","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getProposalCount","outputs":[{"name":"theVoteCount","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getResult","outputs":[{"name":"result","type":"uint256[4]"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"id","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]')
 };

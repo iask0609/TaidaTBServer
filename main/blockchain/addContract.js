@@ -23,7 +23,7 @@ function addContract(UserID, UserAddress,ServiceID,updateDB)
               .then(function (newContractInstance) {
                   console.log('contract deployed at:' + newContractInstance.options.address);
                   updateDB(newContractInstance.options.address);
-                  setTimeout(() => child.kill(), 1000 * 60 * 5);
+                  setTimeout(() => child.kill(), 1000 * 30);
               }).catch((err) => {
               console.log(err);
               child.kill();

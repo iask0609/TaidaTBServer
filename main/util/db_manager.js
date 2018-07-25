@@ -7,5 +7,6 @@ module.exports = {
     password: 'Station404',
     database: 'timebank',
     port: '3306'
+
   }
 };

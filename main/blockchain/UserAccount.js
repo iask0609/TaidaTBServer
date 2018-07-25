@@ -1,15 +1,15 @@
 const Node = require('./gethProcess');
-function UserAccount(UserID,callback)
+
+function UserAccount(UserAddress, callback)
 {
-   
-    let node = new Node(UserID);
-    node.start((web3, child) => {
-        web3.eth.getBalance(web3.eth.getAccount(console.log)).then(function(useraccount){
-            callback(useraccount);
-            console.log("账户余额" + useraccount);
-            setTimeout(() => child.kill(), 1000 * 60 * 2);
-        });
-    });
+
+    let node = new Node(1);
+    let web3 = node.getSuperWeb3();
+    web3.eth.getBalance(UserAddress).then((balance) => {
+        let coin = web3.utils.fromWei(balance, 'ether');
+        callback(coin);
+    })
+
 }
 
 exports.UserAccount = UserAccount;

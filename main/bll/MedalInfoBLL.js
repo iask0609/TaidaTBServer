@@ -32,20 +32,25 @@ function getGetInfo(UserID,returnList){
     })
 }
 function getTransactionInfo(UserID,transactionHash, callback){
-    
-    transactionInfo(UserID,transactionHash,(reciept)=>{          
-         
-        callback(reciept);    
-        
-        })}
-    
-function getUserAccount(UserID,callback){
-    
-    userAccount(UserID,(useraccount)=>{
-        callback(useraccount);
-    })
 
+    transactionInfo(UserID, transactionHash, (reciept) => {
+        callback(reciept);
+    })
 }
+
+
+function getUserAccount(UserID,callback){
+    const getUserAddress = require('./AllUser').getUserAddress;
+
+    console.log(getUserAddress);
+    getUserAddress(UserID, (UserAddress) => {
+        userAccount(UserAddress, (balance) => {
+            callback(balance);
+
+        })
+    })
+}
+
 
 exports.getGiveInfo = getGiveInfo;
 exports.getGetInfo = getGetInfo;

@@ -7,7 +7,7 @@ function AddUserNode(userId, updateAddress)
     userNode.init(()=> userNode.start(function callback(web3,child){
         web3.eth.personal.newAccount('123456').then((userhash) => {
             updateAddress(userhash, () => {
-                setTimeout(() => child.kill(), 1000 * 60 * 3);
+                setTimeout(() => child.kill(), 1000 * 60);
             });
             let superWeb3 = userNode.getSuperWeb3();
             superWeb3.eth.getCoinbase((error, coinbase) => {

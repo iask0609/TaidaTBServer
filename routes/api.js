@@ -368,7 +368,8 @@ router.post("/transactionInfo",function(req,res){
 router.post("/checkApplication", function(req, res){
     bll.checkApplication(req.body.UserID,req.body.ServiceID,req.body.Score1,req.body.Score2,
         req.body.Score3,req.body.Score4 );
-})
+    res.json({code: 0});
+});
 
 /*
  * 查询已转移的勋章信息
@@ -436,6 +437,22 @@ router.post("/getUserAccount", function (req, res) {
     bll.getUserAccount(req.body.UserId,function(list){        
         res.json({           
              "list": list        
+        })    
+})
+
+});
+
+
+
+/**
+* 删除一条需求
+*/
+router.post("/deleteDemand", function (req, res) {
+  
+    bll.deleteDemand(req.body.serviceId,function(num){
+        console.log(num);        
+        res.json({           
+             "num": num        
         })    
 })
 
