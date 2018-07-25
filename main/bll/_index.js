@@ -43,3 +43,4 @@ module.exports.getAllNotice = require('./NoticeBLL').getAllNotice;
 module.exports.getOrdinaryUserInfo=require('./OrdinaryUserInfo').getOrdinaryUserInfo;
 module.exports.getA_AdminInfo = require('./A_AdminInfo').getA_AdminInfo;
 module.exports.getB_AdminInfo = require('./B_AdminInfo').getB_AdminInfo;
+module.exports.getUserAddress = require('./AllUser').getUserAddress;
