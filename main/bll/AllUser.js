@@ -3,7 +3,8 @@ const otherUser=require('../util/ormSequelize').OtherUser;
 const ordinaryUser=require('../util/ormSequelize').OrdinaryUser;
 const dao = require('../dao/_index');
 const bll = require('./_index');
-var AddUserNode = require('../blockchain/AddUserNode.js');
+const AddUserNode = require('../blockchain/AddUserNode.js');
+
 /**
  * 用户登陆
  * @param Account
@@ -184,8 +185,8 @@ function getUserAddress(UserID, callback) {
     })
 }
 
+exports.getUserAddress = getUserAddress;
 exports.allUserLogin = allUserLogin;
 exports.getUserInfo=getUserInfo;
 exports.userRegister=userRegister;
 exports.getUserIDbyAccount = getUserIDbyAccount;
-exports.getUserAddress = getUserAddress;
