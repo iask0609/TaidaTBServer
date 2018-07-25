@@ -118,7 +118,7 @@ function applicate(UserID, ServiceID, Material1, Material2, Material3,Material4,
 * 志愿者在搜索界面中点击的申请
  */
 function applicateInSearch(UserID, ServiceID, returnNum) {
-    dao.insertApplication(ServiceID, UserID, '', '', '', '', function (num) {
+    dao.insertApplication(ServiceID, UserID, '', '', '', '','', function (num) {
         if (num == 0) {
             returnNum(0);
             return;
