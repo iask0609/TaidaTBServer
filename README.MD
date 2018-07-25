@@ -35,3 +35,15 @@ main/bll/DemandBLL.js中postNewRequirement数据库操作可优化
 
 ## 数据库相关
 1. 设置Demand和Application中ServiceID为唯一主键   (已改)
+
+
+## 初始化
+1.设置blockchain路径,将genesis.json防止于路径中
+2.新建node1, 初始化账户
+geth --datadir node1 init genesis.json
+geth --datadir node1 --mine --minerthreads=1 --port 30301 --rpc --rpcapi eth,web3,personal,net console --rpcport 8501
+
+3. 初始化数据库, 在util/manager设置数据库访问配置
+4.添加超级管理员, 更新账户地址
+
+5.更新bootnodes地址

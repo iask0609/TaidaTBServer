@@ -82,7 +82,7 @@ function applicate(UserID, ServiceID, Material1, Material2, Material3,Material4,
                             let indexRange = userlist.count;
                             console.log("审核候选人数： "+userlist.count)
                             let randomSet = new Set();
-                            while(randomSet.size < 5)
+                            while (randomSet.size < 4)
                             {
                                 randomSet.add(Math.floor(Math.random() * indexRange) + 1);
                             }
