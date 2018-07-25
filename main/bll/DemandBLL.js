@@ -414,6 +414,50 @@ function getDemandByConditionNoContent(UserID, Duration, DemandStartTime, type, 
     })
 }
 
+
+/**
+ * 根据service的ID删除老人发布的需求
+ */
+function deleteDemand(serviceID, returnNum){
+
+
+    demand.findAndCountAll({
+        where:{
+            "ServiceID": serviceID
+        }
+    }).then(function(result){
+        if(result.count === 0){
+            console.log('this demand is not exist.')
+            returnNum(0);
+        }else{
+            demand.destroy({
+                where:{
+                    "ServiceID": serviceID
+                }
+            }).then(()=>{
+                service.findAndCountAll({
+                    where: {
+                      "ServiceID": serviceID
+                    }
+                  }).then(function(result) {
+                    if (result.count === 0) {
+                      console.log('this service is not exist.')
+                      returnNum(0);
+                    } else {
+                        service.destroy({
+                        where: {
+                          "ServiceID": serviceID
+                        }
+                      }).then(()=>{
+                           returnNum(1);
+                      })
+                    }
+                  })
+            })
+        }
+    })
+}
+
 exports.postNewRequirement = postNewRequirement;
 exports.getDemandByUserID = getDemandByUserID;
 exports.updateDemand = updateDemand;
@@ -422,3 +466,4 @@ exports.getDemandByCondition = getDemandByCondition;
 exports.getDemandByConditionNoDuration=getDemandByConditionNoDuration;
 exports.getDemandByConditionNoDurationNoContent=getDemandByConditionNoDurationNoContent;
 exports.getDemandByConditionNoContent=getDemandByConditionNoContent;
+exports.deleteDemand = deleteDemand;
