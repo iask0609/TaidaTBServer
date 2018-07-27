@@ -204,12 +204,13 @@ function getDemandByCondition(UserID, Content, Duration, DemandStartTime, type, 
                     }
                     return returnList(list);
                 }
-                if(type == 4){
-                    return returnList(res);
-                }else
-                {
-                    return returnList();
-                }
+                // if(type == 4){
+                //     return returnList(res);
+                // }else
+                // {
+                //     return returnList();
+                // }
+                return returnList(res);
             }
         })
     })
@@ -403,12 +404,13 @@ function getDemandByConditionNoContent(UserID, Duration, DemandStartTime, type, 
                     }
                     return returnList(list);
                 }
-                if(type == 4){
-                    return returnList(res);
-                }else
-                {
-                    return returnList();
-                }
+                // if(type == 4){
+                //     return returnList(res);
+                // }else
+                // {
+                //     return returnList();
+                // }
+                return returnList(res);
             }
         })
     })
