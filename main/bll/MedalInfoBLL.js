@@ -1,7 +1,7 @@
 
 const medalInfoList = require('../util/ormSequelize').MedalInfoList;
 const transactionInfo = require('../blockchain/_index').transactionInfo;
-const getUserAccount = require('../blockchain/_index').getUserAcoount;
+const userAccount = require('../blockchain/_index').UserAccount;
 /**
  * 根据老人的ID获取勋章已转移信息
  *  @param UserID
@@ -32,20 +32,25 @@ function getGetInfo(UserID,returnList){
     })
 }
 function getTransactionInfo(UserID,transactionHash, callback){
-    
-    transactionInfo(UserID,transactionHash,(reciept)=>{          
-         
-        callback(reciept);    
-        
-        })}
-    
-function getUserAccount(UserID,callback){
-    
-    getUserAccount(UserID,(useraccount)=>{
-        callback(useraccount);
-    })
 
+    transactionInfo(UserID, transactionHash, (reciept) => {
+        callback(reciept);
+    })
 }
+
+
+function getUserAccount(UserID,callback){
+    const getUserAddress = require('./AllUser').getUserAddress;
+
+    console.log(getUserAddress);
+    getUserAddress(UserID, (UserAddress) => {
+        userAccount(UserAddress, (balance) => {
+            callback(balance);
+
+        })
+    })
+}
+
 
 exports.getGiveInfo = getGiveInfo;
 exports.getGetInfo = getGetInfo;

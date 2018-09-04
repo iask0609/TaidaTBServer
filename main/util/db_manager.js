@@ -2,10 +2,11 @@
 module.exports = {
   mysql: {
      // host: 'localhost',
-    host: '10.10.1.201',
-    user: 'root',
-    password: '123456',
-    database: 'volunteerservice',
-    port: '13306'
+    host: 'rdsbmmmujyuqeu3public.mysql.rds.aliyuncs.com',
+    user: 'opengle',
+    password: 'Station404',
+    database: 'timebank',
+    port: '3306'
+
   }
 };

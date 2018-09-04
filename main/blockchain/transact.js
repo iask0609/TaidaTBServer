@@ -16,6 +16,8 @@ function transact(UserID1, UserAddress1, UserAddress2, coin, updateService) {
             }).on('receipt', function (receipt) {
                 console.log(receipt);
                 setTimeout(() => child.kill(), 60 * 1000 * 2);
+            }).catch((err) => {
+                console.log('transaction faild:' + err);
             })
         })
     })

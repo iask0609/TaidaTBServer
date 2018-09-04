@@ -1,7 +1,7 @@
 const service = require('../util/ormSequelize').Service;
 const Demand = require('../util/ormSequelize').Demand;
 const Application = require('../util/ormSequelize').Application;
-const getUserAddress = require('../bll/AllUser.js').getUserAddress;
+const getUserAddress = require('../bll/AllUser').getUserAddress;
 
 function insertService(ServiceID, CreateTime, Duration, Content,
   DemandStartTime, DemandEndTime, Status,
@@ -182,16 +182,18 @@ function getServiceInfo(ServiceID, ServiceInfo){
       'ServiceID': ServiceID
     }
   }).then((demand)=>{
-    var UserID1 = demand.rows[0].dataValues.UserID;
+      console.log(demand.rows);
+      let UserID1 = demand.rows[0].dataValues.UserID;
     Application.findAndCountAll({
       where:{
         'ServiceID': ServiceID
       }
     }).then((applicate)=>{
-      var UserID2 = applicate.row[0].dataValues.UserID;
-      getUserAddress(UserID1, (UserAdderss1)=>{
-        getUserAddress(UserID2, (UserAdderss2)=>{
-          ServiceInfo(UserID1,UserAdderss1,UserID2,UserAdderss2);
+        let UserID2 = applicate.rows[0].dataValues.UserID;
+        let getUserAddress = require('../bll/AllUser').getUserAddress;
+        getUserAddress(UserID1, (UserAddress1) => {
+            getUserAddress(UserID2, (UserAddress2) => {
+                ServiceInfo(UserID1, UserAddress1, UserID2, UserAddress2);
         })
       });
     })

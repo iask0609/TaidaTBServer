@@ -57,52 +57,60 @@ function doLists(res,callback){
  * @param Material1
  * @param Material2
  * @param Material3
+ * @param Material4
  * @param RealStartTime
  * @param RealEndTime
  * @param Remark
  */
-function applicate(UserID, ServiceID, Material1, Material2, Material3,
+function applicate(UserID, ServiceID, Material1, Material2, Material3,Material4,
                    RealStartTime, RealEndTime, Remark, returnNum) {
-    dao.updateApplication(ServiceID, UserID, Material1, Material2, Material3, Remark, function(num){
-        if(num === 1){
-            dao.updateServiceFromVolunteer(ServiceID, RealStartTime, RealEndTime, function(value){
-                if(value===1){
-                    getUserAddress(UserID, function (userAddress) {
-                        if (userAddress === -1)
-                            return;
-                        console.log('address get:' + userAddress);
-                        addContract(UserID, userAddress, ServiceID, (contractAddress) => {
-                            dao.updateContractHash(ServiceID, contractAddress);
-                        });
-
-                        dao.getCheckUser(function (userlist) {
-                            //选择审核者
-                            console.log("选择审核人")
-                            let indexRange = userlist.count;
-                            console.log("审核候选人数： "+userlist.count)
-                            let randomSet = new Set();
-                            while(randomSet.size < 5)
-                            {
-                                randomSet.add(Math.floor(Math.random() * indexRange) + 1);
-                            }
-                            randomSet.forEach(function(randomIndex){
-                                console.log("randomIndex"+randomIndex);
-                                let checkStaffID = userlist.rows[randomIndex - 1].dataValues.UserID;
-                                dao.insertCheckInfo(ServiceID,checkStaffID,function (value2) {
-                                    console.log("插入成功");
-                                });
-                            })
-                        })
-                    });
-                }
-                return returnNum(num);
-            });
-
+    dao.getCheckUser(function (userlist) {
+        if (userlist.count < 4) {
+            returnNum(-1);
         }
         else{
-            return returnNum(num)
+            dao.updateApplication(ServiceID, UserID, Material1, Material2, Material3, Material4, Remark, function (num) {
+                if (num === 1) {
+                    dao.updateServiceFromVolunteer(ServiceID, RealStartTime, RealEndTime, function (value) {
+                        if (value === 1) {
+                            getUserAddress(UserID, function (userAddress) {
+                                if (userAddress === -1)
+                                    return;
+                                console.log('address get:' + userAddress);
+                                addContract(UserID, userAddress, ServiceID, (contractAddress) => {
+                                    dao.updateContractHash(ServiceID, contractAddress);
+                                });
+
+                                dao.getCheckUser(function (userlist) {
+                                    //选择审核者
+                                    console.log("选择审核人")
+                                    let indexRange = userlist.count;
+                                    console.log("审核候选人数： " + userlist.count)
+                                    let randomSet = new Set();
+                                    while (randomSet.size < 4) {
+                                        randomSet.add(Math.floor(Math.random() * indexRange) + 1);
+                                    }
+                                    randomSet.forEach(function (randomIndex) {
+                                        console.log("randomIndex" + randomIndex);
+                                        let checkStaffID = userlist.rows[randomIndex - 1].dataValues.UserID;
+                                        dao.insertCheckInfo(ServiceID, checkStaffID, function (value2) {
+                                            console.log("插入成功");
+                                        });
+                                    })
+                                })
+                            });
+                        }
+                        return returnNum(num);
+                    });
+
+                }
+                else {
+                    return returnNum(num)
+                }
+            });
         }
     });
+
 
 }
 
@@ -110,7 +118,7 @@ function applicate(UserID, ServiceID, Material1, Material2, Material3,
 * 志愿者在搜索界面中点击的申请
  */
 function applicateInSearch(UserID, ServiceID, returnNum) {
-    dao.insertApplication(ServiceID, UserID, '', '', '', '', function (num) {
+    dao.insertApplication(ServiceID, UserID, '', '', '', '','', function (num) {
         if (num == 0) {
             returnNum(0);
             return;

@@ -48,6 +48,14 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.TIME,
             allowNull: true
         },
+        RealStartTime: {
+            type: DataTypes.TIME,
+            allowNull: true
+        },
+        RealEndTime: {
+            type: DataTypes.TIME,
+            allowNull: true
+        },
         Status: {
             type: DataTypes.INTEGER,
             allowNull: true
