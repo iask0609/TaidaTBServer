@@ -65,7 +65,6 @@ function HandleList(res,callback){
                 obj.volunteerID=res2.rows[0].dataValues.UserID;
                 obj.remark=res2.rows[0].dataValues.Remark;
                 obj.ApplyTime = res2.rows[0].dataValues.ApplyTime;
-                obj.daydiff = 0;
                 otherUser.findAndCountAll({
                     where:{
                         "UserID": obj.volunteerID
