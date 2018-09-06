@@ -274,10 +274,13 @@ function getCheckNum(UserId,ServiceID, callback){
             "ServiceID": ServiceID
         }
     }).then(function(res){
-
-        checkNum(UserId, res.rows[0].dataValues.ContractChainHASH, (result) => {
-            callback(result);
-        })
+        if(res.rows[0].dataValues.ContractChainHASH.length>2){
+            checkNum(UserId, res.rows[0].dataValues.ContractChainHASH, (result) => {
+                callback(result);
+            })
+        }else{
+            callback(0);
+        }
     })
     
 }
