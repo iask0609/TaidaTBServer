@@ -442,7 +442,18 @@ router.post("/getUserAccount", function (req, res) {
 
 });
 
+/**
+* 查询已审核人数
+*/
+router.post("/getCheckNum", function (req, res) {
+  
+    bll.getCheckNum(req.body.UserId,req.body.ServiceID,function(num){        
+        res.json({           
+             "num": num        
+        })    
+})
 
+});
 
 /**
 * 删除一条需求

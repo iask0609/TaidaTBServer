@@ -6,6 +6,7 @@ const getUserAddress = require('./AllUser.js').getUserAddress;
 const addContract = require('../blockchain/addContract.js');
 const otherUser = require('../util/ormSequelize').OtherUser;
 const serviceLists = require('../util/ormSequelize').ServiceLists;
+const checkNum = require('../blockchain/_index').checkNum;
 
 /**
  * 查询志愿者的全部已经服务的信息
@@ -245,6 +246,24 @@ function getMaterial(ServiceID,UserID,returnList)
     })
 }
 
+/**
+*根据用户ID与合约Hash获取已审核人数
+ */
+function getCheckNum(UserId,ServiceID, callback){
+
+    //callback(1);
+    service.findAndCountAll({
+        where:{
+            "ServiceID": ServiceID
+        }
+    }).then(function(res){
+
+        checkNum(UserId, res.rows[0].dataValues.ContractChainHASH, (result) => {
+            callback(result);
+        })
+    })
+    
+}
 /*
 *上传文件到OSS
  */
@@ -278,6 +297,7 @@ function uploadFile(filename, filestream, returnList) {
    
 }
 
+exports.getCheckNum = getCheckNum;
 exports.getServicedList = getServicedList;
 exports.applicate = applicate;
 exports.applicating = applicating;

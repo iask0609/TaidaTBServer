@@ -32,4 +32,4 @@ function addContract(UserID, UserAddress,ServiceID,updateDB)
   })
 }
 
-module.exports = addContract;
+exports.addContract = addContract;
