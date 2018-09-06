@@ -466,7 +466,19 @@ router.post("/deleteDemand", function (req, res) {
              "num": num        
         })    
 })
-
+});
+/**
+ * 老人编辑某个需求
+ */
+router.post("/editDemand", function(req, res){
+    console.log(req.body);
+    bll.updateDemand(req.body.UserId, req.body.serviceId, req.body.Duration,
+        req.body.Content, req.body.DemandStartTime, req.body.DemandEndTime,
+        req.body.Remark, function(num){
+            res.json({
+                "num":num
+            })
+        })
 });
 
 /**

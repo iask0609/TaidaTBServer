@@ -7,6 +7,7 @@ module.exports.noticeOperation=require('./NoticeBLL').noticeOperation;
 module.exports.postNewRequirement=require('./DemandBLL').postNewRequirement;
 module.exports.getDemandByUserID=require('./DemandBLL').getDemandByUserID;
 module.exports.updateDemand=require('./DemandBLL').updateDemand;
+module.exports.editDemand = require('./DemandBLL').editDemand;
 module.exports.getServicedList=require('./ApplicationBLL').getServicedList;
 module.exports.applicate = require('./ApplicationBLL').applicate;
 module.exports.applicating = require('./ApplicationBLL').applicating;
