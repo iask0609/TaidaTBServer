@@ -38,6 +38,10 @@ module.exports = function(sequelize, DataTypes) {
     Remark: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    ApplyTime:{
+      type: DataTypes.TIME,
+      allowNull: true
     }
   }, {
     createdAt: false,

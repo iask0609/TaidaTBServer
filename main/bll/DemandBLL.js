@@ -459,7 +459,29 @@ function deleteDemand(serviceID, returnNum){
         }
     })
 }
-
+/**
+ * 根据service的ID修改老人发布的需求
+ * @param UserID
+ * @param ServiceID
+ * @param Duration
+ * @param content
+ * @param DemandStartTime
+ * @param DemandEndTime
+ * @param Remark
+ */
+function editDemand(UserID, ServiceID, Duration, content, DemandStartTime, DemandEndTime, Remark, returnNum)
+{
+    dao.editDemand(ServiceID, UserID,Duration, content, DemandStartTime, DemandEndTime, Remark, function(num){
+        if(num === 1){
+            dao.updateService(ServiceID, Duration, content, DemandStartTime, DemandEndTime, function (num1) {
+                return returnNum(num1);
+            });
+        }
+        else{
+            return returnNum(num);
+        }
+    });
+}
 exports.postNewRequirement = postNewRequirement;
 exports.getDemandByUserID = getDemandByUserID;
 exports.updateDemand = updateDemand;
@@ -469,3 +491,4 @@ exports.getDemandByConditionNoDuration=getDemandByConditionNoDuration;
 exports.getDemandByConditionNoDurationNoContent=getDemandByConditionNoDurationNoContent;
 exports.getDemandByConditionNoContent=getDemandByConditionNoContent;
 exports.deleteDemand = deleteDemand;
+exports.editDemand = editDemand;
