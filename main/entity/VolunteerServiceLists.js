@@ -5,7 +5,7 @@
  * @returns {Model|*|{}|void}
  */
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('ServiceLists', {
+    return sequelize.define('volunteerservicelists', {
         ServiceID: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -15,10 +15,6 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true
-        },
-        Remark: {
-            type: DataTypes.STRING,
-            allowNull: true
         },
         Province:{
             type: DataTypes.INTEGER,
@@ -87,6 +83,6 @@ module.exports = function(sequelize, DataTypes) {
     }, {
         createdAt: false,
         updatedAt: false,
-        tableName: 'ServiceLists'
+        tableName: 'volunteerservicelists'
     })
 };
