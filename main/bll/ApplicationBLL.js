@@ -101,23 +101,23 @@ function applicate(UserID, ServiceID, Material1, Material2, Material3,Material4,
                                     })
                                 })
                             });
-                            dao.getCheckUser(function (userlist) {
-                                //选择审核者
-                                console.log("选择审核人")
-                                let indexRange = userlist.count;
-                                console.log("审核候选人数： " + userlist.count)
-                                let randomSet = new Set();
-                                while (randomSet.size < 4) {
-                                    randomSet.add(Math.floor(Math.random() * indexRange) + 1);
-                                }
-                                randomSet.forEach(function (randomIndex) {
-                                    console.log("randomIndex" + randomIndex);
-                                    let checkStaffID = userlist.rows[randomIndex - 1].dataValues.UserID;
-                                    dao.insertCheckInfo(ServiceID, checkStaffID, function (value2) {
-                                        console.log("插入成功");
-                                    });
-                                })
-                            })
+                            // dao.getCheckUser(function (userlist) {
+                            //     //选择审核者
+                            //     console.log("选择审核人")
+                            //     let indexRange = userlist.count;
+                            //     console.log("审核候选人数： " + userlist.count)
+                            //     let randomSet = new Set();
+                            //     while (randomSet.size < 4) {
+                            //         randomSet.add(Math.floor(Math.random() * indexRange) + 1);
+                            //     }
+                            //     randomSet.forEach(function (randomIndex) {
+                            //         console.log("randomIndex" + randomIndex);
+                            //         let checkStaffID = userlist.rows[randomIndex - 1].dataValues.UserID;
+                            //         dao.insertCheckInfo(ServiceID, checkStaffID, function (value2) {
+                            //             console.log("插入成功");
+                            //         });
+                            //     })
+                            // })
                         }
                         return returnNum(num);
                     });
