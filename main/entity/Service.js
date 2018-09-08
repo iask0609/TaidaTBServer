@@ -59,6 +59,10 @@ module.exports = function(sequelize, DataTypes) {
     getmedaltime:{
       type: DataTypes.TIME,
       allowNull: true
+    },
+    mutualtype:{
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
 
   }, {
