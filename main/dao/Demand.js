@@ -60,8 +60,38 @@ function updateDemand(ServiceID, UserID, Remark, returnNum) {
     }
   )
 }
-
+function editDemand(ServiceID, UserID,Duration, content, DemandStartTime, DemandEndTime, Remark, returnNum) {
+  demand.findAndCountAll({
+      where: {
+          "ServiceID": ServiceID,
+          "UserID": UserID
+      }
+  }).then(
+      function(result) {
+          if (result.count === 0) {
+              console.log('this Demand is not exist.')
+          } else {
+              demand.update({
+                      "Remark": Remark
+                  }, {
+                      where: {
+                          "ServiceID": ServiceID,
+                          "UserID": UserID
+                      }
+                  }
+              ).then(function(result) {
+                  console.log('updateDemand ok');
+                  return returnNum(1);
+              }).catch(function(err) {
+                  console.log('updateDemand error');
+                  return returnNum(0);
+              })
+          }
+      }
+  )
+}
 exports.insertDemand = insertDemand;
 exports.updateDemand = updateDemand;
+exports.editDemand = editDemand;
 
 exports.getOldManIDByServiceID = getOldManIDByServiceID;

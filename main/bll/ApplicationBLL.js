@@ -3,7 +3,8 @@ const service = require('../util/ormSequelize').Service;
 const ordinaryUser=require('../util/ormSequelize').OrdinaryUser;
 const dao = require('../dao/_index');
 const getUserAddress = require('./AllUser.js').getUserAddress;
-const addContract = require('../blockchain/addContract.js');
+//const addContract = require('../blockchain/addContract.js');
+const addContract = require('../blockchain/_index').addContract;
 const otherUser = require('../util/ormSequelize').OtherUser;
 const serviceLists = require('../util/ormSequelize').ServiceLists;
 const checkNum = require('../blockchain/_index').checkNum;
@@ -64,13 +65,13 @@ function doLists(res,callback){
  * @param Remark
  */
 function applicate(UserID, ServiceID, Material1, Material2, Material3,Material4,
-                   RealStartTime, RealEndTime, Remark, returnNum) {
+                   RealStartTime, RealEndTime, Remark, ApplyTime, returnNum) {
     dao.getCheckUser(function (userlist) {
         if (userlist.count < 4) {
             returnNum(-1);
         }
         else{
-            dao.updateApplication(ServiceID, UserID, Material1, Material2, Material3, Material4, Remark, function (num) {
+            dao.updateApplication(ServiceID, UserID, Material1, Material2, Material3, Material4, Remark, ApplyTime, function (num) {
                 if (num === 1) {
                     dao.updateServiceFromVolunteer(ServiceID, RealStartTime, RealEndTime, function (value) {
                         if (value === 1) {
@@ -100,6 +101,23 @@ function applicate(UserID, ServiceID, Material1, Material2, Material3,Material4,
                                     })
                                 })
                             });
+                            // dao.getCheckUser(function (userlist) {
+                            //     //选择审核者
+                            //     console.log("选择审核人")
+                            //     let indexRange = userlist.count;
+                            //     console.log("审核候选人数： " + userlist.count)
+                            //     let randomSet = new Set();
+                            //     while (randomSet.size < 4) {
+                            //         randomSet.add(Math.floor(Math.random() * indexRange) + 1);
+                            //     }
+                            //     randomSet.forEach(function (randomIndex) {
+                            //         console.log("randomIndex" + randomIndex);
+                            //         let checkStaffID = userlist.rows[randomIndex - 1].dataValues.UserID;
+                            //         dao.insertCheckInfo(ServiceID, checkStaffID, function (value2) {
+                            //             console.log("插入成功");
+                            //         });
+                            //     })
+                            // })
                         }
                         return returnNum(num);
                     });
@@ -257,10 +275,13 @@ function getCheckNum(UserId,ServiceID, callback){
             "ServiceID": ServiceID
         }
     }).then(function(res){
-
-        checkNum(UserId, res.rows[0].dataValues.ContractChainHASH, (result) => {
-            callback(result);
-        })
+        if(res.rows[0].dataValues.ContractChainHASH.length>2){
+            checkNum(UserId, res.rows[0].dataValues.ContractChainHASH, (result) => {
+                callback(result);
+            })
+        }else{
+            callback(0);
+        }
     })
     
 }

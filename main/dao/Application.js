@@ -20,7 +20,7 @@ function insertApplication(ServiceID, UserID, Material1,
 }
 
 function updateApplication(ServiceID, UserID, Material1,
-  Material2, Material3, Material4, Remark, returnNum) {
+  Material2, Material3, Material4, Remark, ApplyTime, returnNum) {
   application.findAndCountAll({
     where: {
       "ServiceID": ServiceID,
@@ -36,7 +36,8 @@ function updateApplication(ServiceID, UserID, Material1,
           "Material2": Material2,
           "Material3": Material3,
           "Material4": Material4,
-          "Remark": Remark
+          "Remark": Remark,
+          "ApplyTime": ApplyTime
         }, {
           where: {
             "ServiceID": ServiceID,
