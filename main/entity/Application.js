@@ -42,6 +42,10 @@ module.exports = function(sequelize, DataTypes) {
     ApplyTime:{
       type: DataTypes.TIME,
       allowNull: true
+    },
+    Details: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   }, {
     createdAt: false,

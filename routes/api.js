@@ -110,6 +110,19 @@ router.post("/postNewRequirement", function(req, res){
 });
 
 /**
+ * 志愿者发布可提供服务
+ */
+router.post("/postNewApplication", function(req, res){
+    //console.log(req.body);
+    bll.postNewApplication(req.body.UserId, req.body.Content, req.body.DemandStartTime,
+        req.body.DemandEndTime, req.body.Duration, req.body.Remark, function(num){
+        res.json({
+            "num": num
+        });
+        })
+});
+
+/**
  * 根据老人的ID查找其所有的需求
  */
 router.post("/getDemandByUserID", function(req, res){
@@ -159,6 +172,21 @@ router.post("/applicate", function (req, res) {
             })
         })
 });
+
+/*
+* 老人在搜索界面中响应志愿者的可提供服务
+ */
+router.post("/applicateInVolunteerProvide", function (req, res) {
+    bll.applicateInVolunteerProvide(req.body.UserID, req.body.VolunteerID,
+        req.body.VolunteerServiceID,req.body.Content,req.body.DemandStartTime,req.body.DemandEndTime,req.body.Duration,req.body.Remark,
+        function (num){
+            console.log(num)
+            res.json({
+                "num":num
+            })
+        })
+});
+
 
 /*
 * 志愿者在搜索界面中点击的申请
@@ -221,6 +249,63 @@ router.post("/getOldManName", function(req, res){
     })
 });
 
+
+/**
+ * 查询所有未被响应的志愿者可提供服务
+ */
+router.post("/getAllVolunteerService", function(req, res){
+    bll.getAllVolunteerService(req.body.UserID, function(list){
+        res.json({
+            "list": list
+        })
+    })
+});
+
+/**
+ * 条件查询志愿者的可提供服务
+ */
+router.post("/getProvideByCondition", function(req, res){
+    bll.getProvideByCondition(req.body.UserID, req.body.Content, req.body.Duration,
+        req.body.DemandStartTime, req.body.type, function(list){
+            res.json({
+                "list": list
+            })
+        })
+});
+
+/**
+ * 条件查询志愿者的可提供服务
+ */
+router.post("/getProvideByConditionNoDuration", function(req, res){
+    bll.getProvideByConditionNoDuration(req.body.UserID, req.body.Content,
+        req.body.DemandStartTime, req.body.type, function(list){
+            res.json({
+                "list": list
+            })
+        })
+});
+
+/**
+ * 条件查询志愿者的可提供服务
+ */
+router.post("/getProvideByConditionNoDurationNoContent", function(req, res){
+    bll.getProvideByConditionNoDurationNoContent(req.body.UserID, req.body.DemandStartTime, req.body.type, function(list){
+            res.json({
+                "list": list
+            })
+        })
+});
+/**
+ * 条件查询志愿者的可提供服务
+ */
+router.post("/getProvideByConditionNoContent", function(req, res){
+    bll.getProvideByConditionNoContent(req.body.UserID,req.body.Duration,
+        req.body.DemandStartTime, req.body.type, function(list){
+            res.json({
+                "list": list
+            })
+        })
+});
 /**
  * 查询所有未被服务的老人需求
  */
@@ -480,6 +565,8 @@ router.post("/editDemand", function(req, res){
             })
         })
 });
+
+
 
 /**
  * *********************************************************管理员端分界线*****************************************************************************

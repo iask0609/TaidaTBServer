@@ -47,4 +47,5 @@ module.exports.MedalInfoList = require('../entity/MedalInfoList')(seq, Sequelize
 module.exports.CheckNoticeView = require('../entity/CheckNoticeView')(seq, Sequelize);
 module.exports.OrdinaryUserInfo = require('../entity/OrdinaryUserInfo')(seq, Sequelize);
 module.exports.VolunteerServiceLists = require('../entity/VolunteerServiceLists')(seq,Sequelize);
+module.exports.VolunteerService = require('../entity/VolunteerService')(seq,Sequelize);
 module.exports.sequelize=seq;

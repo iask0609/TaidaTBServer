@@ -47,3 +47,4 @@ module.exports.deleteServerItemByID = require('./ServerItem').deleteServerItemBy
 module.exports.selectAllItems = require('./ServerItem').selectAllItems;
 module.exports.selectItemsByType = require('./ServerItem').selectItemsByType;
 module.exports.selectContractHash = require('./Service').selectContractHash;
+module.exports.insertVolunteerService = require('./VolunteerService').insertVolunteerService;

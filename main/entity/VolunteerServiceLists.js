@@ -6,7 +6,7 @@
  */
 module.exports = function(sequelize, DataTypes) {
     return sequelize.define('volunteerservicelists', {
-        ServiceID: {
+        VolunteerServiceID: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true
@@ -15,6 +15,10 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true
+        },
+        Remark: {
+            type: DataTypes.STRING,
+            allowNull: true
         },
         Province:{
             type: DataTypes.INTEGER,
@@ -56,10 +60,6 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allowNull: true
         },
-        medalnum:{
-            type: DataTypes.DOUBLE,
-            allowNull:true
-        },
         ContentID: {
             type: DataTypes.INTEGER,
             allowNull: true
@@ -73,10 +73,6 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: true
         },
         Duration: {
-          type: DataTypes.INTEGER,
-          allowNull: false
-        },
-        mutualtype: {
           type: DataTypes.INTEGER,
           allowNull: false
         }
