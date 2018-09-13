@@ -5,7 +5,7 @@ const getUserAddress = require('../bll/AllUser').getUserAddress;
 
 function insertService(ServiceID, CreateTime, Duration, Content,
   DemandStartTime, DemandEndTime, Status,
-  ContractChainHASH, TransferHASH, returnNum) {
+  ContractChainHASH, TransferHASH, mutualtype,returnNum) {
   service.create({
     "ServiceID": ServiceID,
     "CreateTime": CreateTime,
@@ -15,7 +15,8 @@ function insertService(ServiceID, CreateTime, Duration, Content,
     "DemandEndTime": DemandEndTime,
     "Status": Status,            // 当为0时说明还未被满足，为1时说明已被满足
     "ContractChainHASH": ContractChainHASH,
-    "TransferHASH": TransferHASH
+    "TransferHASH": TransferHASH,
+    "mutualtype":mutualtype
   }).then(function(result) {
     console.log('insertService ok');
     console.log(result.message);

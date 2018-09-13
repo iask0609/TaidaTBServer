@@ -5,8 +5,8 @@
  * @returns {Model|*|{}|void}
  */
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('ServiceLists', {
-        ServiceID: {
+    return sequelize.define('volunteerservicelists', {
+        VolunteerServiceID: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true
@@ -60,10 +60,6 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allowNull: true
         },
-        medalnum:{
-            type: DataTypes.DOUBLE,
-            allowNull:true
-        },
         ContentID: {
             type: DataTypes.INTEGER,
             allowNull: true
@@ -79,14 +75,10 @@ module.exports = function(sequelize, DataTypes) {
         Duration: {
           type: DataTypes.INTEGER,
           allowNull: false
-        },
-        mutualtype: {
-          type: DataTypes.INTEGER,
-          allowNull: false
         }
     }, {
         createdAt: false,
         updatedAt: false,
-        tableName: 'ServiceLists'
+        tableName: 'volunteerservicelists'
     })
 };
