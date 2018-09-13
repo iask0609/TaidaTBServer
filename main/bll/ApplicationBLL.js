@@ -7,6 +7,8 @@ const getUserAddress = require('./AllUser.js').getUserAddress;
 const addContract = require('../blockchain/_index').addContract;
 const otherUser = require('../util/ormSequelize').OtherUser;
 const serviceLists = require('../util/ormSequelize').ServiceLists;
+const volunteerservice = require('../util/ormSequelize').VolunteerService;
+const volunteerservicelists = require('../util/ormSequelize').VolunteerServiceLists;
 const checkNum = require('../blockchain/_index').checkNum;
 
 /**
@@ -42,11 +44,14 @@ function doLists(res,callback){
                 "ServiceID": serviceID
             }
         }).then(function(res1){
-            list.push(res1.rows[0].dataValues);
-            if(list.length == res.count){
+            
+                list.push(res1.rows[0].dataValues);
+               if(list.length == res.count){
                 var list2 = list;
                 callback(list);
-            }
+               }
+            
+            
         })
     };
  
@@ -137,7 +142,7 @@ function applicate(UserID, ServiceID, Material1, Material2, Material3,Material4,
 * 志愿者在搜索界面中点击的申请
  */
 function applicateInSearch(UserID, ServiceID, returnNum) {
-    dao.insertApplication(ServiceID, UserID, '', '', '', '','', function (num) {
+    dao.insertApplication(ServiceID, UserID, '', '', '', '','','', function (num) {
         if (num == 0) {
             returnNum(0);
             return;
@@ -152,6 +157,66 @@ function applicateInSearch(UserID, ServiceID, returnNum) {
 
     });
 }
+
+
+/*
+* 老人在搜索界面响应志愿者的可提供服务
+ */
+function applicateInVolunteerProvide(UserID, VolunteerID,VolunteerServiceID,Content,DemandStartTime,DemandEndTime,Duration,Remark, returnNum) {
+
+        const myDateTime  = new Date().toISOString().slice(0, 19).replace('T', ' ');
+        service.findAndCountAll({
+            'order': [
+                ['ServiceID', 'DESC']
+            ]
+        }).then(function (result) {
+            let ServiceID = 1;
+            if(result.count > 0)
+            {
+                ServiceID = result.rows[0].dataValues.ServiceID + 1;
+            }
+            else
+            {
+                ServiceID = 1;
+            }
+            console.log(ServiceID +'   '+ myDateTime);
+            dao.insertService(ServiceID, myDateTime, Duration, Content, DemandStartTime, DemandEndTime, 1,
+                -1,-1,1, function(num){
+                if(num === 1){
+                    dao.insertDemand(ServiceID, UserID, Remark, function(num1){
+                        if(num1 === 1){
+                            
+                            dao.insertApplication(ServiceID, VolunteerID, '', '', '', '','','', function (num2){
+                                if(num2 === 1){
+                                    volunteerservice.update({'Status':1},
+                                    {
+                                        where: {"VolunteerServiceID": VolunteerServiceID}
+                                    }
+                                     ).then(function(){
+                                         returnNum(1);
+                                     })
+                                }
+                                else{
+                                    returnNum(0);
+                                }
+                            })
+
+                        }
+                        else
+                        {
+                            returnNum(0);
+                        }
+                    });
+                }
+                else{
+                    returnNum(0);
+                }
+                });
+        });
+    
+}
+
+
 
 /**
  * 志愿者正在申请的服务列表
@@ -323,7 +388,8 @@ exports.getServicedList = getServicedList;
 exports.applicate = applicate;
 exports.applicating = applicating;
 exports.applicated = applicated;
-exports.applicateInSearch=applicateInSearch;
+exports.applicateInSearch = applicateInSearch;
+exports.applicateInVolunteerProvide = applicateInVolunteerProvide;
 exports.getUserByService=getUserByService;
 exports.getMaterial=getMaterial;
 exports.uploadFile = uploadFile;

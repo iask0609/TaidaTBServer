@@ -3,6 +3,8 @@ const service = require('../util/ormSequelize').Service;
 const dao = require('../dao/_index');
 const serviceLists = require('../util/ormSequelize').ServiceLists;
 const otherUser = require('../util/ormSequelize').OtherUser;
+const volunteerservice = require('../util/ormSequelize').VolunteerService;
+const volunteerserviceLists = require('../util/ormSequelize').VolunteerServiceLists;
 
 /**
  * 老人发布新的需求
@@ -53,6 +55,49 @@ function postNewRequirement(UserId, Content, DemandStartTime, DemandEndTime, Dur
 
 }
 
+
+/**
+ * 志愿者发布能够提供的服务需求
+ * @param UserId
+ * @param Content
+ * @param DemandStartTime
+ * @param DemandEndTime
+ * @param Duration
+ * @param Remark
+ * @param returnNum
+ */
+function postNewApplication(UserId, Content, DemandStartTime, DemandEndTime, Duration, Remark, returnNum)
+{
+    const myDateTime  = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    volunteerservice.findAndCountAll({
+        'order': [
+            ['VolunteerServiceID', 'DESC']
+        ]
+    }).then(function (result) {
+        let VolunteerServiceID = 1;
+        if(result.count > 0)
+        {
+            VolunteerServiceID = result.rows[0].dataValues.VolunteerServiceID + 1;
+        }
+        else
+        {
+            VolunteerServiceID = 1;
+        }
+        console.log(VolunteerServiceID +'   '+ myDateTime);
+
+        dao.insertVolunteerService(VolunteerServiceID, UserId, myDateTime, Duration, Content, DemandStartTime, DemandEndTime, 0, Remark, function(num){
+            if(num === 1){
+                returnNum(1);
+            }else{
+                returnNum(0);
+            }
+        });
+
+    });
+
+
+}
+
 /**
  * 根据老人的ID获取他发布的所有需求
  * @param UserID
@@ -64,7 +109,6 @@ function getDemandByUserID(UserID, returnList){
             "UserID": UserID
         }
     }).then(function(res){
-        console.log(res)
         if(res.count==0){
             returnList(res)
         }else{
@@ -88,7 +132,6 @@ function HandleList(res,callback){
                 "ServiceID": serviceID
             }
         }).then(function(res1){
-            console.log(res1)
             list.push(res1.rows[0].dataValues);
             if(list.length==res.count){
                 callback(list)
@@ -121,6 +164,300 @@ function updateDemand(UserID, ServiceID, Duration, content, DemandStartTime, Dem
     });
 }
 
+
+/**
+ * 查询所有未被响应的志愿者可提供服务
+ * @param returnList
+ */
+function getAllVolunteerService(UserID,returnList){
+    //不应查到自己发布的需求
+    volunteerserviceLists.findAndCountAll({
+        where:{
+            "UserID": {
+                $not:[UserID]
+            },
+            "Status": 0
+        }
+    }).then(function(res){
+        return returnList(res);
+    })
+}
+/**
+ * 条件查询志愿者的可提供服务
+ * @param UserId
+ * @param Content
+ * @param Duration
+ * @param DemandStartTime
+ * @param type
+ * @param returnList
+ */
+function getProvideByCondition(UserID, Content, Duration, DemandStartTime, type, returnList){
+
+    volunteerserviceLists.findAndCountAll({
+        where:{
+            "ContentID": Content,
+            "Duration": Duration,
+            "DemandStartTime":{
+                "$gte": DemandStartTime
+            },
+            "UserID": {
+                $not:[UserID]
+            },
+            "Status": 0
+        }
+    }).then(function(res){
+        // return returnList(res);
+        otherUser.findAndCountAll({
+            where:{
+                "UserID": UserID
+            }
+        }).then(function(res1){
+            if(res1.count === 0){
+                return returnList();
+            }
+            else{
+                //按地区推荐
+                var province = res1.rows[0].dataValues.Province;
+                var city = res1.rows[0].dataValues.City;
+                var distinct = res1.rows[0].dataValues.District;
+                // return returnList(res);
+                var list = [];
+                if(type == 1){
+                    for(var i =0; i < res.count; i++){
+                        if(res.rows[i].dataValues.District === distinct){
+                            list.push(res.rows[i].dataValues);
+                        }
+                    }
+                    return returnList(list);
+                }
+                if(type == 2){
+                    for(var i =0; i < res.count; i++){
+                        if(res.rows[i].dataValues.City === city){
+                            list.push(res.rows[i].dataValues);
+                        }
+                    }
+                    return returnList(list);
+                }
+                if(type == 3){
+                    for(var i =0; i < res.count; i++){
+                        if(res.rows[i].dataValues.Province === province){
+                            list.push(res.rows[i].dataValues);
+                        }
+                    }
+                    return returnList(list);
+                }
+                // if(type == 4){
+                //     return returnList(res);
+                // }else
+                // {
+                //     return returnList();
+                // }
+                return returnList(res);
+            }
+        })
+    })
+}
+
+function getProvideByConditionNoDuration(UserID, Content, DemandStartTime, type, returnList){
+
+    volunteerserviceLists.findAndCountAll({
+        where:{
+
+            "ContentID": Content
+            ,
+
+            "DemandStartTime":{
+                "$gte": DemandStartTime
+            },
+            "UserID": {
+                $not:[UserID]
+            },
+            "Status": 0
+        }
+    }).then(function(res){
+        // return returnList(res);
+        otherUser.findAndCountAll({
+            where:{
+                "UserID": UserID
+            }
+        }).then(function(res1){
+            if(res1.count === 0){
+                return returnList();
+            }
+            else{
+                var province = res1.rows[0].dataValues.Province;
+                var city = res1.rows[0].dataValues.City;
+                var distinct = res1.rows[0].dataValues.District;
+                // return returnList(res);
+                var list = [];
+                if(type == 1){
+                    for(var i =0; i < res.count; i++){
+                        if(res.rows[i].dataValues.District === distinct){
+                            list.push(res.rows[i].dataValues);
+                        }
+                    }
+                    return returnList(list);
+                }
+                if(type == 2){
+                    for(var i =0; i < res.count; i++){
+                        if(res.rows[i].dataValues.City === city){
+                            list.push(res.rows[i].dataValues);
+                        }
+                    }
+                    return returnList(list);
+                }
+                if(type == 3){
+                    for(var i =0; i < res.count; i++){
+                        if(res.rows[i].dataValues.Province === province){
+                            list.push(res.rows[i].dataValues);
+                        }
+                    }
+                    return returnList(list);
+                }
+                // if(type == 4){
+                //     return returnList(res);
+                // }
+                // else{
+                //     return returnList();
+                // }
+                return returnList(res);
+            }
+        })
+    })
+}
+function getProvideByConditionNoDurationNoContent(UserID, DemandStartTime, type, returnList){
+
+    volunteerserviceLists.findAndCountAll({
+        where:{
+
+            "DemandStartTime":{
+                "$gte": DemandStartTime
+            },
+            "UserID": {
+                $not:[UserID]
+            },
+            "Status": 0
+        }
+    }).then(function(res){
+        // return returnList(res);
+        otherUser.findAndCountAll({
+            where:{
+                "UserID": UserID
+            }
+        }).then(function(res1){
+            if(res1.count === 0){
+                return returnList();
+            }
+            else{
+                var province = res1.rows[0].dataValues.Province;
+                var city = res1.rows[0].dataValues.City;
+                var distinct = res1.rows[0].dataValues.District;
+                // return returnList(res);
+                var list = [];
+                if(type == 1){
+                    for(var i =0; i < res.count; i++){
+                        if(res.rows[i].dataValues.District === distinct){
+                            list.push(res.rows[i].dataValues);
+                        }
+                    }
+                    return returnList(list);
+                }
+                if(type == 2){
+                    for(var i =0; i < res.count; i++){
+                        if(res.rows[i].dataValues.City === city){
+                            list.push(res.rows[i].dataValues);
+                        }
+                    }
+                    return returnList(list);
+                }
+                if(type == 3){
+                    for(var i =0; i < res.count; i++){
+                        if(res.rows[i].dataValues.Province === province){
+                            list.push(res.rows[i].dataValues);
+                        }
+                    }
+                    return returnList(list);
+                }
+                // if(type == 4){
+                //     return returnList(res);
+                // }
+                // else{
+                //     return returnList();
+                // }
+                return returnList(res);
+            }
+        })
+    })
+}
+function getProvideByConditionNoContent(UserID, Duration, DemandStartTime, type, returnList){
+
+    volunteerserviceLists.findAndCountAll({
+        where:{
+            "Duration": Duration,
+            "DemandStartTime":{
+                "$gte": DemandStartTime
+            },
+            "UserID": {
+                $not:[UserID]
+            },
+            "Status": 0
+        }
+    }).then(function(res){
+        // return returnList(res);
+        otherUser.findAndCountAll({
+            where:{
+                "UserID": UserID
+            }
+        }).then(function(res1){
+            if(res1.count === 0){
+                return returnList();
+            }
+            else{
+                //按地区推荐
+                var province = res1.rows[0].dataValues.Province;
+                var city = res1.rows[0].dataValues.City;
+                var distinct = res1.rows[0].dataValues.District;
+                // return returnList(res);
+                var list = [];
+                if(type == 1){
+                    for(var i =0; i < res.count; i++){
+                        if(res.rows[i].dataValues.District === distinct){
+                            list.push(res.rows[i].dataValues);
+                        }
+                    }
+                    return returnList(list);
+                }
+                if(type == 2){
+                    for(var i =0; i < res.count; i++){
+                        if(res.rows[i].dataValues.City === city){
+                            list.push(res.rows[i].dataValues);
+                        }
+                    }
+                    return returnList(list);
+                }
+                if(type == 3){
+                    for(var i =0; i < res.count; i++){
+                        if(res.rows[i].dataValues.Province === province){
+                            list.push(res.rows[i].dataValues);
+                        }
+                    }
+                    return returnList(list);
+                }
+                // if(type == 4){
+                //     return returnList(res);
+                // }else
+                // {
+                //     return returnList();
+                // }
+                return returnList(res);
+            }
+        })
+    })
+}
+
+/**
+ * ***************************************老人与志愿者分割线************************************************
+ */
 /**
  * 查询所有未被服务的老人需求
  * @param returnList
@@ -132,7 +469,8 @@ function getAllDemand(UserID,returnList){
             "UserID": {
                 $not:[UserID]
             },
-            "Status": 0
+            "Status": 0,
+            "mutualtype":0
         }
     }).then(function(res){
         return returnList(res);
@@ -178,7 +516,6 @@ function getDemandByCondition(UserID, Content, Duration, DemandStartTime, type, 
                 var city = res1.rows[0].dataValues.City;
                 var distinct = res1.rows[0].dataValues.District;
                 // return returnList(res);
-                console.log(type);
                 var list = [];
                 if(type == 1){
                     for(var i =0; i < res.count; i++){
@@ -247,7 +584,6 @@ function getDemandByConditionNoDuration(UserID, Content, DemandStartTime, type, 
                 var city = res1.rows[0].dataValues.City;
                 var distinct = res1.rows[0].dataValues.District;
                 // return returnList(res);
-                console.log(type);
                 var list = [];
                 if(type == 1){
                     for(var i =0; i < res.count; i++){
@@ -312,7 +648,6 @@ function getDemandByConditionNoDurationNoContent(UserID, DemandStartTime, type, 
                 var city = res1.rows[0].dataValues.City;
                 var distinct = res1.rows[0].dataValues.District;
                 // return returnList(res);
-                console.log(type);
                 var list = [];
                 if(type == 1){
                     for(var i =0; i < res.count; i++){
@@ -378,7 +713,6 @@ function getDemandByConditionNoContent(UserID, Duration, DemandStartTime, type, 
                 var city = res1.rows[0].dataValues.City;
                 var distinct = res1.rows[0].dataValues.District;
                 // return returnList(res);
-                console.log(type);
                 var list = [];
                 if(type == 1){
                     for(var i =0; i < res.count; i++){
@@ -429,7 +763,6 @@ function deleteDemand(serviceID, returnNum){
         }
     }).then(function(result){
         if(result.count === 0){
-            console.log('this demand is not exist.')
             returnNum(0);
         }else{
             demand.destroy({
@@ -443,7 +776,6 @@ function deleteDemand(serviceID, returnNum){
                     }
                   }).then(function(result) {
                     if (result.count === 0) {
-                      console.log('this service is not exist.')
                       returnNum(0);
                     } else {
                         service.destroy({
@@ -483,8 +815,14 @@ function editDemand(UserID, ServiceID, Duration, content, DemandStartTime, Deman
     });
 }
 exports.postNewRequirement = postNewRequirement;
+exports.postNewApplication = postNewApplication;
 exports.getDemandByUserID = getDemandByUserID;
 exports.updateDemand = updateDemand;
+exports.getAllVolunteerService = getAllVolunteerService;
+exports.getProvideByCondition = getProvideByCondition;
+exports.getProvideByConditionNoDuration=getProvideByConditionNoDuration;
+exports.getProvideByConditionNoDurationNoContent=getProvideByConditionNoDurationNoContent;
+exports.getProvideByConditionNoContent=getProvideByConditionNoContent;
 exports.getAllDemand = getAllDemand;
 exports.getDemandByCondition = getDemandByCondition;
 exports.getDemandByConditionNoDuration=getDemandByConditionNoDuration;
